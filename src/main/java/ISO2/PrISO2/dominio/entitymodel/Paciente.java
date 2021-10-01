@@ -7,5 +7,8 @@ public class Paciente {
 	private String dni;
 	private String nombre;
 	private String apellidos;
+	public String getDni() {
+		return dni;
+	}
 
 }
