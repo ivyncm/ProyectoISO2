@@ -32,12 +32,13 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 			Date fecha = rs.getDate("fecha");
 			Boolean segDosis = rs.getBoolean("segDosis");
 
-			Vacunacion entrega = new Vacunacion(id, tipoVacuna, paciente, fecha, segDosis);
+			//Vacunacion entrega = new Vacunacion(id, tipoVacuna, paciente, fecha, segDosis);
 
-			return entrega;
+			//return entrega;
 		} catch (SQLException ex) {
 			throw new DAOException("Error SQL", ex);
 		}
+		return null;
 
 	}
 
@@ -104,9 +105,10 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		String paciente = rs.getString("region");
 		Date fecha = rs.getDate("fecha");
 		Boolean segDosis = rs.getBoolean("segDosis");
-		Vacunacion vacunacion = new Vacunacion(id, tipoVacuna, paciente, fecha, segDosis);
+		//Vacunacion vacunacion = new Vacunacion(id, tipoVacuna, paciente, fecha, segDosis);
+		return null;
 
-		return vacunacion;
+		//return vacunacion;
 	}
 
 	public List<Vacunacion> seleccionarVacunaciones() throws Exception {

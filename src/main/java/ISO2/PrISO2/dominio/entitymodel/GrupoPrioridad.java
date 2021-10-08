@@ -8,6 +8,14 @@ public enum GrupoPrioridad {
 	Collection<Paciente> pacientes;
 	Collection<EntregaVacunas> entregas;
 	private String nombre;
+	
+	
+	private GrupoPrioridad(Collection<Paciente> pacientes, Collection<EntregaVacunas> entregas, String nombre, int prioridad) {
+		this.pacientes = pacientes;
+		this.entregas = entregas;
+		this.nombre = nombre;
+		this.prioridad = prioridad;
+	}
 	public Collection<Paciente> getPacientes() {
 		return pacientes;
 	}

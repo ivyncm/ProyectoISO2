@@ -5,6 +5,12 @@ public class TipoVacuna {
 	private String nombre;
 	private String farmaceutica;
 	private String fechaAprobacion;
+	
+	public TipoVacuna(String nombre, String farmaceutica, String fechaAprobacion) {
+		this.nombre = nombre;
+		this.farmaceutica = farmaceutica;
+		this.fechaAprobacion = fechaAprobacion;
+	}
 	public String getNombre() {
 		return nombre;
 	}

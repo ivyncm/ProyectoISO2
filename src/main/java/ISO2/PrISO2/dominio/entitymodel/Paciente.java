@@ -7,6 +7,15 @@ public class Paciente {
 	private String dni;
 	private String nombre;
 	private String apellidos;
+	
+	
+	public Paciente(RegionEnum region, GrupoPrioridad grupo, String dni, String nombre, String apellidos) {
+		this.region = region;
+		this.grupo = grupo;
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+	}
 	public String getDni() {
 		return dni;
 	}

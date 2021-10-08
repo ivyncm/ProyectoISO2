@@ -5,13 +5,13 @@ import ISO2.PrISO2.persistencia.*;
 
 public class Vacunacion {
 	private int id;
-	String vacuna;
-	String paciente;
+	TipoVacuna vacuna;
+	Paciente paciente;
 	VacunacionDAO vacunacionDao;
 	private Date fecha;
 	private boolean isSegundaDosis;
 	
-	public Vacunacion(int id, String tipoVacuna, String paciente, java.sql.Date fecha, boolean segDosis) {
+	public Vacunacion(int id, TipoVacuna tipoVacuna, Paciente paciente, Date fecha, boolean segDosis) {
 		setId(id);
 		setVacuna(tipoVacuna);
 		setPaciente(paciente);
@@ -24,16 +24,16 @@ public class Vacunacion {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getVacuna() {
+	public TipoVacuna getVacuna() {
 		return vacuna;
 	}
-	public void setVacuna(String vacuna) {
+	public void setVacuna(TipoVacuna vacuna) {
 		this.vacuna = vacuna;
 	}
-	public String getPaciente() {
+	public Paciente getPaciente() {
 		return paciente;
 	}
-	public void setPaciente(String paciente) {
+	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
 	public VacunacionDAO getVacunacionDao() {
