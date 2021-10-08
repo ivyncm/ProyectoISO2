@@ -10,5 +10,7 @@ public class Paciente {
 	public String getDni() {
 		return dni;
 	}
+	
+	
 
 }

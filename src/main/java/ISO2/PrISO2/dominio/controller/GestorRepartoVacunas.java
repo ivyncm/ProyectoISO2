@@ -13,6 +13,8 @@ public class GestorRepartoVacunas {
 	 */
 	public void altaNuevoLoteVacunas(Date fecha, String tipo, int cantidad) {
 		// TODO - implement GestorRepartoVacunas.altaNuevoLoteVacunas
+		
+		
 		throw new UnsupportedOperationException();
 	}
 

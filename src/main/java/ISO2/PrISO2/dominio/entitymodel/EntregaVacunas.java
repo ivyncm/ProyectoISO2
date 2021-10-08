@@ -6,20 +6,20 @@ import ISO2.PrISO2.persistencia.*;
 
 public class EntregaVacunas {
 	private int id;
-	String tipo;
-	String region;
-	String grupoPrioridad;
-	String lote;
+	TipoVacuna tipo;
+	RegionEnum region;
+	GrupoPrioridad grupoprioridad;
+	LoteVacunas lote;
 	EntregaDAO entregaDao;
 	private Date fecha;
 	private int cantidad;
 	
 	
-	public EntregaVacunas(int id, String tipoVacuna, String region, String grupoPrior, String lote, java.sql.Date fecha, int cantidad) {
+	public EntregaVacunas(int id, TipoVacuna tipo, RegionEnum region, GrupoPrioridad grupoprioridad, LoteVacunas lote, java.sql.Date fecha, int cantidad) {
 		setId(id);
 		setTipo(tipo);
 		setRegion(region);
-		setGrupoPrioridad(grupoPrior);
+		setGrupoPrioridad(grupoprioridad);
 		setLote(lote);
 		setFecha(fecha);
 		setCantidad(cantidad);
@@ -28,28 +28,28 @@ public class EntregaVacunas {
 	public EntregaVacunas(int id) {
 		setId(id);
 	}
-	public String getTipo() {
+	public TipoVacuna getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
+	public void setTipo(TipoVacuna tipo) {
 		this.tipo = tipo;
 	}
-	public String getRegion() {
+	public RegionEnum getRegion() {
 		return region;
 	}
-	public void setRegion(String region) {
+	public void setRegion(RegionEnum region) {
 		this.region = region;
 	}
-	public String getGrupoPrioridad() {
+	public GrupoPrioridad getGrupoPrioridad() {
 		return grupoPrioridad;
 	}
-	public void setGrupoPrioridad(String grupoPrioridad) {
+	public void setGrupoPrioridad(GrupoPrioridad grupoPrioridad) {
 		this.grupoPrioridad = grupoPrioridad;
 	}
-	public String getLote() {
+	public LoteVacunas getLote() {
 		return lote;
 	}
-	public void setLote(String lote) {
+	public void setLote(LoteVacunas lote) {
 		this.lote = lote;
 	}
 	public EntregaDAO getEntregaDao() {

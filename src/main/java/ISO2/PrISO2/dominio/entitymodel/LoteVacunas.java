@@ -13,8 +13,12 @@ public class LoteVacunas {
 	private int cantidad;
 	private String farmaceutica;
 	
-	public LoteVacunas(int id, String tipoVacuna, java.sql.Date fecha, int cantidad, String farmaceutica) {
-		
+	public LoteVacunas(int id, TipoVacuna tipo, Date fecha, int cantidad, String farmaceutica) {
+		setId(id);
+		setTipo(tipo);
+		setFecha(fecha);
+		setCantidad(cantidad);
+		setFarmaceutica(farmaceutica);
 	}
 	public Collection<EntregaVacunas> getEntregas() {
 		return entregas;
