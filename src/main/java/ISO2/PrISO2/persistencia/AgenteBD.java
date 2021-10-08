@@ -23,6 +23,12 @@ public class AgenteBD {
 		Connection conn = DriverManager.getConnection(url);
 		conn.createStatement().execute(
 				"create table entrega(id int, tipoVacuna varchar(30), region varchar(30), grupoPrioridad varchar(30), lote varchar(45), fecha date, cantidad int, primary key(id))");
+		conn.createStatement().execute("insert into entrega values "
+				+ "(123456, 'Astrazeneca, 'Madrid', 'Ancianos', 'ADZG145', 2021-05-23, 5),"
+				+ "(435667, 'Astrazeneca, 'Cataluña', 'Jovenes', 'ADRT345', 2021-07-03, 500)"
+				+ "(134563, 'Pfizer, 'Andalucia', 'Niños', 'HBV123345', 2021-09-15, 300)"
+				+ "(457687, 'Pfizer, 'Murcia', 'Adultos', 'HBV128745', 2021-08-23, 3000)");
+		
 //	!!	private static String url = "jdbc:derby:directory:myDB;create=true";
 	}
 
@@ -81,6 +87,11 @@ public class AgenteBD {
 		stat.close();
 		desconectarBD();
 		return res;
+	}
+	
+	public void main (String args[]) {
+		crearBD();
+		
 	}
 
 }
