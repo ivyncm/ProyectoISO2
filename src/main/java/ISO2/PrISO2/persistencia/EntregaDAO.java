@@ -34,12 +34,13 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 			Date fecha = rs.getDate("fecha");
 			int cantidad = rs.getInt("cantidad");
 
-			EntregaVacunas entrega = new EntregaVacunas(id, tipoVacuna, region, grupoPrior, lote, fecha, cantidad);
+			//EntregaVacunas entrega = new EntregaVacunas(id, tipoVacuna, region, grupoPrior, lote, fecha, cantidad);
 
-			return entrega;
+			//return entrega;
 		} catch (SQLException ex) {
 			throw new DAOException("Error SQL", ex);
 		}
+		return null;
 	}
 
 	@Override
@@ -105,8 +106,9 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		String lote = rs.getString("lote");
 		Date fecha = rs.getDate("fecha");
 		int cantidad = rs.getInt("cantidad");
-		EntregaVacunas entrega = new EntregaVacunas(id, tipoVacuna, region, grupoPrior, lote, fecha, cantidad);
-		return entrega;
+		//EntregaVacunas entrega = new EntregaVacunas(id, tipoVacuna, region, grupoPrior, lote, fecha, cantidad);
+		//return entrega;
+		return null;
 	}
 
 	public List<EntregaVacunas> seleccionarEntregas(String region) throws Exception {

@@ -32,12 +32,13 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 			int cantidad = rs.getInt("cantidad");
 			String farmaceutica = rs.getString("farmaceutica");
 
-			LoteVacunas lote = new LoteVacunas(id, tipoVacuna, fecha, cantidad, farmaceutica);
+			//LoteVacunas lote = new LoteVacunas(id, tipoVacuna, fecha, cantidad, farmaceutica);
 
-			return lote;
+			//return lote;
 		} catch (SQLException ex) {
 			throw new DAOException("Error SQL", ex);
 		}
+		return null;
 
 	}
 

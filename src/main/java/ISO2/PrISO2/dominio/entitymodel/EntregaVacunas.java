@@ -41,10 +41,10 @@ public class EntregaVacunas {
 		this.region = region;
 	}
 	public GrupoPrioridad getGrupoPrioridad() {
-		return grupoPrioridad;
+		return grupoprioridad;
 	}
 	public void setGrupoPrioridad(GrupoPrioridad grupoPrioridad) {
-		this.grupoPrioridad = grupoPrioridad;
+		this.grupoprioridad = grupoPrioridad;
 	}
 	public LoteVacunas getLote() {
 		return lote;

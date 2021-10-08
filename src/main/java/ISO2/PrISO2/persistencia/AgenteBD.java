@@ -89,7 +89,7 @@ public class AgenteBD {
 		return res;
 	}
 	
-	public void main (String args[]) {
+	public void main (String args[]) throws Exception {
 		crearBD();
 		
 	}
