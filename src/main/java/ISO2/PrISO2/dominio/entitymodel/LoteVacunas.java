@@ -1,5 +1,6 @@
 package ISO2.PrISO2.dominio.entitymodel;
 
+import java.time.LocalDate;
 import java.util.*;
 import ISO2.PrISO2.persistencia.*;
 
@@ -7,18 +8,19 @@ public class LoteVacunas {
 
 	Collection<EntregaVacunas> entregas;
 	TipoVacuna tipo;
-	LoteVacunasDAO loteVacunasDao;
-	private int id;
-	private Date fecha;
+	public LoteVacunasDAO loteVacunasDao;
+	private String id;
+	private LocalDate fecha;
 	private int cantidad;
 	private String farmaceutica;
 	
-	public LoteVacunas(int id, TipoVacuna tipo, Date fecha, int cantidad, String farmaceutica) {
+	public LoteVacunas(String id, LocalDate fecha, int cantidad, String farmaceutica) throws Exception {
 		setId(id);
-		setTipo(tipo);
 		setFecha(fecha);
 		setCantidad(cantidad);
 		setFarmaceutica(farmaceutica);
+		tipo = new TipoVacuna(farmaceutica);
+		loteVacunasDao = new LoteVacunasDAO();
 	}
 	public Collection<EntregaVacunas> getEntregas() {
 		return entregas;
@@ -26,28 +28,22 @@ public class LoteVacunas {
 	public void setEntregas(Collection<EntregaVacunas> entregas) {
 		this.entregas = entregas;
 	}
-	public TipoVacuna getTipo() {
-		return tipo;
-	}
-	public void setTipo(TipoVacuna tipo) {
-		this.tipo = tipo;
-	}
 	public LoteVacunasDAO getLoteVacunasDao() {
 		return loteVacunasDao;
 	}
 	public void setLoteVacunasDao(LoteVacunasDAO loteVacunasDao) {
 		this.loteVacunasDao = loteVacunasDao;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 	public int getCantidad() {
