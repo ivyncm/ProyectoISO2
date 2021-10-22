@@ -5,7 +5,7 @@ import java.sql.*;
 public class AgenteBD {
 	protected static AgenteBD mInstancia = null;
 	protected static Connection conn;
-	private static String url = "jdbc:derby:directory:myDB";
+	private static String url = "jdbc:derby:directory:myDB;create=true";//"jdbc:derby:directory:myDB";
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 
 	// Constructor
@@ -18,6 +18,11 @@ public class AgenteBD {
 		conn = DriverManager.getConnection(url);
 	}
 
+	
+	public static void main(String[] args) throws Exception {
+		crearBD();
+	}
+	
 	public static void crearBD() throws Exception {
 		Class.forName(driver);
 		Connection conn = DriverManager.getConnection(url);
@@ -26,7 +31,7 @@ public class AgenteBD {
 		conn.createStatement().execute(
 				"create table paciente(dni varchar(30), nombre varchar(30), apellidos varchar(30), region varchar(30), grupoPrioridad varchar(30), primary key(dni))");
 		conn.createStatement().execute(
-				"create table lote(id int, fecha date, cantidad int, nombre_tipoVacuna varchar(30), primary key(id))");
+				"create table lote(id varchar(30), fecha date, cantidad int, nombre_tipoVacuna varchar(30), primary key(id))");
 				//+ "constraint nombre_tipoVacuna foreign key references tipoVacuna(farmaceutica))");
 		conn.createStatement().execute(
 				"create table entrega(fecha date, cantidad int, idLote int, region varchar(30), grupoPrioridad varchar(30))"); //Clave foranea sin primaria??
@@ -47,10 +52,10 @@ public class AgenteBD {
 				+ "('645454', 'Rocio', 'Calatrava', 'Andalucia', '>80'),"
 				+ "('123656', 'Rosa', 'Torrenova', 'CLM', '50-60')");
 		conn.createStatement().execute("insert into lote values "
-				+ "(153456, '2021-05-24', 5, 'Astrazeneca'),"
-				+ "(485667, '2021-07-04', 500, 'Pfizer'),"
-				+ "(194563, '2021-09-16', 300, 'Pfizer'),"
-				+ "(477687, '2021-08-24', 3000, 'Moderna')");
+				+ "('153456', '2021-05-24', 5, 'Astrazeneca'),"
+				+ "('485667', '2021-07-04', 500, 'Pfizer'),"
+				+ "('194563', '2021-09-16', 300, 'Pfizer'),"
+				+ "('477687', '2021-08-24', 3000, 'Moderna')");
 		conn.createStatement().execute("insert into entrega values "
 				+ "('2021-05-23', 5, 153456, 'Asturias', '>80'),"
 				+ "('2021-07-03', 500, 485667, 'CLM', '50-60'),"
