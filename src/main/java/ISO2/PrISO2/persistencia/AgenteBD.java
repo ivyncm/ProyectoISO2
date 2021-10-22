@@ -5,7 +5,7 @@ import java.sql.*;
 public class AgenteBD {
 	protected static AgenteBD mInstancia = null;
 	protected static Connection conn;
-	private static String url = "jdbc:derby:directory:myDB;create=true";//"jdbc:derby:directory:myDB";
+	private static String url = "jdbc:derby:directory:myDB";//"jdbc:derby:directory:myDB;create=true";
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 
 	// Constructor
