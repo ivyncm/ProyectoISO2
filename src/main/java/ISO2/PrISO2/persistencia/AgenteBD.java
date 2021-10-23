@@ -25,7 +25,9 @@ public class AgenteBD {
 	
 	public static void crearBD() throws Exception {
 		Class.forName(driver);
-		Connection conn = DriverManager.getConnection(url);
+		String urlCreate = "jdbc:derby:directory:myDB;create=true";
+
+		Connection conn = DriverManager.getConnection(urlCreate);
 		conn.createStatement().execute(
 				"create table tipoVacuna(nombre varchar(30), farmaceutica varchar(30), fechaAprobacion date, primary key(farmaceutica))");
 		conn.createStatement().execute(
@@ -80,12 +82,17 @@ public class AgenteBD {
 	 */
 
 	public static ResultSet select(String sql) throws Exception {
-		conectarBD();
-		Statement stat = conn.createStatement();
-		ResultSet res = stat.executeQuery(sql);
-		stat.close();
-		desconectarBD();
-		return res;
+		try {
+			conectarBD();
+			Statement stat = conn.createStatement();
+			ResultSet res = stat.executeQuery(sql);
+			stat.close();
+			desconectarBD();
+			return res;
+		} catch (SQLException ex) {
+			throw new DAOException("Error SQL", ex);
+		}
+		
 	}
 
 	/**

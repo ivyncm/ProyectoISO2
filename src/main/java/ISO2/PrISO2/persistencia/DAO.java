@@ -1,6 +1,5 @@
 package ISO2.PrISO2.persistencia;
 
-import ISO2.PrISO2.dominio.entitymodel.LoteVacunas;
 
 public interface DAO<E> {
 
