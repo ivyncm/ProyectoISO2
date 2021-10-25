@@ -1,34 +1,36 @@
 package ISO2.PrISO2.dominio.entitymodel;
 
+import java.time.LocalDate;
 import java.util.*;
 import ISO2.PrISO2.persistencia.*;
 
 public class Vacunacion {
-	private int id;
-	TipoVacuna vacuna;
+	private String id;
+	String tipoVacuna;
 	Paciente paciente;
 	VacunacionDAO vacunacionDao;
-	private Date fecha;
+	private LocalDate fecha;
 	private boolean isSegundaDosis;
 	
-	public Vacunacion(int id, TipoVacuna tipoVacuna, Paciente paciente, Date fecha, boolean segDosis) {
+	public Vacunacion(String id, String tipoVacuna, Paciente paciente, LocalDate fecha, boolean segDosis) throws Exception {
 		setId(id);
 		setVacuna(tipoVacuna);
 		setPaciente(paciente);
 		setFecha(fecha);
 		setSegundaDosis(segDosis);
+		vacunacionDao = new VacunacionDAO();
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	public TipoVacuna getVacuna() {
-		return vacuna;
+	public String getVacuna() {
+		return tipoVacuna;
 	}
-	public void setVacuna(TipoVacuna vacuna) {
-		this.vacuna = vacuna;
+	public void setVacuna(String tipoVacuna) {
+		this.tipoVacuna = tipoVacuna;
 	}
 	public Paciente getPaciente() {
 		return paciente;
@@ -42,10 +44,10 @@ public class Vacunacion {
 	public void setVacunacionDao(VacunacionDAO vacunacionDao) {
 		this.vacunacionDao = vacunacionDao;
 	}
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 	public boolean isSegundaDosis() {

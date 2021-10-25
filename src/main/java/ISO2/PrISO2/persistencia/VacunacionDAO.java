@@ -7,12 +7,12 @@ import java.util.List;
 import ISO2.PrISO2.dominio.entitymodel.Vacunacion;
 
 public class VacunacionDAO implements DAO<Vacunacion> {
-	final String INSERT = "INSERT INTO vacunacion(id, tipoVacuna, paciente, fecha, segDosis) VALUES(";
+	final String INSERT = "INSERT INTO vacunacion(fecha, isSegundaDosis, nombre_tipovacuna, dni_paciente) VALUES(";
 	final String UPDATE = "UPDATE vacunacion SET ";
-	final String DELETE = "DELETE FROM vacunacion WHERE id=";
+	final String DELETE = "DELETE FROM vacunacion WHERE dni_paciente=";
 	final String GETALL = "SELECT * FROM vacunacion";
 	final String GETREGION = "SELECT * FROM vacunacion WHERE region=";
-	final String GETONE = "SELECT * FROM vacunacion WHERE id=";
+	final String GETONE = "SELECT * FROM vacunacion WHERE dni_paciente=";
 	final String WHEREID = "WHERE id=";
 
 	private AgenteBD agente = new AgenteBD();
@@ -22,11 +22,11 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	}
 
 	@Override
-	public Vacunacion get(int id) throws Exception {
-		agente.conectarBD();
+	public Vacunacion get(String id) throws Exception {
+		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		try {
-			rs = agente.select(GETONE + id);
+			rs = AgenteBD.select(GETONE + id);
 			String tipoVacuna = rs.getString("tipoVacuna");
 			String paciente = rs.getString("paciente");
 			Date fecha = rs.getDate("fecha");
@@ -44,24 +44,24 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 
 	@Override
 	public int insert(Vacunacion v) throws Exception {
-		agente.conectarBD();
+		AgenteBD.conectarBD();
 		int i = 0;
 		try {
-			i = agente.insert(INSERT + v.getId() + "," + v.getVacuna() + "," + v.getPaciente() + "," + v.getFecha()
-					+ "," + v.isSegundaDosis() + ")");
+			i = agente.insert(INSERT +"'"+ v.getFecha() + "'"+ "," + v.isSegundaDosis()+"," + "'"+ v.getVacuna()+ "'"
+					+ ","+ "'" + v.getPaciente().getDni()+ "'" + ")");
 			if (i == 0) {
 				throw new DAOException("Puede que no se haya insertado.");
 			}
 		} catch (SQLException ex) {
 			throw new DAOException("Error SQL", ex);
 		}
-		agente.desconectarBD();
+		AgenteBD.desconectarBD();
 		return i;
 	}
 
 	@Override
 	public Vacunacion update(Vacunacion v) throws Exception {
-		agente.conectarBD();
+		AgenteBD.conectarBD();
 		int i = 0;
 		try {
 			i = agente.update(UPDATE + "tipoVacuna=" + v.getVacuna() + ",paciente=" + v.getPaciente() + ",fecha="
@@ -72,14 +72,14 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		} catch (SQLException ex) {
 			throw new DAOException("Error SQL", ex);
 		}
-		agente.desconectarBD();
+		AgenteBD.desconectarBD();
 		return v;
 
 	}
 
 	@Override
 	public int delete(Vacunacion v) throws Exception {
-		agente.conectarBD();
+		AgenteBD.conectarBD();
 		int i = 0;
 		try {
 			i = agente.delete(DELETE + v.getId());
@@ -89,13 +89,16 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		} catch (SQLException ex) {
 			throw new DAOException("Error SQL", ex);
 		}
-		agente.desconectarBD();
+		AgenteBD.desconectarBD();
 		return i;
 
 	}
 
 	public void insertarVacunacion(Vacunacion v) throws Exception {
-		insert(v);
+		if(insert(v) != 0) {
+			System.out.println("Registro completado con éxito");
+		} else
+			System.out.println("Registro no completado con éxito");
 
 	}
 

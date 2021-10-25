@@ -9,9 +9,7 @@ public class Paciente {
 	private String apellidos;
 	
 	
-	public Paciente(RegionEnum region, GrupoPrioridad grupo, String dni, String nombre, String apellidos) {
-		this.region = region;
-		this.grupo = grupo;
+	public Paciente(String dni, String nombre, String apellidos) {
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
