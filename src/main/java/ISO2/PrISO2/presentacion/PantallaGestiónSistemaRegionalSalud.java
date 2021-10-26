@@ -3,12 +3,13 @@ package ISO2.PrISO2.presentacion;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import ISO2.PrISO2.dominio.controller.GestorRepartoVacunas;
 import ISO2.PrISO2.dominio.controller.GestorVacunacion;
 
 public class PantallaGestiónSistemaRegionalSalud {
 	public static void main(String args[]) throws Exception {
 		Scanner teclado=new Scanner(System.in);
+		LocalDate fecha;
+		GestorVacunacion vacunacion;
 		int op1=0;
 		int op2=0;
 		String tipo = null;
@@ -24,7 +25,40 @@ public class PantallaGestiónSistemaRegionalSalud {
 	        
 			switch (op1){
 	        case 1:
-	        	
+	        	fecha = LocalDate.now();
+		        	
+	        	do {
+	        		System.out.println("Introduce el tipo de vacuna:\n");
+		        	System.out.println("1 - Pfizer");
+		        	System.out.println("2 - Moderna");
+		        	System.out.println("3 - Astrazeneca");
+		        	op2 = teclado.nextInt();
+	        		switch (op2){
+				        case 1:
+				        	tipo = "Pfizer";
+				        	break;
+				        case 2:
+				        	tipo = "Moderna";
+			           break;
+			        case 3:
+			        	tipo = "Astrazeneca";
+			           break;
+			        default:
+			        	System.out.println("Opción no válida\n");
+			        	break;
+	        		}
+				}while(op2 < 1 || op2 > 3);
+
+	        	System.out.println("Introduce el id del lote:");
+	        	String idLote = teclado.next();
+	        	System.out.println("Introduce la cantidad:");
+	        	int cantidad = teclado.nextInt();
+	        	System.out.println("Introduce el grupo prioritario:");
+	        	String grupo = teclado.next();
+	        	System.out.println("Introduce la región:");
+	        	String region = teclado.next();       	
+	        	vacunacion = new GestorVacunacion();
+	        	vacunacion.altaEntregaVacunas(idLote, fecha, cantidad, grupo, region);
 	        	break;
 	        case 2:
 	        	System.out.println("Introduce el nombre del paciente:");
@@ -33,7 +67,7 @@ public class PantallaGestiónSistemaRegionalSalud {
 	        	String apellidos = teclado.nextLine();
 	        	System.out.println("Introduce el DNI del paciente:");
 	        	String dni = teclado.next();
-	        	LocalDate fecha = LocalDate.now();
+	        	fecha = LocalDate.now();
 	        	do {
 	        		System.out.println("Introduce el tipo de vacuna:\n");
 		        	System.out.println("1 - Pfizer");
@@ -74,7 +108,7 @@ public class PantallaGestiónSistemaRegionalSalud {
 					}
 				}while(op3 == "s" || op3 == "n");
 	        	
-	        	GestorVacunacion vacunacion = new GestorVacunacion();
+	        	vacunacion = new GestorVacunacion();
 	        	vacunacion.registrarVacunacion(fecha, nombre, apellidos, dni, tipo, segDosis);
 	        	break;
 	        case 3:

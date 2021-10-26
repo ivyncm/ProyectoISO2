@@ -1,55 +1,42 @@
 package ISO2.PrISO2.dominio.entitymodel;
 
-import java.util.*;
+import java.time.LocalDate;
 
 import ISO2.PrISO2.persistencia.*;
 
 public class EntregaVacunas {
-	private int id;
-	TipoVacuna tipo;
-	RegionEnum region;
-	GrupoPrioridad grupoprioridad;
-	LoteVacunas lote;
+	String region;
+	String grupoprioridad;
+	String lote;
 	EntregaDAO entregaDao;
-	private Date fecha;
+	private LocalDate fecha;
 	private int cantidad;
 	
 	
-	public EntregaVacunas(int id, TipoVacuna tipo, RegionEnum region, GrupoPrioridad grupoprioridad, LoteVacunas lote, java.sql.Date fecha, int cantidad) {
-		setId(id);
-		setTipo(tipo);
-		setRegion(region);
+	public EntregaVacunas(String grupoprioridad, String lote, LocalDate fecha, int cantidad,String region) throws Exception {
 		setGrupoPrioridad(grupoprioridad);
 		setLote(lote);
 		setFecha(fecha);
 		setCantidad(cantidad);
-		
+		setRegion(region);
+		entregaDao = new EntregaDAO();
 	}
-	public EntregaVacunas(int id) {
-		setId(id);
-	}
-	public TipoVacuna getTipo() {
-		return tipo;
-	}
-	public void setTipo(TipoVacuna tipo) {
-		this.tipo = tipo;
-	}
-	public RegionEnum getRegion() {
+	public String getRegion() {
 		return region;
 	}
-	public void setRegion(RegionEnum region) {
+	public void setRegion(String region) {
 		this.region = region;
 	}
-	public GrupoPrioridad getGrupoPrioridad() {
+	public String getGrupoPrioridad() {
 		return grupoprioridad;
 	}
-	public void setGrupoPrioridad(GrupoPrioridad grupoPrioridad) {
+	public void setGrupoPrioridad(String grupoPrioridad) {
 		this.grupoprioridad = grupoPrioridad;
 	}
-	public LoteVacunas getLote() {
+	public String getLote() {
 		return lote;
 	}
-	public void setLote(LoteVacunas lote) {
+	public void setLote(String lote) {
 		this.lote = lote;
 	}
 	public EntregaDAO getEntregaDao() {
@@ -58,10 +45,10 @@ public class EntregaVacunas {
 	public void setEntregaDao(EntregaDAO entregaDao) {
 		this.entregaDao = entregaDao;
 	}
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 	public int getCantidad() {
@@ -69,12 +56,6 @@ public class EntregaVacunas {
 	}
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	
 

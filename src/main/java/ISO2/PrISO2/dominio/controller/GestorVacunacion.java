@@ -14,9 +14,9 @@ public class GestorVacunacion {
 	 * @param cantidad
 	 * @param prioridad
 	 */
-	public void altaEntregaVacunas(String lote, Date fecha, int cantidad, int prioridad) {
-		// TODO - implement GestorVacunacion.altaEntregaVacunas
-		throw new UnsupportedOperationException();
+	public void altaEntregaVacunas(String lote, LocalDate fecha, int cantidad, String prioridad, String region) throws Exception {
+		EntregaVacunas vacunas = new EntregaVacunas(prioridad, lote, fecha, cantidad, region);
+		vacunas.getEntregaDao().insertarEntrega(vacunas);
 	}
 
 	/**
