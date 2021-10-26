@@ -36,7 +36,7 @@ public class AgenteBD {
 				"create table lote(id varchar(30), fecha date, cantidad int, nombre_tipoVacuna varchar(30), primary key(id))");
 				//+ "constraint nombre_tipoVacuna foreign key references tipoVacuna(farmaceutica))");
 		conn.createStatement().execute(
-				"create table entrega(fecha date, cantidad int, idLote int, region varchar(30), grupoPrioridad varchar(30))"); //Clave foranea sin primaria??
+				"create table entrega(fecha date, cantidad int, idLote varchar(30), region varchar(30), grupoPrioridad varchar(30))"); //Clave foranea sin primaria??
 		//		+ "constraint idLote foreign key references lote(id))");
 		conn.createStatement().execute(
 				"create table vacunacion(fecha date, isSegundaDosis boolean, nombre_tipovacuna varchar(30), dni_paciente varchar(30))");
@@ -59,10 +59,10 @@ public class AgenteBD {
 				+ "('194563', '2021-09-16', 300, 'Pfizer'),"
 				+ "('477687', '2021-08-24', 3000, 'Moderna')");
 		conn.createStatement().execute("insert into entrega values "
-				+ "('2021-05-23', 5, 153456, 'Asturias', '>80'),"
-				+ "('2021-07-03', 500, 485667, 'CLM', '50-60'),"
-				+ "('2021-09-15', 300, 194563, 'Murcia', '60-70'),"
-				+ "('2021-08-23', 3000, 477687, 'Andalucia', '>80')");
+				+ "('2021-05-23', 5, '153456', 'Asturias', '>80'),"
+				+ "('2021-07-03', 500, '485667', 'CLM', '50-60'),"
+				+ "('2021-09-15', 300, '194563', 'Murcia', '60-70'),"
+				+ "('2021-08-23', 3000, '477687', 'Andalucia', '>80')");
 		conn.createStatement().execute("insert into vacunacion values "
 				+ "('2021-05-26', False, 'Astrazeneca', '223456'),"
 				+ "('2021-04-24', True, 'Pfizer', '123656'),"
