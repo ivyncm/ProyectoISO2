@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import ISO2.PrISO2.dominio.controller.GestorVacunacion;
 
-public class PantallaGestiónSistemaRegionalSalud {
+public class PantallaGestionSistemaRegionalSalud {
 	public static void main(String args[]) throws Exception {
 		Scanner teclado=new Scanner(System.in);
 		LocalDate fecha;
