@@ -1,6 +1,7 @@
 package ISO2.PrISO2.persistencia;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	final String GETALL = "SELECT * FROM vacunacion";
 	final String GETREGION = "SELECT * FROM vacunacion WHERE region=";
 	final String GETONE = "SELECT * FROM vacunacion WHERE dni_paciente=";
-	final String WHEREID = "WHERE id=";
+	final String WHEREID = "WHERE dni_paciente=";
 
 	private AgenteBD agente = new AgenteBD();
 
@@ -22,23 +23,21 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	}
 
 	@Override
-	public Vacunacion get(String id) throws Exception {
+	public Vacunacion get(String dni) throws Exception {
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		try {
-			rs = AgenteBD.select(GETONE + id);
-			String tipoVacuna = rs.getString("tipoVacuna");
-			String paciente = rs.getString("paciente");
-			Date fecha = rs.getDate("fecha");
-			Boolean segDosis = rs.getBoolean("segDosis");
-
-			//Vacunacion entrega = new Vacunacion(id, tipoVacuna, paciente, fecha, segDosis);
-
-			//return entrega;
+			rs = AgenteBD.select(GETONE +"'" + dni + "'");
+			String tipoVacuna = rs.getString(3);
+			Date fecha = rs.getDate(1);
+			Boolean segDosis = rs.getBoolean(2);
+			LocalDate fecha1=fecha.toLocalDate();
+			Vacunacion entrega = new Vacunacion(dni, tipoVacuna, fecha1, segDosis);
+			
+			return entrega;
 		} catch (SQLException ex) {
 			throw new DAOException("Error SQL", ex);
 		}
-		return null;
 
 	}
 
@@ -48,7 +47,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		int i = 0;
 		try {
 			i = agente.insert(INSERT +"'"+ v.getFecha() + "'"+ "," + v.isSegundaDosis()+"," + "'"+ v.getVacuna()+ "'"
-					+ ","+ "'" + v.getPaciente().getDni()+ "'" + ")");
+					+ ","+ "'" + v.getdni()+ "'" + ")");
 			if (i == 0) {
 				throw new DAOException("Puede que no se haya insertado.");
 			}
@@ -64,8 +63,8 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		AgenteBD.conectarBD();
 		int i = 0;
 		try {
-			i = agente.update(UPDATE + "tipoVacuna=" + v.getVacuna() + ",paciente=" + v.getPaciente() + ",fecha="
-					+ v.getFecha() + ",segDosis=" + v.isSegundaDosis() + WHEREID + v.getId());
+			i = agente.update(UPDATE + "tipoVacuna=" + v.getVacuna() + ",paciente=" + ",fecha="
+					+ v.getFecha() + ",segDosis=" + v.isSegundaDosis() + WHEREID );
 			if (i == 0) {
 				throw new DAOException("Puede que no se haya actualizado.");
 			}
@@ -82,7 +81,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		AgenteBD.conectarBD();
 		int i = 0;
 		try {
-			i = agente.delete(DELETE + v.getId());
+			i = agente.delete(DELETE + v.getdni());
 			if (i == 0) {
 				throw new DAOException("Puede que no se haya borrado.");
 			}
@@ -102,31 +101,30 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 
 	}
 
-	private Vacunacion convertir(ResultSet rs) throws SQLException {
-		int id = rs.getInt("id");
-		String tipoVacuna = rs.getString("tipoVacuna");
-		String paciente = rs.getString("region");
-		Date fecha = rs.getDate("fecha");
-		Boolean segDosis = rs.getBoolean("segDosis");
-		//Vacunacion vacunacion = new Vacunacion(id, tipoVacuna, paciente, fecha, segDosis);
-		return null;
+	private Vacunacion convertir(ResultSet rs) throws Exception {
+		String dni = rs.getString(4);
+		String tipoVacuna = rs.getString(3);
+		Date fecha = rs.getDate(1);
+		Boolean segDosis = rs.getBoolean(2);
+		LocalDate fecha1=fecha.toLocalDate();
+		Vacunacion vacunacion = new Vacunacion(dni, tipoVacuna, fecha1, segDosis);		
 
-		//return vacunacion;
+		return vacunacion;
 	}
 
 	public List<Vacunacion> seleccionarVacunaciones() throws Exception {
-		agente.conectarBD();
+		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		List<Vacunacion> vacunaciones = new ArrayList<Vacunacion>();
 		try {
-			rs = agente.select(GETALL);
+			rs = AgenteBD.select(GETALL);
 			while (rs.next()) {
 				vacunaciones.add(convertir(rs));
 			}
 		} catch (SQLException ex) {
 			throw new DAOException("Error en SQL", ex);
 		}
-		agente.desconectarBD();
+		//AgenteBD.desconectarBD();
 		return vacunaciones;
 	}
 

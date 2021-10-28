@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Tue Oct 26 11:38:50 CEST 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-017c-bbf7-7776-00000f600000 
-on database directory C:\Users\ivanc\Documents\eclipse-workspace\Git\ProyectoISO2\PrISO2\myDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@579bb367 
-Loaded from file:/C:/Users/ivanc/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
+Thu Oct 28 12:36:33 CEST 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-017c-c679-07d4-00000787b430 
+on database directory /Users/jehero/Jeherogit/ProyectoISO2/myDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@42110406 
+Loaded from file:/Users/jehero/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=16.0.2+7-67
-user.dir=C:\Users\ivanc\Documents\eclipse-workspace\Git\ProyectoISO2\PrISO2
-os.name=Windows 10
-os.arch=amd64
-os.version=10.0
+java.runtime.version=17.0.1+12-LTS-39
+user.dir=/Users/jehero/Jeherogit/ProyectoISO2
+os.name=Mac OS X
+os.arch=x86_64
+os.version=11.6
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

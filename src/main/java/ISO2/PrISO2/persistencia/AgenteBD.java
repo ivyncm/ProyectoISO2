@@ -83,11 +83,11 @@ public class AgenteBD {
 
 	public static ResultSet select(String sql) throws Exception {
 		try {
-			conectarBD();
+			//conectarBD();
 			Statement stat = conn.createStatement();
 			ResultSet res = stat.executeQuery(sql);
-			stat.close();
-			desconectarBD();
+			//stat.close();
+			//desconectarBD();
 			return res;
 		} catch (SQLException ex) {
 			throw new DAOException("Error SQL", ex);
