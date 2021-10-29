@@ -29,8 +29,6 @@ public class AgenteBD {
 
 		Connection conn = DriverManager.getConnection(urlCreate);
 		conn.createStatement().execute(
-				"create table tipoVacuna(nombre varchar(30), farmaceutica varchar(30), fechaAprobacion date, primary key(farmaceutica))");
-		conn.createStatement().execute(
 				"create table paciente(dni varchar(30), nombre varchar(30), apellidos varchar(30), region varchar(30), grupoPrioridad varchar(30), primary key(dni))");
 		conn.createStatement().execute(
 				"create table lote(id varchar(30), fecha date, cantidad int, nombre_tipoVacuna varchar(30), primary key(id))");
@@ -43,26 +41,21 @@ public class AgenteBD {
 				//+ "constraint nombre_tipovacuna foreign key references tipoVacuna(farmaceutica), "
 				//+ "constraint dni_paciente foreign key references paciente(dni))"); //Lío
 		
-
-		conn.createStatement().execute("insert into tipoVacuna values "
-				+ "('BNT162b2', 'Pfizer', '2021-05-23'),"
-				+ "('SPIKEVAX', 'Moderna', '2021-07-03'),"
-				+ "('VAXZEVRIA', 'Astrazeneca', '2021-04-30')");
 		conn.createStatement().execute("insert into paciente values "
-				+ "('223456', 'Agustin', 'Hernando', 'Asturias', '>80'),"
-				+ "('534534', 'Antonio', 'Fernandez', 'Murcia', '60-70'),"
-				+ "('645454', 'Rocio', 'Calatrava', 'Andalucia', '>80'),"
-				+ "('123656', 'Rosa', 'Torrenova', 'CLM', '50-60')");
+				+ "('223456', 'Agustin', 'Hernando', 'Asturias', 'Anciano'),"
+				+ "('534534', 'Antonio', 'Fernandez', 'Murcia', 'Adulto'),"
+				+ "('645454', 'Rocio', 'Calatrava', 'Andalucia', 'Anciano'),"
+				+ "('123656', 'Rosa', 'Torrenova', 'CLM', 'Joven')");
 		conn.createStatement().execute("insert into lote values "
 				+ "('153456', '2021-05-24', 5, 'Astrazeneca'),"
 				+ "('485667', '2021-07-04', 500, 'Pfizer'),"
 				+ "('194563', '2021-09-16', 300, 'Pfizer'),"
 				+ "('477687', '2021-08-24', 3000, 'Moderna')");
 		conn.createStatement().execute("insert into entrega values "
-				+ "('2021-05-23', 5, '153456', 'Asturias', '>80'),"
-				+ "('2021-07-03', 500, '485667', 'CLM', '50-60'),"
-				+ "('2021-09-15', 300, '194563', 'Murcia', '60-70'),"
-				+ "('2021-08-23', 3000, '477687', 'Andalucia', '>80')");
+				+ "('2021-05-23', 5, '153456', 'Asturias', 'Anciano'),"
+				+ "('2021-07-03', 500, '485667', 'CLM', 'Joven'),"
+				+ "('2021-09-15', 300, '194563', 'Murcia', 'Adulto'),"
+				+ "('2021-08-23', 3000, '477687', 'Andalucia', 'Anciano')");
 		conn.createStatement().execute("insert into vacunacion values "
 				+ "('2021-05-26', False, 'Astrazeneca', '223456'),"
 				+ "('2021-04-24', True, 'Pfizer', '123656'),"
