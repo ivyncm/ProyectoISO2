@@ -1,21 +1,22 @@
 package ISO2.PrISO2.dominio.entitymodel;
 
 import java.time.LocalDate;
-import java.util.*;
 import ISO2.PrISO2.persistencia.*;
 
 public class Vacunacion {
+	public Paciente paciente;
 	private String dni;
 	String tipoVacuna;
 	VacunacionDAO vacunacionDao;
 	private LocalDate fecha;
 	private boolean isSegundaDosis;
 	
-	public Vacunacion(String dni, String tipoVacuna, LocalDate fecha, boolean segDosis) throws Exception {
-		setdni(dni);
+	public Vacunacion(String tipoVacuna, LocalDate fecha, boolean segDosis, Paciente paciente) throws Exception {
+		setdni(paciente.getDni());
 		setVacuna(tipoVacuna);
 		setFecha(fecha);
 		setSegundaDosis(segDosis);
+		setPaciente(paciente);
 		vacunacionDao = new VacunacionDAO();
 	}
 	public Vacunacion(String dni) throws Exception {
@@ -27,6 +28,12 @@ public class Vacunacion {
 	}
 	public void setdni(String dni) {
 		this.dni = dni;
+	}
+	public Paciente getPaciente() {
+		return paciente;
+	}
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 	public String getVacuna() {
 		return tipoVacuna;

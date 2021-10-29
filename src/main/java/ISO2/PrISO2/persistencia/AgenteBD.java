@@ -99,12 +99,16 @@ public class AgenteBD {
 	 * @param sql
 	 */
 	public int update(String sql) throws Exception {
-		conectarBD();
+		try {
+		//conectarBD();
 		PreparedStatement stat = conn.prepareStatement(sql);
 		int res = stat.executeUpdate();
-		stat.close();
-		desconectarBD();
+		//stat.close();
+		//desconectarBD();
 		return res;
+		} catch (SQLException ex) {
+			throw new DAOException("Error SQL", ex);
+		}
 	}
 
 	/**

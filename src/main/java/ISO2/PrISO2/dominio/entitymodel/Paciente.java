@@ -2,31 +2,33 @@ package ISO2.PrISO2.dominio.entitymodel;
 
 public class Paciente {
 
-	RegionEnum region;
-	GrupoPrioridad grupo;
+	String region;
+	String grupo;
 	private String dni;
 	private String nombre;
 	private String apellidos;
 	
 	
-	public Paciente(String dni, String nombre, String apellidos) {
-		this.dni = dni;
-		this.nombre = nombre;
-		this.apellidos = apellidos;
+	public Paciente(String dni, String nombre, String apellidos, String grupo, String region) {
+		setDni(dni);
+		setNombre(nombre);
+		setApellidos(apellidos);
+		setGrupo(grupo);
+		setRegion(region);
 	}
 	public String getDni() {
 		return dni;
 	}
-	public RegionEnum getRegion() {
+	public String getRegion() {
 		return region;
 	}
-	public void setRegion(RegionEnum region) {
+	public void setRegion(String region) {
 		this.region = region;
 	}
-	public GrupoPrioridad getGrupo() {
+	public String getGrupo() {
 		return grupo;
 	}
-	public void setGrupo(GrupoPrioridad grupo) {
+	public void setGrupo(String grupo) {
 		this.grupo = grupo;
 	}
 	public String getNombre() {
