@@ -29,23 +29,16 @@ public class AgenteBD {
 
 		Connection conn = DriverManager.getConnection(urlCreate);
 		conn.createStatement().execute(
-				"create table paciente(dni varchar(30), nombre varchar(30), apellidos varchar(30), region varchar(30), grupoPrioridad varchar(30), primary key(dni))");
-		conn.createStatement().execute(
 				"create table lote(id varchar(30), fecha date, cantidad int, nombre_tipoVacuna varchar(30), primary key(id))");
 				//+ "constraint nombre_tipoVacuna foreign key references tipoVacuna(farmaceutica))");
 		conn.createStatement().execute(
 				"create table entrega(fecha date, cantidad int, idLote varchar(30), region varchar(30), grupoPrioridad varchar(30))"); //Clave foranea sin primaria??
 		//		+ "constraint idLote foreign key references lote(id))");
 		conn.createStatement().execute(
-				"create table vacunacion(fecha date, isSegundaDosis boolean, nombre_tipovacuna varchar(30), dni_paciente varchar(30))");
+				"create table vacunacion(fecha date, isSegundaDosis boolean, nombre_tipovacuna varchar(30), dni_paciente varchar(30), nombre varchar(30), apellidos varchar(30), region varchar(30), grupoPrioridad varchar(30))");
 				//+ "constraint nombre_tipovacuna foreign key references tipoVacuna(farmaceutica), "
 				//+ "constraint dni_paciente foreign key references paciente(dni))"); //Lío
 		
-		conn.createStatement().execute("insert into paciente values "
-				+ "('223456', 'Agustin', 'Hernando', 'Asturias', 'Anciano'),"
-				+ "('534534', 'Antonio', 'Fernandez', 'Murcia', 'Adulto'),"
-				+ "('645454', 'Rocio', 'Calatrava', 'Andalucia', 'Anciano'),"
-				+ "('123656', 'Rosa', 'Torrenova', 'CLM', 'Joven')");
 		conn.createStatement().execute("insert into lote values "
 				+ "('153456', '2021-05-24', 5, 'Astrazeneca'),"
 				+ "('485667', '2021-07-04', 500, 'Pfizer'),"
@@ -57,10 +50,10 @@ public class AgenteBD {
 				+ "('2021-09-15', 300, '194563', 'Murcia', 'Adulto'),"
 				+ "('2021-08-23', 3000, '477687', 'Andalucia', 'Anciano')");
 		conn.createStatement().execute("insert into vacunacion values "
-				+ "('2021-05-26', False, 'Astrazeneca', '223456'),"
-				+ "('2021-04-24', True, 'Pfizer', '123656'),"
-				+ "('2021-02-23', True, 'Moderna', '645454'),"
-				+ "('2021-06-12', True, 'Pfizer', '534534')");
+				+ "('2021-05-26', False, 'Astrazeneca', '223456', 'Agustin', 'Hernando', 'Asturias', 'Anciano'),"
+				+ "('2021-04-24', True, 'Pfizer', '123656', 'Rosa', 'Torrenova', 'CLM', 'Joven'),"
+				+ "('2021-02-23', True, 'Moderna', '645454', 'Rocio', 'Calatrava', 'Andalucia', 'Anciano'),"
+				+ "('2021-06-12', True, 'Pfizer', '534534', 'Antonio', 'Fernandez', 'Murcia', 'Adulto')");
 			
 //	!!	private static String url = "jdbc:derby:directory:myDB;create=true";
 	}
