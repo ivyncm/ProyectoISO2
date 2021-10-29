@@ -63,8 +63,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		AgenteBD.conectarBD();
 		int i = 0;
 		try {
-			i = agente.update(UPDATE + "tipoVacuna=" + v.getVacuna() + ",paciente=" + ",fecha="
-					+ v.getFecha() + ",segDosis=" + v.isSegundaDosis() + WHEREID );
+			i = agente.update(UPDATE + "segDosis=True" + WHEREID+"'" + v.getdni()+"'" );
 			if (i == 0) {
 				throw new DAOException("Puede que no se haya actualizado.");
 			}

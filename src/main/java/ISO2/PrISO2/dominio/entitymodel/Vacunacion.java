@@ -18,6 +18,10 @@ public class Vacunacion {
 		setSegundaDosis(segDosis);
 		vacunacionDao = new VacunacionDAO();
 	}
+	public Vacunacion(String dni) throws Exception {
+		setdni(dni);
+		vacunacionDao = new VacunacionDAO();
+	}
 	public String getdni() {
 		return dni;
 	}
