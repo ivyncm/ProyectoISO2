@@ -54,7 +54,7 @@ public class PantallaGestionSistemaSaludNacional {
 	        	gestor.altaNuevoLoteVacunas(fecha, tipo, cantidad);
 	        	break;
 	        case 2:
-	
+	        
 	           break;
 	        case 3:
 	        	System.out.println("Sesión cerrada\n");

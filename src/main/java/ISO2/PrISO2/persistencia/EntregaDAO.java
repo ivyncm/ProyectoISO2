@@ -128,19 +128,19 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		return entrega;
 	}
 
-	public List<EntregaVacunas> seleccionarEntregas(RegionEnum region) throws Exception {
-		AgenteBD.conectarBD();
+	public List<EntregaVacunas> seleccionarEntregas(String region) throws Exception {
+		//AgenteBD.conectarBD();
 		ResultSet rs = null;
 		List<EntregaVacunas> entrega = new ArrayList<EntregaVacunas>();
 		try {
-			rs = AgenteBD.select(GETREGION + region);
+			rs = AgenteBD.select(GETREGION + "'" +region +"'");
 			while (rs.next()) {
 				entrega.add(convertir(rs));
 			}
 		} catch (SQLException ex) {
 			throw new DAOException("Error en SQL", ex);
 		}
-		AgenteBD.desconectarBD();
+		//AgenteBD.desconectarBD();
 		return entrega;
 	}
 	
