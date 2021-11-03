@@ -3,6 +3,7 @@ package ISO2.PrISO2.persistencia;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.*;
 import ISO2.PrISO2.dominio.entitymodel.*;
 
@@ -10,9 +11,10 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 
 	final String INSERT = "INSERT INTO entrega(fecha, cantidad, idLote, region, grupoPrioridad) VALUES(";
 	final String UPDATE = "UPDATE entrega SET ";
-	final String DELETE = "DELETE FROM entrega WHERE id=";
+	final String DELETE = "DELETE FROM entrega WHERE idLote=";
 	final String GETREGION = "SELECT * FROM entrega WHERE region=";
-	final String GETONE = "SELECT * FROM entrega WHERE id=";
+	final String GETONE = "SELECT * FROM entrega WHERE idLote=";
+	final String GETALL = "SELECT * FROM entrega";
 	final String WHEREID = "WHERE id=";
 
 	private AgenteBD agente = new AgenteBD();
@@ -26,21 +28,21 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		try {
-			rs = AgenteBD.select(GETONE + id);
-			String tipoVacuna = rs.getString("tipoVacuna");
-			String region = rs.getString("region");
-			String grupoPrior = rs.getString("grupoPrioridad");
-			String lote = rs.getString("lote");
-			Date fecha = rs.getDate("fecha");
-			int cantidad = rs.getInt("cantidad");
+			rs = AgenteBD.select(GETONE +"'" + id + "'");
+			//String tipoVacuna = rs.getString("tipoVacuna");
+			String region = rs.getString(4);
+			String grupoPrior = rs.getString(5);
+			String lote = rs.getString(3);
+			Date fecha = rs.getDate(1);
+			LocalDate fecha1=fecha.toLocalDate();
+			int cantidad = rs.getInt(2);
 
-			//EntregaVacunas entrega = new EntregaVacunas(id, tipoVacuna, region, grupoPrior, lote, fecha, cantidad);
+			EntregaVacunas entrega = new EntregaVacunas(grupoPrior, lote, fecha1, cantidad, region);
 
-			//return entrega;
+			return entrega;
 		} catch (SQLException ex) {
 			throw new DAOException("Error SQL", ex);
 		}
-		return null;
 	}
 
 	@Override
@@ -98,20 +100,35 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		insert(entrega);
 	}
 
-	private EntregaVacunas convertir(ResultSet rs) throws SQLException {
-		int id = rs.getInt("id");
-		String tipoVacuna = rs.getString("tipoVacuna");
-		String region = rs.getString("region");
-		String grupoPrior = rs.getString("grupoPrioridad");
-		String lote = rs.getString("lote");
-		Date fecha = rs.getDate("fecha");
-		int cantidad = rs.getInt("cantidad");
-		//EntregaVacunas entrega = new EntregaVacunas(id, tipoVacuna, region, grupoPrior, lote, fecha, cantidad);
-		//return entrega;
-		return null;
+	private EntregaVacunas convertir(ResultSet rs) throws Exception {
+		String region = rs.getString(4);
+		String grupoPrior = rs.getString(5);
+		String lote = rs.getString(3);
+		Date fecha = rs.getDate(1);
+		LocalDate fecha1=fecha.toLocalDate();
+		int cantidad = rs.getInt(2);
+		EntregaVacunas entrega = new EntregaVacunas(grupoPrior, lote, fecha1, cantidad, region);
+		return entrega;
+		//return null;
+	}
+	
+	public List<EntregaVacunas> seleccionarcantidadTotal() throws Exception {
+		//AgenteBD.conectarBD();
+		ResultSet rs = null;
+		List<EntregaVacunas> entrega = new ArrayList<EntregaVacunas>();
+		try {
+			rs = AgenteBD.select(GETALL);
+			while (rs.next()) {
+				entrega.add(convertir(rs));
+			}
+		} catch (SQLException ex) {
+			throw new DAOException("Error en SQL", ex);
+		}
+		//AgenteBD.desconectarBD();
+		return entrega;
 	}
 
-	public List<EntregaVacunas> seleccionarEntregas(String region) throws Exception {
+	public List<EntregaVacunas> seleccionarEntregas(RegionEnum region) throws Exception {
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		List<EntregaVacunas> entrega = new ArrayList<EntregaVacunas>();
@@ -126,6 +143,8 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		AgenteBD.desconectarBD();
 		return entrega;
 	}
-
+	
+	
+	
 
 }

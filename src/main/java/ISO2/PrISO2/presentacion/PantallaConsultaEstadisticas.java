@@ -7,7 +7,13 @@ import ISO2.PrISO2.dominio.controller.GestorEstadisticas;
 
 public class PantallaConsultaEstadisticas {
 	public static void main(String args[]) throws Exception {
+		String region = null;
+		String regiones[] = new String[] {"Andalucía", "Aragón", "Canarias", "Cantabria", "Castilla y León", "Castilla-La Mancha", "Cataluña", 
+		         "Ceuta", "Comunidad Valenciana", "Comunidad de Madrid", "Extremadura", "Galicia", "Islas Baleares", 
+		         "La Rioja", "Melilla", "Navarra", "País Vasco", "Principado de Asturias", "Región de Murcia"};
+		
 		Scanner teclado=new Scanner(System.in);
+    	GestorEstadisticas gestor =new GestorEstadisticas();
 		int op1=0;
         System.out.printf("Bienvenido al Sistema Consulta de Estadisticas\n"
         		+ "seleccione una categoria de su interes\n");
@@ -21,13 +27,16 @@ public class PantallaConsultaEstadisticas {
 	        op1 = teclado.nextInt();
 	        switch (op1){
 	        case 1:
-	        	GestorEstadisticas gestor =new GestorEstadisticas();
 	        	gestor.consultarTotalVacunados();
-	        	
 	        	break;
 	        case 2: 
+	        	for (String i:regiones){
+	        		System.out.println("\n- " +i);
+	        		gestor.consultarTotalVacunadosPorRegion(i);
+	        	}
 	        	break;
 	        case 3: 
+	        	gestor.consultarVacunasTotal();
 	        	break;
 	        case 4:
 	        	break;
