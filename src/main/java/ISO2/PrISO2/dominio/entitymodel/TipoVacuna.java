@@ -2,7 +2,6 @@ package ISO2.PrISO2.dominio.entitymodel;
 
 
 public class TipoVacuna{
-
 	private String nombre;
 	private String farmaceutica;
 	private String fechaAprobacion;
@@ -28,5 +27,4 @@ public class TipoVacuna{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 }

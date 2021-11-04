@@ -28,10 +28,10 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		try {
-			rs = AgenteBD.select(GETONE +"'" + dni + "'");
+			rs = AgenteBD.select(GETONE + "'" + dni + "'");
 			String tipoVacuna = rs.getString(3);
 			Date fecha = rs.getDate(1);
-			LocalDate fecha1=fecha.toLocalDate();
+			LocalDate fecha1 = fecha.toLocalDate();
 			Boolean segDosis = rs.getBoolean(2);
 			String nombre = rs.getString(5);
 			String apellidos = rs.getString(6);
@@ -39,12 +39,11 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 			String grupo = rs.getString(8);
 			Paciente paciente = new Paciente(dni, nombre, apellidos, grupo, region);
 			Vacunacion vacunacion = new Vacunacion(tipoVacuna, fecha1, segDosis, paciente);
-			
+
 			return vacunacion;
 		} catch (SQLException ex) {
 			throw new DAOException("Error SQL", ex);
 		}
-
 	}
 
 	@Override
@@ -52,8 +51,10 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		AgenteBD.conectarBD();
 		int i = 0;
 		try {
-			i = agente.insert(INSERT +"'"+ v.getFecha() + "'"+ "," + v.isSegundaDosis()+"," + "'"+ v.getVacuna()+ "'"
-					+ ","+ "'" + v.paciente.getDni()+ "'" + ","+ "'" + v.paciente.getNombre()+ "'"+ ","+ "'" + v.paciente.getApellidos()+ "'"+ ","+ "'" + v.paciente.getRegion()+ "'"+ ","+ "'" + v.paciente.getGrupo()+ "'"+ ")");
+			i = agente.insert(INSERT + "'" + v.getFecha() + "'" + "," + v.isSegundaDosis() + "," + "'" + v.getVacuna()
+					+ "'" + "," + "'" + v.paciente.getDni() + "'" + "," + "'" + v.paciente.getNombre() + "'" + "," + "'"
+					+ v.paciente.getApellidos() + "'" + "," + "'" + v.paciente.getRegion() + "'" + "," + "'"
+					+ v.paciente.getGrupo() + "'" + ")");
 			if (i == 0) {
 				throw new DAOException("Puede que no se haya insertado.");
 			}
@@ -69,7 +70,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		AgenteBD.conectarBD();
 		int i = 0;
 		try {
-			i = agente.update(UPDATE + "segDosis="+true + WHEREID+"'" + v.getdni()+"'" );
+			i = agente.update(UPDATE + "segDosis=" + true + WHEREID + "'" + v.getdni() + "'");
 			if (i == 0) {
 				throw new DAOException("Puede que no se haya actualizado.");
 			}
@@ -78,7 +79,6 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		}
 		AgenteBD.desconectarBD();
 		return v;
-
 	}
 
 	@Override
@@ -95,15 +95,13 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		}
 		AgenteBD.desconectarBD();
 		return i;
-
 	}
 
 	public void insertarVacunacion(Vacunacion v) throws Exception {
-		if(insert(v) != 0) {
+		if (insert(v) != 0) {
 			System.out.println("Registro completado con éxito");
 		} else
 			System.out.println("Registro no completado con éxito");
-
 	}
 
 	private Vacunacion convertir(ResultSet rs) throws Exception {
@@ -111,14 +109,14 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		String tipoVacuna = rs.getString(3);
 		Date fecha = rs.getDate(1);
 		Boolean segDosis = rs.getBoolean(2);
-		LocalDate fecha1=fecha.toLocalDate();
+		LocalDate fecha1 = fecha.toLocalDate();
 		String nombre = rs.getString(5);
 		String apellidos = rs.getString(6);
 		String region = rs.getString(7);
 		String grupo = rs.getString(8);
 		Paciente paciente = new Paciente(dni, nombre, apellidos, grupo, region);
 		Vacunacion vacunacion = new Vacunacion(tipoVacuna, fecha1, segDosis, paciente);
-		
+
 		return vacunacion;
 	}
 
@@ -134,7 +132,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		} catch (SQLException ex) {
 			throw new DAOException("Error en SQL", ex);
 		}
-		//AgenteBD.desconectarBD();
+		// AgenteBD.desconectarBD();
 		return vacunaciones;
 	}
 
@@ -143,7 +141,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		ResultSet rs = null;
 		List<Vacunacion> vacunaciones = new ArrayList<Vacunacion>();
 		try {
-			rs = AgenteBD.select(GETREGION + "'" +region+ "'");
+			rs = AgenteBD.select(GETREGION + "'" + region + "'");
 			while (rs.next()) {
 				vacunaciones.add(convertir(rs));
 			}
@@ -153,5 +151,4 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		AgenteBD.desconectarBD();
 		return vacunaciones;
 	}
-
 }

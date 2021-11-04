@@ -1,6 +1,7 @@
 package ISO2.PrISO2.dominio.entitymodel;
 
 import java.time.LocalDate;
+
 import ISO2.PrISO2.persistencia.*;
 
 public class Vacunacion {

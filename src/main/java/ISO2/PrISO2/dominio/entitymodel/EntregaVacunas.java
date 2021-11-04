@@ -12,7 +12,6 @@ public class EntregaVacunas {
 	private LocalDate fecha;
 	private int cantidad;
 	
-	
 	public EntregaVacunas(String grupoprioridad, String lote, LocalDate fecha, int cantidad,String region) throws Exception {
 		setGrupoPrioridad(grupoprioridad);
 		setLote(lote);
@@ -57,6 +56,4 @@ public class EntregaVacunas {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	
-
 }

@@ -2,10 +2,10 @@ package ISO2.PrISO2.dominio.entitymodel;
 
 import java.time.LocalDate;
 import java.util.*;
+
 import ISO2.PrISO2.persistencia.*;
 
 public class LoteVacunas {
-
 	Collection<EntregaVacunas> entregas;
 	TipoVacuna tipo;
 	public LoteVacunasDAO loteVacunasDao;
@@ -58,6 +58,4 @@ public class LoteVacunas {
 	public void setFarmaceutica(String farmaceutica) {
 		this.farmaceutica = farmaceutica;
 	}
-
-	
 }

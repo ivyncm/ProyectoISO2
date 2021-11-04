@@ -28,13 +28,12 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		try {
-			rs = AgenteBD.select(GETONE +"'" + id + "'");
-			//String tipoVacuna = rs.getString("tipoVacuna");
+			rs = AgenteBD.select(GETONE + "'" + id + "'");
 			String region = rs.getString(4);
 			String grupoPrior = rs.getString(5);
 			String lote = rs.getString(3);
 			Date fecha = rs.getDate(1);
-			LocalDate fecha1=fecha.toLocalDate();
+			LocalDate fecha1 = fecha.toLocalDate();
 			int cantidad = rs.getInt(2);
 
 			EntregaVacunas entrega = new EntregaVacunas(grupoPrior, lote, fecha1, cantidad, region);
@@ -50,8 +49,8 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		AgenteBD.conectarBD();
 		int i = 0;
 		try {
-			i = agente.insert(INSERT +"'"+ e.getFecha() +"'"+ "," + e.getCantidad() + "," +"'"+ e.getLote() +"'"+ "," + "'"+e.getRegion()
-					+"'"+ "," +"'"+ e.getGrupoPrioridad()+"'"+")");
+			i = agente.insert(INSERT + "'" + e.getFecha() + "'" + "," + e.getCantidad() + "," + "'" + e.getLote() + "'"
+					+ "," + "'" + e.getRegion() + "'" + "," + "'" + e.getGrupoPrioridad() + "'" + ")");
 			if (i == 0) {
 				throw new DAOException("Puede que no se haya insertado.");
 			}
@@ -67,9 +66,8 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		AgenteBD.conectarBD();
 		int i = 0;
 		try {
-			i = agente.update(UPDATE + "region=" + e.getRegion() + ",grupoPrioridad="
-					+ e.getGrupoPrioridad() + ",lote=" + e.getLote() + ",fecha=" + e.getFecha() + ",cantidad="
-					+ e.getCantidad() + WHEREID);
+			i = agente.update(UPDATE + "region=" + e.getRegion() + ",grupoPrioridad=" + e.getGrupoPrioridad() + ",lote="
+					+ e.getLote() + ",fecha=" + e.getFecha() + ",cantidad=" + e.getCantidad() + WHEREID);
 			if (i == 0) {
 				throw new DAOException("Puede que no se haya actualizado.");
 			}
@@ -105,15 +103,13 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		String grupoPrior = rs.getString(5);
 		String lote = rs.getString(3);
 		Date fecha = rs.getDate(1);
-		LocalDate fecha1=fecha.toLocalDate();
+		LocalDate fecha1 = fecha.toLocalDate();
 		int cantidad = rs.getInt(2);
 		EntregaVacunas entrega = new EntregaVacunas(grupoPrior, lote, fecha1, cantidad, region);
 		return entrega;
-		//return null;
 	}
-	
+
 	public List<EntregaVacunas> seleccionarcantidadTotal() throws Exception {
-		//AgenteBD.conectarBD();
 		ResultSet rs = null;
 		List<EntregaVacunas> entrega = new ArrayList<EntregaVacunas>();
 		try {
@@ -124,27 +120,20 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		} catch (SQLException ex) {
 			throw new DAOException("Error en SQL", ex);
 		}
-		//AgenteBD.desconectarBD();
 		return entrega;
 	}
 
 	public List<EntregaVacunas> seleccionarEntregas(String region) throws Exception {
-		//AgenteBD.conectarBD();
 		ResultSet rs = null;
 		List<EntregaVacunas> entrega = new ArrayList<EntregaVacunas>();
 		try {
-			rs = AgenteBD.select(GETREGION + "'" +region +"'");
+			rs = AgenteBD.select(GETREGION + "'" + region + "'");
 			while (rs.next()) {
 				entrega.add(convertir(rs));
 			}
 		} catch (SQLException ex) {
 			throw new DAOException("Error en SQL", ex);
 		}
-		//AgenteBD.desconectarBD();
 		return entrega;
 	}
-	
-	
-	
-
 }

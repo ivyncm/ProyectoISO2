@@ -1,6 +1,5 @@
 package ISO2.PrISO2.persistencia;
 
-
 public interface DAO<E> {
 
 	/**
@@ -30,6 +29,5 @@ public interface DAO<E> {
 	 * @throws Exception
 	 */
 	public int delete(E entity) throws DAOException, Exception;
-
 
 }
