@@ -7,44 +7,27 @@ import ISO2.PrISO2.dominio.controller.GestorVacunacion;
 
 public class PantallaGestionSistemaRegionalSalud {
 	public static void main(String args[]) throws Exception {
+		
+        System.out.println("Bienvenido al Sistema de Salud Regional\n");
+        
+        String region = Region();
+        menu(region);
+        
+	}
+	
+	public static void menu(String region) throws Exception {
 		Scanner teclado=new Scanner(System.in);
 		LocalDate fecha;
 		GestorVacunacion vacunacion;
-		String region = null;
-		String regiones[] = new String[] {"Andalucía", "Aragón", "Canarias", "Cantabria", "Castilla y León", "Castilla-La Mancha", "Cataluña", 
-		         "Ceuta", "Comunidad Valenciana", "Comunidad de Madrid", "Extremadura", "Galicia", "Islas Baleares", 
-		         "La Rioja", "Melilla", "Navarra", "País Vasco", "Principado de Asturias", "Región de Murcia"};
 		int op1=0;
 		int op2=0;
 		String tipo = null;
 		String grupo = null;
-        System.out.println("Bienvenido al Sistema de Salud Regional\n");
-
-        do {
-        	do {
-        		System.out.println("Selecciona la region:\n");
-        		for(int i = 0; i<regiones.length;i++) {
-        			System.out.println(i+1 + " - " + regiones[i]);
-        		}
-        		
-	        	op2 = teclado.nextInt();
-        		switch (op2){
-			        case 1:case 2:case 3:case 4:case 5:case 6:
-			        case 7:case 8:case 9:case 10:case 11:
-			        case 12:case 13:case 14:case 15:case 16:
-			        case 17:case 18:case 19:
-			        	region = regiones[op2-1];
-			        	break;
-			        default:
-			        	System.out.println("Opción no válida\n");
-			        	break;
-				}
-			}while(op2 < 1 || op2 > 19);
-        	
-        	
+		do {	
 	        System.out.println("1 - Dar de alta nueva entrega");
 	        System.out.println("2 - Registrar vacunaciones");
-	        System.out.println("3 - Salir");
+	        System.out.println("3 - Consultar estadísticas");
+	        System.out.println("4 - Salir");
 
 	        op1 = teclado.nextInt();
 	        
@@ -80,14 +63,48 @@ public class PantallaGestionSistemaRegionalSalud {
 	        	
 	        	break;
 	        case 3:
+	        	PantallaConsultaEstadisticas.estadRegion(region);
+	        	break;
+	        case 4:
 	        	System.out.println("Sesión cerrada\n");
 	        	break;
 	        default:
 	        	System.out.println("Opción no válida\n");
 	        	break;
 			}
-		}while(op1 < 1 || op1 > 3);
+		}while(op1 < 1 || op1 > 4);
         teclado.close();
+	}
+	
+	
+	
+	public static String Region() {
+		int op = 0;
+		Scanner teclado=new Scanner(System.in);
+		String regiones[] = new String[] {"Andalucía", "Aragón", "Canarias", "Cantabria", "Castilla y León", "Castilla-La Mancha", "Cataluña", 
+		         "Ceuta", "Comunidad Valenciana", "Comunidad de Madrid", "Extremadura", "Galicia", "Islas Baleares", 
+		         "La Rioja", "Melilla", "Navarra", "País Vasco", "Principado de Asturias", "Región de Murcia"};
+		String region = null;
+		do {
+    		System.out.println("Selecciona la region:\n");
+    		for(int i = 0; i<regiones.length;i++) {
+    			System.out.println(i+1 + " - " + regiones[i]);
+    		}
+    		
+        	op = teclado.nextInt();
+    		switch (op){
+		        case 1:case 2:case 3:case 4:case 5:case 6:
+		        case 7:case 8:case 9:case 10:case 11:
+		        case 12:case 13:case 14:case 15:case 16:
+		        case 17:case 18:case 19:
+		        	region = regiones[op-1];
+		        	break;
+		        default:
+		        	System.out.println("Opción no válida\n");
+		        	break;
+			}
+		}while(op < 1 || op > 19);
+		return region;
 	}
 	
 	public static String grupo() {

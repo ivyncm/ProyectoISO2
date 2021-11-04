@@ -7,6 +7,10 @@ import ISO2.PrISO2.dominio.controller.GestorRepartoVacunas;
 
 public class PantallaGestionSistemaSaludNacional {
 	public static void main(String args[]) throws Exception {
+		menu();
+	}
+	
+	public static void menu() throws Exception {
 		Scanner teclado=new Scanner(System.in);
 		int op1=0;
 		int op2=0;
@@ -17,7 +21,8 @@ public class PantallaGestionSistemaSaludNacional {
         do {
 	        System.out.println("1 - Dar de alta nuevo lote");
 	        System.out.println("2 - Calcular reparto");
-	        System.out.println("3 - Salir");
+	        System.out.println("3 - Consultar estadísticas");
+	        System.out.println("4 - Salir");
 
 	        op1 = Integer.parseInt(teclado.next());
 	        
@@ -57,13 +62,16 @@ public class PantallaGestionSistemaSaludNacional {
 	        
 	           break;
 	        case 3:
+	        	PantallaConsultaEstadisticas.estadNacional();
+	        	break;
+	        case 4:
 	        	System.out.println("Sesión cerrada\n");
 	        	break;
 	        default:
 	        	System.out.println("Opción no válida\n");
 	        	break;
 			}
-		}while(op1 < 1 || op1 > 3);
+		}while(op1 < 1 || op1 > 4);
         teclado.close();
 	}
 }
