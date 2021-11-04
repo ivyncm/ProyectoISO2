@@ -50,9 +50,12 @@ public class GestorEstadisticas {
 	public void consultarPorcentajeVacunadosSobreRecibidasEnRegion(String region) throws Exception {
 		double vacunados=calcularvacunadostotalregion(region);
 		double recibidas= consultartotalrecibidasregion(region);
-		System.out.println(vacunados);
-		System.out.println(recibidas);
-		System.out.printf("Porcentaje vacunados: %.3f%%", (vacunados/recibidas)*100);
+		if(recibidas == 0) {
+			System.out.println("Porcentaje vacunados: 0,000%");
+		}else {
+			System.out.printf("Porcentaje vacunados: %.3f%%\n", (vacunados/recibidas)*100);
+
+		}
 		
 	}
 	//Metodos auxiliares total

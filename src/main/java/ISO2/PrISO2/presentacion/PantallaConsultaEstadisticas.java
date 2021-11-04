@@ -22,7 +22,7 @@ public class PantallaConsultaEstadisticas {
 	        System.out.println("1 - Consultar total vacunados");
 	        System.out.println("2 - Consultar total vacunados por region");
 	        System.out.println("3 - Consultar porcentajes vacunados sobre recibidas");
-	        System.out.println("2 - Consultar porcentajes vacunados sobre recibidas en region");
+	        System.out.println("4 - Consultar porcentajes vacunados sobre recibidas en region");
 	        System.out.println("5 - Salir");
 
 	        op1 = teclado.nextInt();
