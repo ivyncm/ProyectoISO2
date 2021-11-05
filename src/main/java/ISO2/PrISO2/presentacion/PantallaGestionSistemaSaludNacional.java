@@ -62,27 +62,17 @@ public class PantallaGestionSistemaSaludNacional {
 				break;
 			case 2:
 				List<LoteVacunas> lotes = gestor.imprimirLotes();
+				System.out.println("Seleccionar lote a repartir (introducir número)");
 				for(int i = 0; i<lotes.size(); i++){
-					System.out.println("Lote " + i + lotes.get(i).toString());
+					System.out.println("Lote " + (i+1) + lotes.get(i).toString());
 				}
 				do {
-					
 					op2 = teclado.nextInt();
-					switch (op2) {
-					case 1:
-						tipo = "Pfizer";
-						break;
-					case 2:
-						tipo = "Moderna";
-						break;
-					case 3:
-						tipo = "Astrazeneca";
-						break;
-					default:
-						System.out.println("Opción no válida\n");
-						break;
+					if(op2>1 & op2<lotes.size()) {
+						LoteVacunas lote = lotes.get(op2-1);
+						System.out.println("Lote seleccionado" + lote.toString());
 					}
-				} while (op2 < 1 || op2 > 3);
+				} while (op2<1 || op2>lotes.size());
 
 				break;
 			case 3:
