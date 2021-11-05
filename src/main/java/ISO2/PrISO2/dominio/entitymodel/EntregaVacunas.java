@@ -20,6 +20,12 @@ public class EntregaVacunas {
 		setRegion(region);
 		entregaDao = new EntregaDAO();
 	}
+	
+	@Override
+	public String toString() {
+		return ": region=" + region + " -- grupoprioridad=" + grupoprioridad + " -- cantidad=" + cantidad;
+	}
+
 	public String getRegion() {
 		return region;
 	}

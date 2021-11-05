@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.time.LocalDate;
 
 import ISO2.PrISO2.dominio.controller.GestorRepartoVacunas;
+import ISO2.PrISO2.dominio.entitymodel.EntregaVacunas;
 import ISO2.PrISO2.dominio.entitymodel.LoteVacunas;
 
 public class PantallaGestionSistemaSaludNacional {
@@ -61,6 +62,7 @@ public class PantallaGestionSistemaSaludNacional {
 				gestor.altaNuevoLoteVacunas(fecha, tipo, cantidad);
 				break;
 			case 2:
+				LoteVacunas lote = null;
 				List<LoteVacunas> lotes = gestor.imprimirLotes();
 				System.out.println("Seleccionar lote a repartir (introducir número)");
 				for(int i = 0; i<lotes.size(); i++){
@@ -69,11 +71,36 @@ public class PantallaGestionSistemaSaludNacional {
 				do {
 					op2 = teclado.nextInt();
 					if(op2>1 & op2<lotes.size()) {
-						LoteVacunas lote = lotes.get(op2-1);
+						lote = lotes.get(op2-1);
 						System.out.println("Lote seleccionado" + lote.toString());
 					}
 				} while (op2<1 || op2>lotes.size());
-
+				String prioridad = null;
+				do {
+					System.out.println("Introduce el grupo de prioridad:\n");
+					System.out.println("1 - Joven");
+					System.out.println("2 - Adulto");
+					System.out.println("3 - Anciano");
+					op2 = teclado.nextInt();
+					switch (op2) {
+					case 1:
+						prioridad = "Joven";
+						break;
+					case 2:
+						prioridad = "Adulto";
+						break;
+					case 3:
+						prioridad = "Anciano";
+						break;
+					default:
+						System.out.println("Opción no válida\n");
+						break;
+					}
+				} while (op2 < 1 || op2 > 3);
+				List<EntregaVacunas> entregas = gestor.calcularEntregasRegion(lote, prioridad);
+				for(int i = 0; i<entregas.size(); i++){
+					System.out.println("Entrega " + (i+1) + entregas.get(i).toString());
+				}
 				break;
 			case 3:
 				PantallaConsultaEstadisticas.estadNacional();
