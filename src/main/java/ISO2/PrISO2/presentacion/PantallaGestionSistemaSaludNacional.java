@@ -62,8 +62,8 @@ public class PantallaGestionSistemaSaludNacional {
 				break;
 			case 2:
 				List<LoteVacunas> lotes = gestor.imprimirLotes();
-				for(LoteVacunas lote:lotes){
-					System.out.println(lote.toString());
+				for(int i = 0; i<lotes.size(); i++){
+					System.out.println("Lote " + i + lotes.get(i).toString());
 				}
 				do {
 					

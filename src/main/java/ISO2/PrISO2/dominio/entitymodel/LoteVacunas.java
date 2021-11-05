@@ -25,8 +25,7 @@ public class LoteVacunas {
 	
 	@Override
 	public String toString() {
-		return "LoteVacunas [id=" + id + ", fecha=" + fecha + 
-				", cantidad=" + cantidad + ", tipoVacuna=" + farmaceutica + "]";
+		return ": cantidad = " + cantidad + " -- Tipo de vacuna = " + farmaceutica;
 	}
 
 	public Collection<EntregaVacunas> getEntregas() {
