@@ -1,6 +1,10 @@
 package ISO2.PrISO2.persistencia;
 
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.time.LocalDate;
 
 import ISO2.PrISO2.dominio.entitymodel.*;
 
@@ -21,20 +25,38 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 
 	@Override
 	public LoteVacunas get(String id) throws Exception {
-		/*
-		 * AgenteBD.conectarBD(); ResultSet rs = null; try { rs = AgenteBD.select(GETONE
-		 * + id); String tipoVacuna = rs.getString("tipoVacuna"); Date fecha =
-		 * rs.getDate("fecha"); int cantidad = rs.getInt("cantidad"); String
-		 * farmaceutica = rs.getString("farmaceutica");
-		 * 
-		 * //LoteVacunas lote = new LoteVacunas(id, fecha, cantidad, farmaceutica);
-		 * 
-		 * //return lote; } catch (SQLException ex) { throw new
-		 * DAOException("Error SQL", ex); }
-		 */
+		
 		return null;
 	}
 
+	public List<LoteVacunas> seleccionarLote() throws Exception {
+		AgenteBD.conectarBD();
+		ResultSet rs = null;
+		List<LoteVacunas> LoteVacunas = new ArrayList<LoteVacunas>();
+		try {
+			rs = AgenteBD.select(GETALL);
+			while (rs.next()) {
+				LoteVacunas.add(convertir(rs));
+			}
+		} catch (SQLException ex) {
+			throw new DAOException("Error en SQL", ex);
+		}
+		AgenteBD.desconectarBD();
+		return LoteVacunas;
+	}
+
+	private LoteVacunas convertir(ResultSet rs) throws Exception {
+		  String id = rs.getString(1);
+		  Date fecha =rs.getDate(2); 
+		  LocalDate fecha1 = ((java.sql.Date) fecha).toLocalDate();
+		  int cantidad = rs.getInt(3); 
+		  String tipoVacuna = rs.getString(4); 
+		  
+		  
+		  LoteVacunas lote = new LoteVacunas(id, fecha1, cantidad, tipoVacuna);
+		  return lote;
+	}
+	
 	@Override
 	public int insert(LoteVacunas l) throws Exception {
 		AgenteBD.conectarBD();

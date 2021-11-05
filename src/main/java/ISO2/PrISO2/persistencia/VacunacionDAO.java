@@ -135,6 +135,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		// AgenteBD.desconectarBD();
 		return vacunaciones;
 	}
+	
 
 	public List<Vacunacion> seleccionarVacunaciones(String region) throws Exception {
 		AgenteBD.conectarBD();

@@ -1,9 +1,11 @@
 package ISO2.PrISO2.presentacion;
 
+import java.util.List;
 import java.util.Scanner;
 import java.time.LocalDate;
 
 import ISO2.PrISO2.dominio.controller.GestorRepartoVacunas;
+import ISO2.PrISO2.dominio.entitymodel.LoteVacunas;
 
 public class PantallaGestionSistemaSaludNacional {
 	public static void main(String args[]) throws Exception {
@@ -25,7 +27,7 @@ public class PantallaGestionSistemaSaludNacional {
 			System.out.println("4 - Salir");
 
 			op1 = Integer.parseInt(teclado.next());
-
+			GestorRepartoVacunas gestor = new GestorRepartoVacunas();
 			switch (op1) {
 			case 1:
 				do {
@@ -52,13 +54,35 @@ public class PantallaGestionSistemaSaludNacional {
 
 				System.out.println("Introduce la cantidad:");
 				int cantidad = teclado.nextInt();
-				GestorRepartoVacunas gestor = new GestorRepartoVacunas();
+				
 
 				LocalDate fecha = LocalDate.now();
 
 				gestor.altaNuevoLoteVacunas(fecha, tipo, cantidad);
 				break;
 			case 2:
+				List<LoteVacunas> lotes = gestor.imprimirLotes();
+				for(LoteVacunas lote:lotes){
+					System.out.println(lote.toString());
+				}
+				do {
+					
+					op2 = teclado.nextInt();
+					switch (op2) {
+					case 1:
+						tipo = "Pfizer";
+						break;
+					case 2:
+						tipo = "Moderna";
+						break;
+					case 3:
+						tipo = "Astrazeneca";
+						break;
+					default:
+						System.out.println("Opción no válida\n");
+						break;
+					}
+				} while (op2 < 1 || op2 > 3);
 
 				break;
 			case 3:

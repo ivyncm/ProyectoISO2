@@ -63,7 +63,7 @@ public class AgenteBD {
 			// conectarBD();
 			Statement stat = conn.createStatement();
 			ResultSet res = stat.executeQuery(sql);
-			// stat.close();
+			//stat.close();
 			// desconectarBD();
 			return res;
 		} catch (SQLException ex) {

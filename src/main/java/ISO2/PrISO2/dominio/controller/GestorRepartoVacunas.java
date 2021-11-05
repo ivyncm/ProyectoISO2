@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.*;
 
 import ISO2.PrISO2.dominio.entitymodel.*;
+import ISO2.PrISO2.persistencia.LoteVacunasDAO;
+import ISO2.PrISO2.persistencia.VacunacionDAO;
 
 public class GestorRepartoVacunas {
 
@@ -21,9 +23,24 @@ public class GestorRepartoVacunas {
 		lote.loteVacunasDao.insertarLoteVacunas(lote);
 	}
 
-	public List<EntregaVacunas> calcularEntregasRegion() {
+	public List<EntregaVacunas> calcularEntregasRegion() throws Exception {
 		// TODO - implement GestorRepartoVacunas.calcularEntregasRegion
-		throw new UnsupportedOperationException();
+		
+		LoteVacunasDAO total = new LoteVacunasDAO();
+		List<LoteVacunas> lotes = total.seleccionarLote();
+		
+		
+		return null;
+	}
+	
+	public List<LoteVacunas> imprimirLotes() throws Exception {
+		// TODO - implement GestorRepartoVacunas.calcularEntregasRegion
+		
+		LoteVacunasDAO total = new LoteVacunasDAO();
+		List<LoteVacunas> lotes = total.seleccionarLote();
+		
+		
+		return lotes;
 	}
 
 	public static String cadenaAleatoria() {
@@ -44,4 +61,5 @@ public class GestorRepartoVacunas {
 		}
 		return sb.toString();
 	}
+	
 }

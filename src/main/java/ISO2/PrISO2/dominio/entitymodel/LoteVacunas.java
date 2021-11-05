@@ -22,6 +22,13 @@ public class LoteVacunas {
 		tipo = new TipoVacuna(farmaceutica);
 		loteVacunasDao = new LoteVacunasDAO();
 	}
+	
+	@Override
+	public String toString() {
+		return "LoteVacunas [id=" + id + ", fecha=" + fecha + 
+				", cantidad=" + cantidad + ", tipoVacuna=" + farmaceutica + "]";
+	}
+
 	public Collection<EntregaVacunas> getEntregas() {
 		return entregas;
 	}
