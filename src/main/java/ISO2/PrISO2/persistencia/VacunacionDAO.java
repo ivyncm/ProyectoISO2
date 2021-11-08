@@ -62,6 +62,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 			throw new DAOException("Error SQL", ex);
 		}
 		AgenteBD.desconectarBD();
+		System.out.println("Se ha insertado una nueva vacunación con dni: "+v.paciente.getDni());
 		return i;
 	}
 

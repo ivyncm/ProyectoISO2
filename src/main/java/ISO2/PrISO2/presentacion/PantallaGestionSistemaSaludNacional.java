@@ -70,7 +70,7 @@ public class PantallaGestionSistemaSaludNacional {
 				}
 				do {
 					op2 = teclado.nextInt();
-					if(op2>1 & op2<lotes.size()) {
+					if(op2>0 & op2<lotes.size()+1) {
 						lote = lotes.get(op2-1);
 						System.out.println("Lote seleccionado" + lote.toString());
 					}

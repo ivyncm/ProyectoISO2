@@ -29,13 +29,11 @@ public class PantallaGestionSistemaRegionalSalud {
 			switch (op1) {
 			case 1:
 				fecha = LocalDate.now();
-				System.out.println("Introduce el id del lote:");
-				String idLote = teclado.next();
 				System.out.println("Introduce la cantidad:");
 				int cantidad = teclado.nextInt();
 				grupo = grupo();
 				vacunacion = new GestorVacunacion();
-				vacunacion.altaEntregaVacunas(idLote, fecha, cantidad, grupo, region);
+				vacunacion.altaEntregaVacunas(fecha, cantidad, grupo, region);
 				break;
 			case 2:
 				vacunacion = new GestorVacunacion();
@@ -74,10 +72,9 @@ public class PantallaGestionSistemaRegionalSalud {
 	public static String Region() {
 		int op = 0;
 		Scanner teclado = new Scanner(System.in);
-		String regiones[] = new String[] { "Andalucía", "Aragón", "Canarias", "Cantabria", "Castilla y León",
-				"Castilla-La Mancha", "Cataluña", "Ceuta", "Comunidad Valenciana", "Comunidad de Madrid", "Extremadura",
-				"Galicia", "Islas Baleares", "La Rioja", "Melilla", "Navarra", "País Vasco", "Principado de Asturias",
-				"Región de Murcia" };
+		String regiones[] = new String[] { "Andalucia", "Aragon", "Canarias", "Cantabria", "Castilla y Leon", "Castilla la Mancha",
+				"Catalunya", "Ceuta", "Valencia", "Madrid", "Extremadura", "Galicia", "Baleares", "La Rioja", "Melilla",
+				"Navarra", "Pais Vasco", "Asturias", "Murcia" };
 		String region = null;
 		do {
 			System.out.println("Selecciona la region:\n");
@@ -98,7 +95,6 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			}
 		} while (op < 1 || op > 19);
-		teclado.close();
 		return region;
 	}
 
@@ -127,7 +123,6 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			}
 		} while (op < 1 || op > 3);
-		teclado.close();
 		return grupo;
 	}
 
@@ -156,7 +151,6 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			}
 		} while (op2 < 1 || op2 > 3);
-		teclado.close();
 		return tipo;
 	}
 
@@ -179,7 +173,6 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			}
 		} while (op3 == "s" || op3 == "n");
-		teclado.close();
 		return segDosis;
 	}
 }

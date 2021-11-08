@@ -61,8 +61,6 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	public int insert(LoteVacunas l) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		System.out.print(INSERT + "'" + l.getId() + "'," + "'" + l.getFecha() + "'" + "," + l.getCantidad() + "," + "'"
-				+ l.getFarmaceutica() + "'" + ")");
 		try {
 			i = agente.insert(INSERT + "'" + l.getId() + "','" + l.getFecha() + "'," + l.getCantidad() + ",'"
 					+ l.getFarmaceutica() + "'" + ")");
@@ -73,6 +71,7 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 			throw new DAOException("Error SQL", ex);
 		}
 		AgenteBD.desconectarBD();
+		System.out.println("Se ha insertado un nuevo lote con id: "+l.getId());
 		return i;
 	}
 
@@ -111,5 +110,6 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 
 	public void insertarLoteVacunas(LoteVacunas lote) throws Exception {
 		insert(lote);
+		System.out.println("Lote insertado con éxito");
 	}
 }

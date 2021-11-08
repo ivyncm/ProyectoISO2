@@ -7,8 +7,7 @@ import ISO2.PrISO2.dominio.controller.GestorEstadisticas;
 public class PantallaConsultaEstadisticas {
 	public static void estadNacional() throws Exception {
 		Boolean seguir = true;
-		// CLM es Castilla-La-Mancha
-		String regiones[] = new String[] { "Andalucia", "Aragon", "Canarias", "Cantabria", "Castilla y Leon", "CLM",
+		String regiones[] = new String[] { "Andalucia", "Aragon", "Canarias", "Cantabria", "Castilla y Leon", "Castilla la Mancha",
 				"Catalunya", "Ceuta", "Valencia", "Madrid", "Extremadura", "Galicia", "Baleares", "La Rioja", "Melilla",
 				"Navarra", "Pais Vasco", "Asturias", "Murcia" };
 

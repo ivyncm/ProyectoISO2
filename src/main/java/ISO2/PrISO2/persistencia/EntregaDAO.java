@@ -96,6 +96,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 
 	public void insertarEntrega(EntregaVacunas entrega) throws Exception {
 		insert(entrega);
+		System.out.println("Se ha insertado una nueva entrega con id: "+entrega.getLote());
 	}
 
 	private EntregaVacunas convertir(ResultSet rs) throws Exception {
