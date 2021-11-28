@@ -33,7 +33,7 @@ public class GestorVacunacion {
 	public void registrarVacunacion(LocalDate fecha, String nombre, String apellidos, String dni, String tipo,
 			boolean segDosis, String region, String grupo) throws Exception {
 		Paciente paciente = new Paciente(dni, nombre, apellidos, region, grupo);
-		Vacunacion vacunacion = new Vacunacion(tipo, fecha, segDosis, paciente);
+		Vacunacion vacunacion = new Vacunacion(tipo, fecha, segDosis, paciente); //String tipoVacuna, LocalDate fecha, boolean segDosis, Paciente paciente
 		vacunacion.getVacunacionDao().insertarVacunacion(vacunacion);
 	}
 

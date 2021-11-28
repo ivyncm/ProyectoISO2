@@ -158,7 +158,6 @@ public class PantallaGestionSistemaRegionalSalud {
 		boolean segDosis = false;
 		Scanner teclado = new Scanner(System.in);
 		String op3;
-		do {
 			System.out.println("Es segunda dosis? s/n\n");
 			op3 = teclado.next().toLowerCase();
 			switch (op3) {
@@ -170,9 +169,9 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			default:
 				System.out.println("Opción no válida\n");
+				segDosis();
 				break;
 			}
-		} while (op3 == "s" || op3 == "n");
 		return segDosis;
 	}
 }
