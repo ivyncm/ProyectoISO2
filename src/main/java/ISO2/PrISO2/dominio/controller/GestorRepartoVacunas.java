@@ -6,8 +6,6 @@ import java.util.*;
 
 import ISO2.PrISO2.dominio.entitymodel.*;
 import ISO2.PrISO2.persistencia.LoteVacunasDAO;
-import ISO2.PrISO2.persistencia.VacunacionDAO;
-
 public class GestorRepartoVacunas {
 
 	/**
@@ -24,7 +22,7 @@ public class GestorRepartoVacunas {
 	}
 
 	public List<EntregaVacunas> calcularEntregasRegion(LoteVacunas lote, String prioridad) throws Exception {
-		String regiones[] = new String[] { "Andalucía", "Aragón", "Canarias", "Cantabria", "Castilla y León",
+		String[] regiones = new String[] { "Andalucía", "Aragón", "Canarias", "Cantabria", "Castilla y León",
 				"Castilla-La Mancha", "Cataluña", "Ceuta", "Comunidad Valenciana", "Comunidad de Madrid", "Extremadura",
 				"Galicia", "Islas Baleares", "La Rioja", "Melilla", "Navarra", "País Vasco", "Principado de Asturias",
 				"Región de Murcia" };
@@ -32,7 +30,7 @@ public class GestorRepartoVacunas {
 		int cantidad = 0;
 		if(lote.getCantidad() < 200) {
 			cantidad = lote.getCantidad();
-			int num = (int)(Math.random()*19);
+			int num = (int)(Math.random()*19); //window.crypto.getRandomValues(typedArray)
 			EntregaVacunas entrega = new EntregaVacunas(prioridad, lote.getId(), lote.getFecha(), cantidad, regiones[num]);
 			entrega.getEntregaDao().insert(entrega);
 			entregas.add(entrega);
@@ -59,17 +57,17 @@ public class GestorRepartoVacunas {
 
 	public static String cadenaAleatoria() {
 		int length = 5;
-		String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
-		String CHAR_UPPER = CHAR_LOWER.toUpperCase();
-		String NUMBER = "0123456789";
-		String DATA_FOR_RANDOM_STRING = CHAR_LOWER + CHAR_UPPER + NUMBER;
+		String char_lower = "abcdefghijklmnopqrstuvwxyz";
+		String char_upper = char_lower.toUpperCase();
+		String number = "0123456789";
+		String data_for_random_string = char_lower + char_upper + number;
 		SecureRandom random = new SecureRandom();
 		if (length < 1)
 			throw new IllegalArgumentException();
 		StringBuilder sb = new StringBuilder(length);
 		for (int i = 0; i < length; i++) {
-			int rndCharAt = random.nextInt(DATA_FOR_RANDOM_STRING.length());
-			char rndChar = DATA_FOR_RANDOM_STRING.charAt(rndCharAt);
+			int rndCharAt = random.nextInt(data_for_random_string.length());
+			char rndChar = data_for_random_string.charAt(rndCharAt);
 
 			sb.append(rndChar);
 		}
