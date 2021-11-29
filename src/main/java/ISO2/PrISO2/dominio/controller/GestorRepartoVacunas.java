@@ -30,7 +30,7 @@ public class GestorRepartoVacunas {
 		int cantidad = 0;
 		if(lote.getCantidad() < 200) {
 			cantidad = lote.getCantidad();
-			Random ran = new Random();
+			Random ran = SecureRandom.getInstanceStrong();
 			int num = ran.nextInt(19); //window.crypto.getRandomValues(typedArray)
 			EntregaVacunas entrega = new EntregaVacunas(prioridad, lote.getId(), lote.getFecha(), cantidad, regiones[num]);
 			entrega.getEntregaDao().insert(entrega);
