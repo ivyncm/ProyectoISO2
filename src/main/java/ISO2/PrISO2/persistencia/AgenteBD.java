@@ -59,7 +59,11 @@ public class AgenteBD {
 		} catch (SQLException | ClassNotFoundException ex) {
 			throw new DAOException("Error creando la base de datos...", ex);
 		} finally {
-			desconectarBD();
+			try {
+				conn.close();
+			} catch (SQLException ex) {
+				throw new DAOException("Error desconectando...", ex);
+			}
 		}
 	}
 
@@ -84,7 +88,11 @@ public class AgenteBD {
 		} catch (SQLException ex) {
 			throw new DAOException("Error en select SQL", ex);
 		}finally {
-			desconectarBD();
+			try {
+				conn.close();
+			} catch (SQLException ex) {
+				throw new DAOException("Error desconectando...", ex);
+			}
 		}
 	}
 
@@ -104,7 +112,11 @@ public class AgenteBD {
 		} catch (SQLException ex) {
 			throw new DAOException("Error en insert SQL", ex);
 		}finally {
-			desconectarBD();
+			try {
+				conn.close();
+			} catch (SQLException ex) {
+				throw new DAOException("Error desconectando...", ex);
+			}
 		}
 	}
 
@@ -120,7 +132,11 @@ public class AgenteBD {
 		} catch (SQLException ex) {
 			throw new DAOException("Error en update SQL", ex);
 		}finally {
-			desconectarBD();
+			try {
+				conn.close();
+			} catch (SQLException ex) {
+				throw new DAOException("Error desconectando...", ex);
+			}
 		}
 	}
 
@@ -139,7 +155,11 @@ public class AgenteBD {
 		}catch (SQLException ex) {
 			throw new DAOException("Error en delete SQL", ex);
 		}finally {
-			desconectarBD();
+			try {
+				conn.close();
+			} catch (SQLException ex) {
+				throw new DAOException("Error desconectando...", ex);
+			}
 		}
 		
 	}
