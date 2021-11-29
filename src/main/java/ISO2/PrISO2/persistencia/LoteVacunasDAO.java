@@ -61,14 +61,10 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	public int insert(LoteVacunas l) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		try {
-			i = agente.insert(INSERT + "'" + l.getId() + "','" + l.getFecha() + "'," + l.getCantidad() + ",'"
-					+ l.getFarmaceutica() + "'" + ")");
-			if (i == 0) {
-				throw new DAOException("Puede que no se haya insertado.");
-			}
-		} catch (SQLException ex) {
-			throw new DAOException("Error SQL", ex);
+		i = agente.insert(INSERT + "'" + l.getId() + "','" + l.getFecha() + "'," + l.getCantidad() + ",'"
+				+ l.getFarmaceutica() + "'" + ")");
+		if (i == 0) {
+			throw new DAOException("Puede que no se haya insertado.");
 		}
 		AgenteBD.desconectarBD();
 		System.out.println("Se ha insertado un nuevo lote con id: "+l.getId());
@@ -79,14 +75,10 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	public LoteVacunas update(LoteVacunas l) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		try {
-			i = agente.update(UPDATE + "fecha=" + l.getFecha() + ",cantidad=" + l.getCantidad() + ",nombre_tipoVacuna="
-					+ l.getFarmaceutica() + WHEREID + l.getId());
-			if (i == 0) {
-				throw new DAOException("Puede que no se haya actualizado.");
-			}
-		} catch (SQLException ex) {
-			throw new DAOException("Error SQL", ex);
+		i = agente.update(UPDATE + "fecha=" + l.getFecha() + ",cantidad=" + l.getCantidad() + ",nombre_tipoVacuna="
+				+ l.getFarmaceutica() + WHEREID + l.getId());
+		if (i == 0) {
+			throw new DAOException("Puede que no se haya actualizado.");
 		}
 		AgenteBD.desconectarBD();
 		return l;
@@ -96,13 +88,9 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	public int delete(LoteVacunas l) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		try {
-			i = agente.delete(DELETE + l.getId());
-			if (i == 0) {
-				throw new DAOException("Puede que no se haya borrado.");
-			}
-		} catch (SQLException ex) {
-			throw new DAOException("Error SQL", ex);
+		i = agente.delete(DELETE + l.getId());
+		if (i == 0) {
+			throw new DAOException("Puede que no se haya borrado.");
 		}
 		AgenteBD.desconectarBD();
 		return i;

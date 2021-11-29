@@ -48,14 +48,10 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	public int insert(EntregaVacunas e) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		try {
-			i = agente.insert(INSERT + "'" + e.getFecha() + "'" + "," + e.getCantidad() + "," + "'" + e.getLote() + "'"
-					+ "," + "'" + e.getRegion() + "'" + "," + "'" + e.getGrupoPrioridad() + "'" + ")");
-			if (i == 0) {
-				throw new DAOException("Puede que no se haya insertado.");
-			}
-		} catch (SQLException ex) {
-			throw new DAOException("Error SQL", ex);
+		i = agente.insert(INSERT + "'" + e.getFecha() + "'" + "," + e.getCantidad() + "," + "'" + e.getLote() + "'"
+				+ "," + "'" + e.getRegion() + "'" + "," + "'" + e.getGrupoPrioridad() + "'" + ")");
+		if (i == 0) {
+			throw new DAOException("Puede que no se haya insertado.");
 		}
 		AgenteBD.desconectarBD();
 		return i;
@@ -65,14 +61,10 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	public EntregaVacunas update(EntregaVacunas e) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		try {
-			i = agente.update(UPDATE + "region=" + e.getRegion() + ",grupoPrioridad=" + e.getGrupoPrioridad() + ",lote="
-					+ e.getLote() + ",fecha=" + e.getFecha() + ",cantidad=" + e.getCantidad() + WHEREID);
-			if (i == 0) {
-				throw new DAOException("Puede que no se haya actualizado.");
-			}
-		} catch (SQLException ex) {
-			throw new DAOException("Error SQL", ex);
+		i = agente.update(UPDATE + "region=" + e.getRegion() + ",grupoPrioridad=" + e.getGrupoPrioridad() + ",lote="
+				+ e.getLote() + ",fecha=" + e.getFecha() + ",cantidad=" + e.getCantidad() + WHEREID);
+		if (i == 0) {
+			throw new DAOException("Puede que no se haya actualizado.");
 		}
 		AgenteBD.desconectarBD();
 		return e;
@@ -82,13 +74,9 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	public int delete(EntregaVacunas e) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		try {
-			i = agente.delete(DELETE);
-			if (i == 0) {
-				throw new DAOException("Puede que no se haya borrado.");
-			}
-		} catch (SQLException ex) {
-			throw new DAOException("Error SQL", ex);
+		i = agente.delete(DELETE);
+		if (i == 0) {
+			throw new DAOException("Puede que no se haya borrado.");
 		}
 		AgenteBD.desconectarBD();
 		return i;
