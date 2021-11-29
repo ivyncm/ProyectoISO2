@@ -32,9 +32,8 @@ public class AgenteBD {
 
 	public static void crearBD() throws DAOException{
 		String urlCreate = "jdbc:derby:directory:myDB;create=true";
-		try {
+		try (Connection conn = DriverManager.getConnection(urlCreate)){
 			Class.forName(driver);
-			Connection conn = DriverManager.getConnection(urlCreate);
 			conn.createStatement().execute(
 					"create table lote(id varchar(30), fecha date, cantidad int, nombre_tipoVacuna varchar(30), primary key(id))");
 			conn.createStatement().execute(
@@ -59,11 +58,7 @@ public class AgenteBD {
 		} catch (SQLException | ClassNotFoundException ex) {
 			throw new DAOException("Error creando la base de datos...", ex);
 		} finally {
-			try {
-				conn.close();
-			} catch (SQLException ex) {
-				throw new DAOException("Error desconectando...", ex);
-			}
+			desconectarBD();
 		}
 	}
 
@@ -81,18 +76,13 @@ public class AgenteBD {
 	 * @throws DAOException 
 	 */
 	public static ResultSet select(String sql) throws DAOException{
-		try {
-			Statement stat = conn.createStatement();
+		try (PreparedStatement stat = conn.prepareStatement(sql)){
 			ResultSet res = stat.executeQuery(sql);
 			return res;
 		} catch (SQLException ex) {
 			throw new DAOException("Error en select SQL", ex);
 		}finally {
-			try {
-				conn.close();
-			} catch (SQLException ex) {
-				throw new DAOException("Error desconectando...", ex);
-			}
+			desconectarBD();
 		}
 	}
 
@@ -102,9 +92,7 @@ public class AgenteBD {
 	 */
 	public int insert(String sql) throws DAOException{
 		conectarBD();
-		PreparedStatement stat;
-		try {
-			stat = conn.prepareStatement(sql);
+		try (PreparedStatement stat = conn.prepareStatement(sql)){
 			int res = stat.executeUpdate();
 			stat.close();
 			desconectarBD();
@@ -112,11 +100,7 @@ public class AgenteBD {
 		} catch (SQLException ex) {
 			throw new DAOException("Error en insert SQL", ex);
 		}finally {
-			try {
-				conn.close();
-			} catch (SQLException ex) {
-				throw new DAOException("Error desconectando...", ex);
-			}
+			desconectarBD();
 		}
 	}
 
@@ -125,18 +109,13 @@ public class AgenteBD {
 	 * @param sql
 	 */
 	public int update(String sql) throws DAOException {
-		try {
-			PreparedStatement stat = conn.prepareStatement(sql);
+		try (PreparedStatement stat = conn.prepareStatement(sql)){
 			int res = stat.executeUpdate();
 			return res;
 		} catch (SQLException ex) {
 			throw new DAOException("Error en update SQL", ex);
 		}finally {
-			try {
-				conn.close();
-			} catch (SQLException ex) {
-				throw new DAOException("Error desconectando...", ex);
-			}
+			desconectarBD();
 		}
 	}
 
@@ -146,8 +125,7 @@ public class AgenteBD {
 	 */
 	public int delete(String sql) throws DAOException {
 		conectarBD();
-		try {
-			PreparedStatement stat = conn.prepareStatement(sql);
+		try (PreparedStatement stat = conn.prepareStatement(sql)){
 			int res = stat.executeUpdate();
 			stat.close();
 			desconectarBD();
@@ -155,11 +133,7 @@ public class AgenteBD {
 		}catch (SQLException ex) {
 			throw new DAOException("Error en delete SQL", ex);
 		}finally {
-			try {
-				conn.close();
-			} catch (SQLException ex) {
-				throw new DAOException("Error desconectando...", ex);
-			}
+			desconectarBD();
 		}
 		
 	}
