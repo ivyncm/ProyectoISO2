@@ -22,7 +22,7 @@ public class AgenteBD {
 		}
 	}
 
-	public static void main(String[] args) throws DAOException{
+	public static void main(String[] args) throws DAOException, SQLException{
 		try {
 			crearBD();
 		} catch (DAOException ex) {
@@ -30,35 +30,35 @@ public class AgenteBD {
 		}
 	}
 
-	public static void crearBD() throws DAOException{
+	public static void crearBD() throws DAOException, SQLException{
 		String urlCreate = "jdbc:derby:directory:myDB;create=true";
 		try (Connection conn = DriverManager.getConnection(urlCreate)){
 			Class.forName(driver);
-			conn.createStatement().execute(
-					"create table lote(id varchar(30), fecha date, cantidad int, nombre_tipoVacuna varchar(30), primary key(id))");
-			conn.createStatement().execute(
-					"create table entrega(fecha date, cantidad int, idLote varchar(30), region varchar(30), grupoPrioridad varchar(30))");
-			conn.createStatement().execute(
-					"create table vacunacion(fecha date, isSegundaDosis boolean, nombre_tipovacuna varchar(30), dni_paciente varchar(30), nombre varchar(30), apellidos varchar(30), region varchar(30), grupoPrioridad varchar(30))");
-	
-			conn.createStatement()
-					.execute("insert into lote values " + "('153456', '2021-05-24', 5, 'Astrazeneca'),"
-							+ "('485667', '2021-07-04', 500, 'Pfizer')," + "('194563', '2021-09-16', 300, 'Pfizer'),"
-							+ "('477687', '2021-08-24', 3000, 'Moderna')");
-			conn.createStatement()
-					.execute("insert into entrega values " + "('2021-05-23', 5, '153456', 'Asturias', 'Anciano'),"
-							+ "('2021-07-03', 500, '485667', 'CLM', 'Joven'),"
-							+ "('2021-09-15', 300, '194563', 'Murcia', 'Adulto'),"
-							+ "('2021-08-23', 3000, '477687', 'Andalucia', 'Anciano')");
-			conn.createStatement().execute("insert into vacunacion values "
-					+ "('2021-05-26', False, 'Astrazeneca', '223456', 'Agustin', 'Hernando', 'Asturias', 'Anciano'),"
-					+ "('2021-04-24', True, 'Pfizer', '123656', 'Rosa', 'Torrenova', 'CLM', 'Joven'),"
-					+ "('2021-02-23', True, 'Moderna', '645454', 'Rocio', 'Calatrava', 'Andalucia', 'Anciano'),"
-					+ "('2021-06-12', True, 'Pfizer', '534534', 'Antonio', 'Fernandez', 'Murcia', 'Adulto')");
+			try (Statement stat = conn.createStatement()){
+				stat.execute(
+						"create table lote(id varchar(30), fecha date, cantidad int, nombre_tipoVacuna varchar(30), primary key(id))");
+				stat.execute(
+						"create table entrega(fecha date, cantidad int, idLote varchar(30), region varchar(30), grupoPrioridad varchar(30))");
+				stat.execute(
+						"create table vacunacion(fecha date, isSegundaDosis boolean, nombre_tipovacuna varchar(30), dni_paciente varchar(30), nombre varchar(30), apellidos varchar(30), region varchar(30), grupoPrioridad varchar(30))");
+		
+				stat.execute("insert into lote values " + "('153456', '2021-05-24', 5, 'Astrazeneca'),"
+								+ "('485667', '2021-07-04', 500, 'Pfizer')," + "('194563', '2021-09-16', 300, 'Pfizer'),"
+								+ "('477687', '2021-08-24', 3000, 'Moderna')");
+				stat.execute("insert into entrega values " + "('2021-05-23', 5, '153456', 'Asturias', 'Anciano'),"
+								+ "('2021-07-03', 500, '485667', 'CLM', 'Joven'),"
+								+ "('2021-09-15', 300, '194563', 'Murcia', 'Adulto'),"
+								+ "('2021-08-23', 3000, '477687', 'Andalucia', 'Anciano')");
+				stat.execute("insert into vacunacion values "
+						+ "('2021-05-26', False, 'Astrazeneca', '223456', 'Agustin', 'Hernando', 'Asturias', 'Anciano'),"
+						+ "('2021-04-24', True, 'Pfizer', '123656', 'Rosa', 'Torrenova', 'CLM', 'Joven'),"
+						+ "('2021-02-23', True, 'Moderna', '645454', 'Rocio', 'Calatrava', 'Andalucia', 'Anciano'),"
+						+ "('2021-06-12', True, 'Pfizer', '534534', 'Antonio', 'Fernandez', 'Murcia', 'Adulto')");
+			} catch(SQLException ex) {
+				throw new DAOException("Error creando las tablas de base de datos...", ex);
+			}
 		} catch (SQLException | ClassNotFoundException ex) {
 			throw new DAOException("Error creando la base de datos...", ex);
-		} finally {
-			desconectarBD();
 		}
 	}
 
