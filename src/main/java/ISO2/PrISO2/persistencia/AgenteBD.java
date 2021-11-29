@@ -9,18 +9,16 @@ public class AgenteBD {
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 
 	// Constructor
-	public AgenteBD(){
+	public AgenteBD() throws DAOException{
 		conectarBD();
 	}
 
-	public static void conectarBD(){
+	public static void conectarBD() throws DAOException{
 		try {
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (ClassNotFoundException | SQLException ex) {
+			throw new DAOException("Error conectando...", ex);
 		}
 	}
 
@@ -60,6 +58,8 @@ public class AgenteBD {
 					+ "('2021-06-12', True, 'Pfizer', '534534', 'Antonio', 'Fernandez', 'Murcia', 'Adulto')");
 		} catch (SQLException | ClassNotFoundException ex) {
 			throw new DAOException("Error creando la base de datos...", ex);
+		} finally {
+			desconectarBD();
 		}
 	}
 
@@ -83,6 +83,8 @@ public class AgenteBD {
 			return res;
 		} catch (SQLException ex) {
 			throw new DAOException("Error en select SQL", ex);
+		}finally {
+			desconectarBD();
 		}
 	}
 
@@ -101,6 +103,8 @@ public class AgenteBD {
 			return res;
 		} catch (SQLException ex) {
 			throw new DAOException("Error en insert SQL", ex);
+		}finally {
+			desconectarBD();
 		}
 	}
 
@@ -115,6 +119,8 @@ public class AgenteBD {
 			return res;
 		} catch (SQLException ex) {
 			throw new DAOException("Error en update SQL", ex);
+		}finally {
+			desconectarBD();
 		}
 	}
 
@@ -132,6 +138,8 @@ public class AgenteBD {
 			return res;
 		}catch (SQLException ex) {
 			throw new DAOException("Error en delete SQL", ex);
+		}finally {
+			desconectarBD();
 		}
 		
 	}
