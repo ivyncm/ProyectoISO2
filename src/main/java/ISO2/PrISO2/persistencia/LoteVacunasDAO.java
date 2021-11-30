@@ -40,8 +40,6 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 			}
 		} catch (SQLException ex) {
 			throw new DAOException("Error en SQL", ex);
-		} finally {
-			rs.close();
 		}
 		AgenteBD.desconectarBD();
 		return LoteVacunas;
