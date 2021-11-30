@@ -100,6 +100,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	}
 
 	public List<EntregaVacunas> seleccionarcantidadTotal() throws Exception {
+		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		List<EntregaVacunas> entrega = new ArrayList<EntregaVacunas>();
 		try {
@@ -114,6 +115,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	}
 
 	public List<EntregaVacunas> seleccionarEntregas(String region) throws Exception {
+		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		List<EntregaVacunas> entrega = new ArrayList<EntregaVacunas>();
 		try {
