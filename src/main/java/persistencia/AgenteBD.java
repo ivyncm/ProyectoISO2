@@ -92,17 +92,8 @@ public class AgenteBD {
 	 * @param sql
 	 */
 	public static int insert(String sql) throws DAOException{
-		conectarBD();
-		try (PreparedStatement stat = conn.prepareStatement(sql)){
-			int res = stat.executeUpdate();
-			stat.close();
-			desconectarBD();
-			return res;
-		} catch (SQLException ex) {
-			throw new DAOException("Error en insert SQL", ex);
-		}finally {
-			desconectarBD();
-		}
+		int res = auxiliarIUD(sql);
+		return res;
 	}
 
 	/**
@@ -110,14 +101,8 @@ public class AgenteBD {
 	 * @param sql
 	 */
 	public static int update(String sql) throws DAOException {
-		try (PreparedStatement stat = conn.prepareStatement(sql)){
-			int res = stat.executeUpdate();
-			return res;
-		} catch (SQLException ex) {
-			throw new DAOException("Error en update SQL", ex);
-		}finally {
-			desconectarBD();
-		}
+		int res = auxiliarIUD(sql);
+		return res;
 	}
 
 	/**
@@ -125,6 +110,11 @@ public class AgenteBD {
 	 * @param sql
 	 */
 	public static int delete(String sql) throws DAOException {
+		int res = auxiliarIUD(sql);
+		return res;
+	}
+	
+	public static int auxiliarIUD(String sql) throws DAOException {
 		conectarBD();
 		try (PreparedStatement stat = conn.prepareStatement(sql)){
 			int res = stat.executeUpdate();
@@ -136,6 +126,5 @@ public class AgenteBD {
 		}finally {
 			desconectarBD();
 		}
-		
 	}
 }
