@@ -10,15 +10,14 @@ import dominio.entitymodel.*;
 
 public class EntregaDAO implements DAO<EntregaVacunas> {
 
-	final String insert = "INSERT INTO entrega(fecha, cantidad, idLote, region, grupoPrioridad) VALUES(";
-	final String update = "UPDATE entrega SET ";
-	final String delete = "DELETE FROM entrega WHERE idLote=";
-	final String getregion = "SELECT * FROM entrega WHERE region=";
-	final String getone = "SELECT * FROM entrega WHERE idLote=";
-	final String getall = "SELECT * FROM entrega";
-	final String whereid = "WHERE id=";
+	static final String INSERT = "INSERT INTO entrega(fecha, cantidad, idLote, region, grupoPrioridad) VALUES(";
+	static final String UPDATE = "UPDATE entrega SET ";
+	static final String DELETE = "DELETE FROM entrega WHERE idLote=";
+	static final String GETREGION = "SELECT * FROM entrega WHERE region=";
+	static final String GETONE = "SELECT * FROM entrega WHERE idLote=";
+	static final String GETALL = "SELECT * FROM entrega";
+	static final String WHEREID = "WHERE id=";
 
-	private AgenteBD agente = new AgenteBD();
 
 	public EntregaDAO() throws Exception {
 
@@ -29,7 +28,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		try {
-			rs = AgenteBD.select(getone + "'" + id + "'");
+			rs = AgenteBD.select(GETONE + "'" + id + "'");
 			String region = rs.getString(4);
 			String grupoPrior = rs.getString(5);
 			String lote = rs.getString(3);
@@ -49,7 +48,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	public int insert(EntregaVacunas e) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = AgenteBD.iud(insert + "'" + e.getFecha() + "'" + "," + e.getCantidad() + "," + "'" + e.getLote() + "'"
+		i = AgenteBD.iud(INSERT + "'" + e.getFecha() + "'" + "," + e.getCantidad() + "," + "'" + e.getLote() + "'"
 				+ "," + "'" + e.getRegion() + "'" + "," + "'" + e.getGrupoPrioridad() + "'" + ")");
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya insertado.");
@@ -62,8 +61,8 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	public EntregaVacunas update(EntregaVacunas e) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = AgenteBD.iud(update + "region=" + e.getRegion() + ",grupoPrioridad=" + e.getGrupoPrioridad() + ",lote="
-				+ e.getLote() + ",fecha=" + e.getFecha() + ",cantidad=" + e.getCantidad() + whereid);
+		i = AgenteBD.iud(UPDATE + "region=" + e.getRegion() + ",grupoPrioridad=" + e.getGrupoPrioridad() + ",lote="
+				+ e.getLote() + ",fecha=" + e.getFecha() + ",cantidad=" + e.getCantidad() + WHEREID);
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya actualizado.");
 		}
@@ -75,7 +74,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	public int delete(EntregaVacunas e) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = AgenteBD.iud(delete);
+		i = AgenteBD.iud(DELETE);
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya borrado.");
 		}
@@ -104,7 +103,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		ResultSet rs = null;
 		List<EntregaVacunas> entrega = new ArrayList<EntregaVacunas>();
 		try {
-			rs = AgenteBD.select(getall);
+			rs = AgenteBD.select(GETALL);
 			while (rs.next()) {
 				entrega.add(convertir(rs));
 			}
@@ -119,7 +118,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		ResultSet rs = null;
 		List<EntregaVacunas> entrega = new ArrayList<EntregaVacunas>();
 		try {
-			rs = AgenteBD.select(getregion + "'" + region + "'");
+			rs = AgenteBD.select(GETREGION + "'" + region + "'");
 			while (rs.next()) {
 				entrega.add(convertir(rs));
 			}

@@ -9,13 +9,13 @@ import dominio.entitymodel.Paciente;
 import dominio.entitymodel.Vacunacion;
 
 public class VacunacionDAO implements DAO<Vacunacion> {
-	final String insert = "INSERT INTO vacunacion(fecha, isSegundaDosis, nombre_tipovacuna, dniPaciente, nombre, apellidos, region, grupoPrioridad) VALUES(";
-	final String update = "UPDATE vacunacion SET ";
-	final String delete = "DELETE FROM vacunacion WHERE dniPaciente=";
-	final String getall = "SELECT * FROM vacunacion";
-	final String getregion = "SELECT * FROM vacunacion WHERE region=";
-	final String getone = "SELECT * FROM vacunacion WHERE dniPaciente=";
-	final String whereid = "WHERE dniPaciente=";
+	static final String INSERT = "INSERT INTO vacunacion(fecha, isSegundaDosis, nombre_tipovacuna, dniPaciente, nombre, apellidos, region, grupoPrioridad) VALUES(";
+	static final String UPDATE = "UPDATE vacunacion SET ";
+	static final String DELETE = "DELETE FROM vacunacion WHERE dniPaciente=";
+	static final String GETALL = "SELECT * FROM vacunacion";
+	static final String GETREGION = "SELECT * FROM vacunacion WHERE region=";
+	static final String GETONE = "SELECT * FROM vacunacion WHERE dniPaciente=";
+	static final String WHEREID = "WHERE dniPaciente=";
 
 	public VacunacionDAO() throws Exception {
 
@@ -26,7 +26,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		try {
-			rs = AgenteBD.select(getone + "'" + dni + "'");
+			rs = AgenteBD.select(GETONE + "'" + dni + "'");
 			String tipoVacuna = rs.getString(3);
 			Date fecha = rs.getDate(1);
 			LocalDate fecha1 = fecha.toLocalDate();
@@ -48,7 +48,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	public int insert(Vacunacion v) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = AgenteBD.iud(insert + "'" + v.getFecha() + "'" + "," + v.isSegundaDosis() + "," + "'" + v.getVacuna()
+		i = AgenteBD.iud(INSERT + "'" + v.getFecha() + "'" + "," + v.isSegundaDosis() + "," + "'" + v.getVacuna()
 				+ "'" + "," + "'" + v.paciente.getDni() + "'" + "," + "'" + v.paciente.getNombre() + "'" + "," + "'"
 				+ v.paciente.getApellidos() + "'" + "," + "'" + v.paciente.getRegion() + "'" + "," + "'"
 				+ v.paciente.getGrupo() + "'" + ")");
@@ -64,7 +64,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	public Vacunacion update(Vacunacion v) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = AgenteBD.iud(update + "segDosis=" + true + whereid + "'" + v.getdni() + "'");
+		i = AgenteBD.iud(UPDATE + "segDosis=" + true + WHEREID + "'" + v.getdni() + "'");
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya actualizado.");
 		}
@@ -76,7 +76,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	public int delete(Vacunacion v) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = AgenteBD.iud(delete + v.getdni());
+		i = AgenteBD.iud(DELETE + v.getdni());
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya borrado.");
 		}
@@ -112,7 +112,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		ResultSet rs = null;
 		List<Vacunacion> vacunaciones = new ArrayList<Vacunacion>();
 		try {
-			rs = AgenteBD.select(getall);
+			rs = AgenteBD.select(GETALL);
 			while (rs.next()) {
 				vacunaciones.add(convertir(rs));
 			}
@@ -129,7 +129,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		ResultSet rs = null;
 		List<Vacunacion> vacunaciones = new ArrayList<Vacunacion>();
 		try {
-			rs = AgenteBD.select(getregion + "'" + region + "'");
+			rs = AgenteBD.select(GETREGION + "'" + region + "'");
 			while (rs.next()) {
 				vacunaciones.add(convertir(rs));
 			}
