@@ -3,6 +3,7 @@ package dominio.entitymodel;
 import java.time.LocalDate;
 import java.util.*;
 
+import dominio.controller.controllerException;
 import persistencia.*;
 
 public class LoteVacunas {
@@ -14,7 +15,7 @@ public class LoteVacunas {
 	private int cantidad;
 	private String farmaceutica;
 	
-	public LoteVacunas(String id, LocalDate fecha, int cantidad, String farmaceutica) throws Exception {
+	public LoteVacunas(String id, LocalDate fecha, int cantidad, String farmaceutica) throws DAOException {
 		setId(id);
 		setFecha(fecha);
 		setCantidad(cantidad);
