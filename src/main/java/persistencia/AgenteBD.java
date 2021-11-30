@@ -10,7 +10,7 @@ public class AgenteBD {
 
 	// Constructor
 	public AgenteBD() throws DAOException{
-		conectarBD();
+		
 	}
 
 	public static void conectarBD() throws DAOException{
@@ -91,7 +91,7 @@ public class AgenteBD {
 	 * 
 	 * @param sql
 	 */
-	public int insert(String sql) throws DAOException{
+	public static int insert(String sql) throws DAOException{
 		conectarBD();
 		try (PreparedStatement stat = conn.prepareStatement(sql)){
 			int res = stat.executeUpdate();
@@ -109,7 +109,7 @@ public class AgenteBD {
 	 * 
 	 * @param sql
 	 */
-	public int update(String sql) throws DAOException {
+	public static int update(String sql) throws DAOException {
 		try (PreparedStatement stat = conn.prepareStatement(sql)){
 			int res = stat.executeUpdate();
 			return res;
@@ -124,7 +124,7 @@ public class AgenteBD {
 	 * 
 	 * @param sql
 	 */
-	public int delete(String sql) throws DAOException {
+	public static int delete(String sql) throws DAOException {
 		conectarBD();
 		try (PreparedStatement stat = conn.prepareStatement(sql)){
 			int res = stat.executeUpdate();

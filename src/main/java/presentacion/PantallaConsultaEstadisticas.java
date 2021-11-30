@@ -8,6 +8,7 @@ import dominio.controller.GestorEstadisticas;
 
 public class PantallaConsultaEstadisticas {
 	public static void estadNacional() throws Exception {
+		List<Integer> totalVacunados;
 		Boolean seguir = true;
 		String regiones[] = new String[] { "Andalucia", "Aragon", "Canarias", "Cantabria", "Castilla y Leon", "Castilla la Mancha",
 				"Catalunya", "Ceuta", "Valencia", "Madrid", "Extremadura", "Galicia", "Baleares", "La Rioja", "Melilla",
@@ -28,24 +29,34 @@ public class PantallaConsultaEstadisticas {
 			op1 = teclado.nextInt();
 			switch (op1) {
 			case 1:
-				List<Integer> totalVacunados = new ArrayList<Integer>();
+				totalVacunados = new ArrayList<>();
 				totalVacunados = gestor.consultarTotalVacunados();
 				System.out.println("Una dosis: " + (totalVacunados.get(0) - totalVacunados.get(1)));
 				System.out.println("Pauta completa: " + totalVacunados.get(0));
 				break;
 			case 2:
+				totalVacunados = new ArrayList<>();
 				for (String i : regiones) {
 					System.out.println("\n- " + i);
-					gestor.consultarTotalVacunadosPorRegion(i);
+					totalVacunados = gestor.consultarTotalVacunadosPorRegion(i);
+					System.out.println("Una dosis: " + (totalVacunados.get(0) - totalVacunados.get(1)));
+					System.out.println("Pauta completa: " + totalVacunados.get(0));
 				}
 				break;
 			case 3:
-				gestor.consultarPorcentajeVacunadosSobreRecibidas();
+				double porcentaje = gestor.consultarPorcentajeVacunadosSobreRecibidas();
+				System.out.printf("Porcentaje vacunados: %.3f%n", porcentaje * 100);
 				break;
 			case 4:
+				List<Double> porcentajeRegion = new ArrayList<>();
 				for (String i : regiones) {
 					System.out.println("\n- " + i);
-					gestor.consultarPorcentajeVacunadosSobreRecibidasEnRegion(i);
+					porcentajeRegion = gestor.consultarPorcentajeVacunadosSobreRecibidasEnRegion(i);
+					if (porcentajeRegion.get(1) == 0) {
+						System.out.println("Porcentaje vacunados: 0,000%");
+					} else {
+						System.out.printf("Porcentaje vacunados: %.3f%n", (porcentajeRegion.get(0) / porcentajeRegion.get(1)) * 100);
+					}
 				}
 				break;
 			case 5:

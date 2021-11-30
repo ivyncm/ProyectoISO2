@@ -12,43 +12,49 @@ public class GestorEstadisticas {
 		VacunacionDAO total = new VacunacionDAO();
 		List<Vacunacion> vacunaciones = total.seleccionarVacunaciones();
 		int contador = calcularvacunadostotal();
-		List<Integer> totalVacunados = new ArrayList<Integer>();
-		totalVacunados.add(vacunaciones.size(), contador);
+		List<Integer> totalVacunados = new ArrayList<>();
+		totalVacunados.add(vacunaciones.size());
+		totalVacunados.add(contador);
 		return totalVacunados;
 	}
 
 	/**
 	 * 
 	 * @param region
+	 * @return 
 	 * @throws Exception
 	 */
-	public void consultarTotalVacunadosPorRegion(String region) throws Exception {
+	public List<Integer> consultarTotalVacunadosPorRegion(String region) throws Exception {
 		VacunacionDAO total = new VacunacionDAO();
 		List<Vacunacion> vacunaciones = total.seleccionarVacunaciones(region);
 		int contador = calcularvacunadostotalregion(region);
-		System.out.println("Una dosis: " + (vacunaciones.size() - contador));
-		System.out.println("Pauta completa: " + contador);
+		List<Integer> totalVacunados = new ArrayList<>();
+		totalVacunados.add(vacunaciones.size());
+		totalVacunados.add(contador);
+		return totalVacunados;
 	}
 
-	public void consultarPorcentajeVacunadosSobreRecibidas() throws Exception {
+	public double consultarPorcentajeVacunadosSobreRecibidas() throws Exception {
 		double vacunados = calcularvacunadostotal();
 		double recibidas = consultartotalrecibidas();
-		System.out.printf("Porcentaje vacunados: %.3f%%%n", (vacunados / recibidas) * 100);
+		return (vacunados / recibidas);
+		
 	}
 
 	/**
 	 * 
 	 * @param region
+	 * @return 
 	 * @throws Exception
 	 */
-	public void consultarPorcentajeVacunadosSobreRecibidasEnRegion(String region) throws Exception {
+	public List<Double> consultarPorcentajeVacunadosSobreRecibidasEnRegion(String region) throws Exception {
 		double vacunados = calcularvacunadostotalregion(region);
 		double recibidas = consultartotalrecibidasregion(region);
-		if (recibidas == 0) {
-			System.out.println("Porcentaje vacunados: 0,000%");
-		} else {
-			System.out.printf("Porcentaje vacunados: %.3f%%%n", (vacunados / recibidas) * 100);
-		}
+		
+		List<Double> porcentajeRegion = new ArrayList<>();
+		porcentajeRegion.add(vacunados);
+		porcentajeRegion.add(recibidas);
+		return porcentajeRegion;
 	}
 
 	// Metodos auxiliares total
