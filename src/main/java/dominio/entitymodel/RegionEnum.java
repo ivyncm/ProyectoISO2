@@ -1,4 +1,4 @@
-package ISO2.PrISO2.dominio.entitymodel;
+package dominio.entitymodel;
 
 import java.util.*;
 

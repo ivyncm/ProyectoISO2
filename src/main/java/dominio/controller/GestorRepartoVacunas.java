@@ -1,11 +1,11 @@
-package ISO2.PrISO2.dominio.controller;
+package dominio.controller;
 
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.*;
 
-import ISO2.PrISO2.dominio.entitymodel.*;
-import ISO2.PrISO2.persistencia.LoteVacunasDAO;
+import dominio.entitymodel.*;
+import persistencia.LoteVacunasDAO;
 public class GestorRepartoVacunas {
 
 	/**

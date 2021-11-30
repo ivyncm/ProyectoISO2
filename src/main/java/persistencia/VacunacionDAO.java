@@ -1,12 +1,12 @@
-package ISO2.PrISO2.persistencia;
+package persistencia;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import ISO2.PrISO2.dominio.entitymodel.Paciente;
-import ISO2.PrISO2.dominio.entitymodel.Vacunacion;
+import dominio.entitymodel.Paciente;
+import dominio.entitymodel.Vacunacion;
 
 public class VacunacionDAO implements DAO<Vacunacion> {
 	final String INSERT = "INSERT INTO vacunacion(fecha, isSegundaDosis, nombre_tipovacuna, dni_paciente, nombre, apellidos, region, grupoPrioridad) VALUES(";

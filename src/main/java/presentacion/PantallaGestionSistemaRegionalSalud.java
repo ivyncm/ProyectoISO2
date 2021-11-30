@@ -1,9 +1,9 @@
-package ISO2.PrISO2.presentacion;
+package presentacion;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import ISO2.PrISO2.dominio.controller.GestorVacunacion;
+import dominio.controller.GestorVacunacion;
 
 public class PantallaGestionSistemaRegionalSalud {
 	public static void main(String args[]) throws Exception {

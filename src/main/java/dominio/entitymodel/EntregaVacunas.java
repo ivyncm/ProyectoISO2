@@ -1,8 +1,8 @@
-package ISO2.PrISO2.dominio.entitymodel;
+package dominio.entitymodel;
 
 import java.time.LocalDate;
 
-import ISO2.PrISO2.persistencia.*;
+import persistencia.*;
 
 public class EntregaVacunas {
 	String region;

@@ -1,11 +1,12 @@
-package ISO2.PrISO2.persistencia;
+package persistencia;
 
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
-import ISO2.PrISO2.dominio.entitymodel.*;
+
+import dominio.entitymodel.*;
 
 public class EntregaDAO implements DAO<EntregaVacunas> {
 

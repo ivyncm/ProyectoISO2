@@ -1,12 +1,13 @@
-package ISO2.PrISO2.persistencia;
+package persistencia;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.time.LocalDate;
 
-import ISO2.PrISO2.dominio.entitymodel.*;
+import dominio.entitymodel.*;
+
+import java.time.LocalDate;
 
 public class LoteVacunasDAO implements DAO<LoteVacunas> {
 

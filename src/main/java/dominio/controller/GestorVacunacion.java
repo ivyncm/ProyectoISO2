@@ -1,8 +1,8 @@
-package ISO2.PrISO2.dominio.controller;
+package dominio.controller;
 
 import java.time.LocalDate;
 
-import ISO2.PrISO2.dominio.entitymodel.*;
+import dominio.entitymodel.*;
 
 public class GestorVacunacion {
 

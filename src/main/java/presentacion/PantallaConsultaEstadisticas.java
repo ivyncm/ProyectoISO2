@@ -1,8 +1,8 @@
-package ISO2.PrISO2.presentacion;
+package presentacion;
 
 import java.util.Scanner;
 
-import ISO2.PrISO2.dominio.controller.GestorEstadisticas;
+import dominio.controller.GestorEstadisticas;
 
 public class PantallaConsultaEstadisticas {
 	public static void estadNacional() throws Exception {

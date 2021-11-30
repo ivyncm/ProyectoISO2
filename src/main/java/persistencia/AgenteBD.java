@@ -1,4 +1,4 @@
-package ISO2.PrISO2.persistencia;
+package persistencia;
 
 import java.sql.*;
 

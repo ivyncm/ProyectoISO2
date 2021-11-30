@@ -1,12 +1,14 @@
-package ISO2.PrISO2.presentacion;
+package presentacion;
 
 import java.util.List;
 import java.util.Scanner;
+
+import dominio.entitymodel.EntregaVacunas;
+import dominio.entitymodel.LoteVacunas;
+
 import java.time.LocalDate;
 
-import ISO2.PrISO2.dominio.controller.GestorRepartoVacunas;
-import ISO2.PrISO2.dominio.entitymodel.EntregaVacunas;
-import ISO2.PrISO2.dominio.entitymodel.LoteVacunas;
+import dominio.controller.GestorRepartoVacunas;
 
 public class PantallaGestionSistemaSaludNacional {
 	public static void main(String args[]) throws Exception {

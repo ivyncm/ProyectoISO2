@@ -1,10 +1,10 @@
-package ISO2.PrISO2.dominio.controller;
+package dominio.controller;
 
 import java.util.List;
 
-import ISO2.PrISO2.dominio.entitymodel.*;
-import ISO2.PrISO2.persistencia.EntregaDAO;
-import ISO2.PrISO2.persistencia.VacunacionDAO;
+import dominio.entitymodel.*;
+import persistencia.EntregaDAO;
+import persistencia.VacunacionDAO;
 
 public class GestorEstadisticas {
 	public void consultarTotalVacunados() throws Exception {
