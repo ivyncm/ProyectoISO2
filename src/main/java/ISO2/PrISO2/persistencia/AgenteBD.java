@@ -74,15 +74,16 @@ public class AgenteBD {
 	 * 
 	 * @param sql
 	 * @throws DAOException 
+	 * @throws SQLException 
 	 */
-	public static ResultSet select(String sql) throws DAOException{
-		try (PreparedStatement stat = conn.prepareStatement(sql)){
-			ResultSet res = stat.executeQuery(sql);
+	public static ResultSet select(String sql) throws DAOException, SQLException{
+		ResultSet res;
+		try {
+			Statement stat = conn.createStatement();
+			res = stat.executeQuery(sql);
 			return res;
 		} catch (SQLException ex) {
 			throw new DAOException("Error en select SQL", ex);
-		}finally {
-			desconectarBD();
 		}
 	}
 
