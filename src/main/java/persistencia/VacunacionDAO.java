@@ -9,13 +9,13 @@ import dominio.entitymodel.Paciente;
 import dominio.entitymodel.Vacunacion;
 
 public class VacunacionDAO implements DAO<Vacunacion> {
-	final String insert = "INSERT INTO vacunacion(fecha, isSegundaDosis, nombre_tipovacuna, dni_paciente, nombre, apellidos, region, grupoPrioridad) VALUES(";
+	final String insert = "INSERT INTO vacunacion(fecha, isSegundaDosis, nombre_tipovacuna, dniPaciente, nombre, apellidos, region, grupoPrioridad) VALUES(";
 	final String update = "UPDATE vacunacion SET ";
-	final String delete = "DELETE FROM vacunacion WHERE dni_paciente=";
+	final String delete = "DELETE FROM vacunacion WHERE dniPaciente=";
 	final String getall = "SELECT * FROM vacunacion";
 	final String getregion = "SELECT * FROM vacunacion WHERE region=";
-	final String getone = "SELECT * FROM vacunacion WHERE dni_paciente=";
-	final String whereid = "WHERE dni_paciente=";
+	final String getone = "SELECT * FROM vacunacion WHERE dniPaciente=";
+	final String whereid = "WHERE dniPaciente=";
 
 	private AgenteBD agente = new AgenteBD();
 
