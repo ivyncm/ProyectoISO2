@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 import dominio.controller.GestorVacunacion;
+import dominio.entitymodel.Paciente;
 
 
 public class PantallaGestionSistemaRegionalSalud {
@@ -54,8 +55,9 @@ public class PantallaGestionSistemaRegionalSalud {
 				tipo = tipo();
 				boolean segDosis = segDosis();
 				grupo = grupo();
+				Paciente paciente = new Paciente(dni, nombre, apellidos, grupo, region);
 
-				vacunacion.registrarVacunacion(fecha, nombre, apellidos, dni, tipo, segDosis, region, grupo);
+				vacunacion.registrarVacunacion(fecha, tipo, segDosis, paciente);
 
 				break;
 			case 3:

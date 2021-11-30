@@ -29,9 +29,7 @@ public class GestorVacunacion {
 	 * @param tipo
 	 * @throws Exception
 	 */
-	public void registrarVacunacion(LocalDate fecha, String nombre, String apellidos, String dni, String tipo,
-			boolean segDosis, String region, String grupo) throws Exception {
-		Paciente paciente = new Paciente(dni, nombre, apellidos, region, grupo);
+	public void registrarVacunacion(LocalDate fecha, String tipo, boolean segDosis, Paciente paciente) throws Exception {
 		Vacunacion vacunacion = new Vacunacion(tipo, fecha, segDosis, paciente);
 		vacunacion.getVacunacionDao().insertarVacunacion(vacunacion);
 	}
