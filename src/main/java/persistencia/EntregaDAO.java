@@ -49,7 +49,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	public int insert(EntregaVacunas e) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = agente.insert(insert + "'" + e.getFecha() + "'" + "," + e.getCantidad() + "," + "'" + e.getLote() + "'"
+		i = AgenteBD.iud(insert + "'" + e.getFecha() + "'" + "," + e.getCantidad() + "," + "'" + e.getLote() + "'"
 				+ "," + "'" + e.getRegion() + "'" + "," + "'" + e.getGrupoPrioridad() + "'" + ")");
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya insertado.");
@@ -62,7 +62,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	public EntregaVacunas update(EntregaVacunas e) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = agente.update(update + "region=" + e.getRegion() + ",grupoPrioridad=" + e.getGrupoPrioridad() + ",lote="
+		i = AgenteBD.iud(update + "region=" + e.getRegion() + ",grupoPrioridad=" + e.getGrupoPrioridad() + ",lote="
 				+ e.getLote() + ",fecha=" + e.getFecha() + ",cantidad=" + e.getCantidad() + whereid);
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya actualizado.");
@@ -75,7 +75,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	public int delete(EntregaVacunas e) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = agente.delete(delete);
+		i = AgenteBD.iud(delete);
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya borrado.");
 		}

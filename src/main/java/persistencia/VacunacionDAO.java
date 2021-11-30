@@ -17,8 +17,6 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	final String getone = "SELECT * FROM vacunacion WHERE dniPaciente=";
 	final String whereid = "WHERE dniPaciente=";
 
-	private AgenteBD agente = new AgenteBD();
-
 	public VacunacionDAO() throws Exception {
 
 	}
@@ -50,7 +48,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	public int insert(Vacunacion v) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = agente.insert(insert + "'" + v.getFecha() + "'" + "," + v.isSegundaDosis() + "," + "'" + v.getVacuna()
+		i = AgenteBD.iud(insert + "'" + v.getFecha() + "'" + "," + v.isSegundaDosis() + "," + "'" + v.getVacuna()
 				+ "'" + "," + "'" + v.paciente.getDni() + "'" + "," + "'" + v.paciente.getNombre() + "'" + "," + "'"
 				+ v.paciente.getApellidos() + "'" + "," + "'" + v.paciente.getRegion() + "'" + "," + "'"
 				+ v.paciente.getGrupo() + "'" + ")");
@@ -66,7 +64,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	public Vacunacion update(Vacunacion v) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = agente.update(update + "segDosis=" + true + whereid + "'" + v.getdni() + "'");
+		i = AgenteBD.iud(update + "segDosis=" + true + whereid + "'" + v.getdni() + "'");
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya actualizado.");
 		}
@@ -78,7 +76,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	public int delete(Vacunacion v) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = agente.delete(delete + v.getdni());
+		i = AgenteBD.iud(delete + v.getdni());
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya borrado.");
 		}

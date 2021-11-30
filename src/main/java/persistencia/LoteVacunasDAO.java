@@ -64,7 +64,7 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	public int insert(LoteVacunas l) throws DAOException {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = AgenteBD.insert(insert + "'" + l.getId() + "','" + l.getFecha() + "'," + l.getCantidad() + ",'"
+		i = AgenteBD.iud(insert + "'" + l.getId() + "','" + l.getFecha() + "'," + l.getCantidad() + ",'"
 				+ l.getFarmaceutica() + "'" + ")");
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya insertado.");
@@ -78,7 +78,7 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	public LoteVacunas update(LoteVacunas l) throws DAOException {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = AgenteBD.update(update + "fecha=" + l.getFecha() + ",cantidad=" + l.getCantidad() + ",nombreTipoVacuna="
+		i = AgenteBD.iud(update + "fecha=" + l.getFecha() + ",cantidad=" + l.getCantidad() + ",nombreTipoVacuna="
 				+ l.getFarmaceutica() + whereid + l.getId());
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya actualizado.");
@@ -91,7 +91,7 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	public int delete(LoteVacunas l) throws DAOException {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = AgenteBD.delete(delete + l.getId());
+		i = AgenteBD.iud(delete + l.getId());
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya borrado.");
 		}
