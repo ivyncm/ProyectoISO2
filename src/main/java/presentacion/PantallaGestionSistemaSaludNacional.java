@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import dominio.controller.GestorRepartoVacunas;
 
 public class PantallaGestionSistemaSaludNacional {
-	public static void main(String args[]) throws Exception {
+	public static void main(String[] args) throws Exception {
 		menu();
 	}
 
@@ -20,24 +20,24 @@ public class PantallaGestionSistemaSaludNacional {
 		int op1 = 0;
 		int op2 = 0;
 		String tipo = null;
-		System.out.println("Bienvenido al Sistema de Salud Nacional");
-		System.out.println("seleccione una categoria de su interes.");
-
+		System.out.println("Bienvenido al Sistema de Salud Nacional\n"
+				+ "seleccione una categoria de su interes.");
+		
 		do {
-			System.out.println("1 - Dar de alta nuevo lote");
-			System.out.println("2 - Calcular reparto");
-			System.out.println("3 - Consultar estadísticas");
-			System.out.println("4 - Salir");
+			System.out.println("1 - Dar de alta nuevo lote\n"
+					+ "2 - Calcular reparto\n"
+					+ "3 - Consultar estadísticas\n"
+					+ "4 - Salir");
 
 			op1 = Integer.parseInt(teclado.next());
 			GestorRepartoVacunas gestor = new GestorRepartoVacunas();
 			switch (op1) {
 			case 1:
 				do {
-					System.out.println("Introduce el tipo de vacuna:\n");
-					System.out.println("1 - Pfizer");
-					System.out.println("2 - Moderna");
-					System.out.println("3 - Astrazeneca");
+					System.out.println("Introduce el tipo de vacuna:\n"
+							+ "1 - Pfizer\n"
+							+ "2 - Moderna\n"
+							+ "3 - Astrazeneca");
 					op2 = teclado.nextInt();
 					switch (op2) {
 					case 1:
@@ -79,10 +79,10 @@ public class PantallaGestionSistemaSaludNacional {
 				} while (op2<1 || op2>lotes.size());
 				String prioridad = null;
 				do {
-					System.out.println("Introduce el grupo de prioridad:\n");
-					System.out.println("1 - Joven");
-					System.out.println("2 - Adulto");
-					System.out.println("3 - Anciano");
+					System.out.println("Introduce el grupo de prioridad:\n"
+							+ "1 - Joven\n"
+							+ "2 - Adulto\n"
+							+ "3 - Anciano");
 					op2 = teclado.nextInt();
 					switch (op2) {
 					case 1:
