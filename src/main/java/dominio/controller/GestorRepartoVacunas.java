@@ -18,7 +18,7 @@ public class GestorRepartoVacunas {
 	public void altaNuevoLoteVacunas(LocalDate fecha, String tipo, int cantidad) throws Exception {
 		String id = cadenaAleatoria();
 		LoteVacunas lote = new LoteVacunas(id, fecha, cantidad, tipo);
-		lote.loteVacunasDao.insertarLoteVacunas(lote);
+		lote.getLoteVacunasDao().insertarLoteVacunas(lote);
 	}
 
 	public List<EntregaVacunas> calcularEntregasRegion(LoteVacunas lote, String prioridad) throws Exception {

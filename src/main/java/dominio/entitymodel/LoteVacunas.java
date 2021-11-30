@@ -8,7 +8,7 @@ import persistencia.*;
 public class LoteVacunas {
 	Collection<EntregaVacunas> entregas;
 	TipoVacuna tipo;
-	public LoteVacunasDAO loteVacunasDao;
+	private LoteVacunasDAO loteVacunasDao;
 	private String id;
 	private LocalDate fecha;
 	private int cantidad;
