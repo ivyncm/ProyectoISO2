@@ -33,7 +33,7 @@ public class GestorEstadisticas {
 	public void consultarPorcentajeVacunadosSobreRecibidas() throws Exception {
 		double vacunados = calcularvacunadostotal();
 		double recibidas = consultartotalrecibidas();
-		System.out.printf("Porcentaje vacunados: %.3f%%\n", (vacunados / recibidas) * 100);
+		System.out.printf("Porcentaje vacunados: %.3f%%%n", (vacunados / recibidas) * 100);
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class GestorEstadisticas {
 		if (recibidas == 0) {
 			System.out.println("Porcentaje vacunados: 0,000%");
 		} else {
-			System.out.printf("Porcentaje vacunados: %.3f%%\n", (vacunados / recibidas) * 100);
+			System.out.printf("Porcentaje vacunados: %.3f%%%n", (vacunados / recibidas) * 100);
 		}
 	}
 
