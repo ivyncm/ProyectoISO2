@@ -19,9 +19,6 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	static final String WHEREID = "WHERE id=";
 
 
-	public LoteVacunasDAO() throws DAOException  {
-
-	}
 
 	@Override
 	public LoteVacunas get(String id) throws DAOException  {

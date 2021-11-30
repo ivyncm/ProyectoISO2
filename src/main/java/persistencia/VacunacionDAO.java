@@ -17,9 +17,6 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	static final String GETONE = "SELECT * FROM vacunacion WHERE dniPaciente=";
 	static final String WHEREID = "WHERE dniPaciente=";
 
-	public VacunacionDAO() throws Exception {
-
-	}
 
 	@Override
 	public Vacunacion get(String dni) throws Exception {

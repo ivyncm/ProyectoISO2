@@ -19,10 +19,6 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	static final String WHEREID = "WHERE id=";
 
 
-	public EntregaDAO() throws Exception {
-
-	}
-
 	@Override
 	public EntregaVacunas get(String id) throws Exception {
 		AgenteBD.conectarBD();
