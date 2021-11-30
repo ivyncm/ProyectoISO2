@@ -12,13 +12,17 @@ public class EntregaVacunas {
 	private LocalDate fecha;
 	private int cantidad;
 	
-	public EntregaVacunas(String grupoprioridad, String lote, LocalDate fecha, int cantidad,String region) throws Exception {
+	public EntregaVacunas(String grupoprioridad, String lote, LocalDate fecha, int cantidad,String region) throws DAOException{
 		setGrupoPrioridad(grupoprioridad);
 		setLote(lote);
 		setFecha(fecha);
 		setCantidad(cantidad);
 		setRegion(region);
-		entregaDao = new EntregaDAO();
+		try {
+			entregaDao = new EntregaDAO();
+		} catch (Exception ex) {
+			throw new DAOException("Error creando objeto EntregaDAO...", ex);
+		}
 	}
 	
 	@Override
