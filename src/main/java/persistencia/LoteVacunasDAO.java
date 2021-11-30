@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 public class LoteVacunasDAO implements DAO<LoteVacunas> {
 
-	static final String INSERT = "INSERT INTO lote(id, fecha, cantidad, nombreTipoVacuna) VALUES(";
+	static final String INSERT = "INSERT INTO lote(id, fecha, cantidad, nombre_TipoVacuna) VALUES(";
 	static final String UPDATE = "UPDATE lote SET ";
 	static final String DELETE = "DELETE FROM lote WHERE id=";
 	static final String GETALL = "SELECT * FROM lote";

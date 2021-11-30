@@ -3,7 +3,6 @@ package dominio.entitymodel;
 import java.time.LocalDate;
 import java.util.*;
 
-import dominio.controller.ControllerException;
 import persistencia.*;
 
 public class LoteVacunas {

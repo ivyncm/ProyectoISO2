@@ -9,7 +9,7 @@ import dominio.entitymodel.Paciente;
 import dominio.entitymodel.Vacunacion;
 
 public class VacunacionDAO implements DAO<Vacunacion> {
-	static final String INSERT = "INSERT INTO vacunacion(fecha, isSegundaDosis, nombre_tipovacuna, dniPaciente, nombre, apellidos, region, grupoPrioridad) VALUES(";
+	static final String INSERT = "INSERT INTO vacunacion(fecha, isSegundaDosis, nombre_tipovacuna, dni_Paciente, nombre, apellidos, region, grupoPrioridad) VALUES(";
 	static final String UPDATE = "UPDATE vacunacion SET ";
 	static final String DELETE = "DELETE FROM vacunacion WHERE dniPaciente=";
 	static final String GETALL = "SELECT * FROM vacunacion";
