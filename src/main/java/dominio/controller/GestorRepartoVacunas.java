@@ -16,18 +16,18 @@ public class GestorRepartoVacunas {
 	 * @param cantidad
 	 * @throws Exception
 	 */
-	public void altaNuevoLoteVacunas(LocalDate fecha, String tipo, int cantidad) throws controllerException {
+	public void altaNuevoLoteVacunas(LocalDate fecha, String tipo, int cantidad) throws ControllerException {
 		String id = cadenaAleatoria();
 		LoteVacunas lote;
 		try {
 			lote = new LoteVacunas(id, fecha, cantidad, tipo);
 		lote.getLoteVacunasDao().insertarLoteVacunas(lote);
 		} catch (Exception e) {
-			throw new controllerException("Error al dar de alta nuevo lote", e);
+			throw new ControllerException("Error al dar de alta nuevo lote", e);
 		}
 	}
 
-	public List<EntregaVacunas> calcularEntregasRegion(LoteVacunas lote, String prioridad) throws controllerException {
+	public List<EntregaVacunas> calcularEntregasRegion(LoteVacunas lote, String prioridad) throws ControllerException {
 		String[] regiones = new String[] { "Andalucía", "Aragón", "Canarias", "Cantabria", "Castilla y León",
 				"Castilla-La Mancha", "Cataluña", "Ceuta", "Comunidad Valenciana", "Comunidad de Madrid", "Extremadura",
 				"Galicia", "Islas Baleares", "La Rioja", "Melilla", "Navarra", "País Vasco", "Principado de Asturias",
@@ -52,7 +52,7 @@ public class GestorRepartoVacunas {
 			}
 			return entregas;
 		} catch (Exception e) {
-			throw new controllerException("Error al calcular las entregas por región", e);
+			throw new ControllerException("Error al calcular las entregas por región", e);
 		}
 	}
 	

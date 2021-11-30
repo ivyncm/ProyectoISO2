@@ -8,7 +8,7 @@ import persistencia.EntregaDAO;
 import persistencia.VacunacionDAO;
 
 public class GestorEstadisticas {
-	public List<Integer> consultarTotalVacunados() throws controllerException {
+	public List<Integer> consultarTotalVacunados() throws ControllerException {
 		VacunacionDAO total;
 		try {
 			total = new VacunacionDAO();
@@ -19,7 +19,7 @@ public class GestorEstadisticas {
 			totalVacunados.add(contador);
 			return totalVacunados;
 		} catch (Exception e) {
-			throw new controllerException("Error al consultar vacunados", e);
+			throw new ControllerException("Error al consultar vacunados", e);
 		}
 	}
 
@@ -29,7 +29,7 @@ public class GestorEstadisticas {
 	 * @return 
 	 * @throws Exception
 	 */
-	public List<Integer> consultarTotalVacunadosPorRegion(String region) throws controllerException {
+	public List<Integer> consultarTotalVacunadosPorRegion(String region) throws ControllerException {
 		try {
 		VacunacionDAO total = new VacunacionDAO();
 		List<Vacunacion> vacunaciones = total.seleccionarVacunaciones(region);
@@ -39,11 +39,11 @@ public class GestorEstadisticas {
 		totalVacunados.add(contador);
 		return totalVacunados;
 		} catch (Exception e) {
-			throw new controllerException("Error al consultar vacunados por región", e);
+			throw new ControllerException("Error al consultar vacunados por región", e);
 		}
 	}
 
-	public double consultarPorcentajeVacunadosSobreRecibidas() throws controllerException {
+	public double consultarPorcentajeVacunadosSobreRecibidas() throws ControllerException {
 		double vacunados = calcularvacunadostotal();
 		double recibidas = consultartotalrecibidas();
 		return (vacunados / recibidas);
@@ -56,7 +56,7 @@ public class GestorEstadisticas {
 	 * @return 
 	 * @throws Exception
 	 */
-	public List<Double> consultarPorcentajeVacunadosSobreRecibidasEnRegion(String region) throws controllerException {
+	public List<Double> consultarPorcentajeVacunadosSobreRecibidasEnRegion(String region) throws ControllerException {
 		double vacunados = calcularvacunadostotalregion(region);
 		double recibidas = consultartotalrecibidasregion(region);
 		
@@ -67,7 +67,7 @@ public class GestorEstadisticas {
 	}
 
 	// Metodos auxiliares total
-	public int calcularvacunadostotal() throws controllerException {
+	public int calcularvacunadostotal() throws ControllerException {
 		VacunacionDAO total;
 		try {
 			total = new VacunacionDAO();
@@ -80,12 +80,12 @@ public class GestorEstadisticas {
 			}
 			return contador;
 		} catch (Exception e) {
-			throw new controllerException("Error al calcular total de vacunados", e);
+			throw new ControllerException("Error al calcular total de vacunados", e);
 		}
 		
 	}
 
-	public int consultartotalrecibidas() throws controllerException {
+	public int consultartotalrecibidas() throws ControllerException {
 		int total = 0;
 		EntregaDAO totales;
 		try {
@@ -96,12 +96,12 @@ public class GestorEstadisticas {
 			}
 			return total;
 		} catch (Exception e) {
-			throw new controllerException("Error al consultar total de vacunas recibidas", e);
+			throw new ControllerException("Error al consultar total de vacunas recibidas", e);
 		}
 	}
 
 	// Metodos auxiliares region
-	public int calcularvacunadostotalregion(String region) throws controllerException {
+	public int calcularvacunadostotalregion(String region) throws ControllerException {
 		VacunacionDAO total;
 		try {
 			total = new VacunacionDAO();
@@ -114,11 +114,11 @@ public class GestorEstadisticas {
 			}
 			return contador;
 		} catch (Exception e) {
-			throw new controllerException("Error al consultar total de vacunados por región", e);
+			throw new ControllerException("Error al consultar total de vacunados por región", e);
 		}
 	}
 
-	public int consultartotalrecibidasregion(String region) throws controllerException {
+	public int consultartotalrecibidasregion(String region) throws ControllerException {
 		int total = 0;
 		EntregaDAO totales;
 		try {
@@ -129,7 +129,7 @@ public class GestorEstadisticas {
 			}
 			return total;
 		} catch (Exception e) {
-			throw new controllerException("Error al consultar total de vacunas por región", e);
+			throw new ControllerException("Error al consultar total de vacunas por región", e);
 		}
 	}
 }
