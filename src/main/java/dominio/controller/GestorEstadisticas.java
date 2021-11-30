@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dominio.entitymodel.*;
-import persistencia.DAOException;
 import persistencia.EntregaDAO;
 import persistencia.VacunacionDAO;
 
