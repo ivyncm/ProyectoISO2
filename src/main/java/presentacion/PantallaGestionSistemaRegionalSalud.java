@@ -5,8 +5,11 @@ import java.util.Scanner;
 
 import dominio.controller.GestorVacunacion;
 
+
 public class PantallaGestionSistemaRegionalSalud {
-	public static void main(String args[]) throws Exception {
+	final static String noValida = "Opcion no valida\n";
+	public static void main(String[] args) throws Exception {
+		
 		System.out.println("Bienvenido al Sistema de Salud Regional\n");
 		String region = Region();
 		menu(region);
@@ -20,11 +23,11 @@ public class PantallaGestionSistemaRegionalSalud {
 		String tipo = null;
 		String grupo = null;
 		do {
-			System.out.println("1 - Dar de alta nueva entrega");
-			System.out.println("2 - Registrar vacunaciones");
-			System.out.println("3 - Consultar estadísticas");
-			System.out.println("4 - Salir");
-
+			System.out.println("1 - Dar de alta nueva entrega\n"
+					+ "2 - Registrar vacunaciones\n"
+					+ "3 - Consultar estadísticas\n"
+					+ "4 - Salir");
+			
 			op1 = teclado.nextInt();
 			switch (op1) {
 			case 1:
@@ -62,7 +65,7 @@ public class PantallaGestionSistemaRegionalSalud {
 				System.out.println("Sesión cerrada\n");
 				break;
 			default:
-				System.out.println("Opción no válida\n");
+				System.out.println(noValida);
 				break;
 			}
 		} while (op1 < 1 || op1 > 4);
@@ -72,7 +75,7 @@ public class PantallaGestionSistemaRegionalSalud {
 	public static String Region() {
 		int op = 0;
 		Scanner teclado = new Scanner(System.in);
-		String regiones[] = new String[] { "Andalucia", "Aragon", "Canarias", "Cantabria", "Castilla y Leon", "Castilla la Mancha",
+		String [] regiones = new String[] { "Andalucia", "Aragon", "Canarias", "Cantabria", "Castilla y Leon", "Castilla la Mancha",
 				"Catalunya", "Ceuta", "Valencia", "Madrid", "Extremadura", "Galicia", "Baleares", "La Rioja", "Melilla",
 				"Navarra", "Pais Vasco", "Asturias", "Murcia" };
 		String region = null;
@@ -91,7 +94,7 @@ public class PantallaGestionSistemaRegionalSalud {
 				region = regiones[op - 1];
 				break;
 			default:
-				System.out.println("Opción no válida\n");
+				System.out.println(noValida);
 				break;
 			}
 		} while (op < 1 || op > 19);
@@ -103,10 +106,10 @@ public class PantallaGestionSistemaRegionalSalud {
 		int op;
 		Scanner teclado = new Scanner(System.in);
 		do {
-			System.out.println("Selecciona el grupo al que pertenece:\n");
-			System.out.println("1 - Anciano");
-			System.out.println("2 - Adulto");
-			System.out.println("3 - Joven");
+			System.out.println("Selecciona el grupo al que pertenece:\n"
+					+ "1 - Anciano\n"
+					+ "2 - Adulto\n"
+					+ "3 - Joven");
 			op = teclado.nextInt();
 			switch (op) {
 			case 1:
@@ -119,7 +122,7 @@ public class PantallaGestionSistemaRegionalSalud {
 				grupo = "Joven";
 				break;
 			default:
-				System.out.println("Opción no válida\n");
+				System.out.println(noValida);
 				break;
 			}
 		} while (op < 1 || op > 3);
@@ -131,10 +134,10 @@ public class PantallaGestionSistemaRegionalSalud {
 		Scanner teclado = new Scanner(System.in);
 		String tipo = null;
 		do {
-			System.out.println("Introduce el tipo de vacuna:\n");
-			System.out.println("1 - Pfizer");
-			System.out.println("2 - Moderna");
-			System.out.println("3 - Astrazeneca");
+			System.out.println("Introduce el tipo de vacuna:\n"
+					+ "1 - Pfizer\n"
+					+ "2 - Moderna\n"
+					+ "3 - Astrazeneca");
 			op2 = teclado.nextInt();
 			switch (op2) {
 			case 1:
@@ -147,7 +150,7 @@ public class PantallaGestionSistemaRegionalSalud {
 				tipo = "Astrazeneca";
 				break;
 			default:
-				System.out.println("Opción no válida\n");
+				System.out.println(noValida);
 				break;
 			}
 		} while (op2 < 1 || op2 > 3);
@@ -168,7 +171,7 @@ public class PantallaGestionSistemaRegionalSalud {
 				segDosis = false;
 				break;
 			default:
-				System.out.println("Opción no válida\n");
+				System.out.println(noValida);
 				segDosis();
 				break;
 			}
