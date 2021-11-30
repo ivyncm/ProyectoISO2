@@ -1,5 +1,7 @@
 package presentacion;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import dominio.controller.GestorEstadisticas;
@@ -26,7 +28,10 @@ public class PantallaConsultaEstadisticas {
 			op1 = teclado.nextInt();
 			switch (op1) {
 			case 1:
-				gestor.consultarTotalVacunados();
+				List<Integer> totalVacunados = new ArrayList<Integer>();
+				totalVacunados = gestor.consultarTotalVacunados();
+				System.out.println("Una dosis: " + (totalVacunados.get(0) - totalVacunados.get(1)));
+				System.out.println("Pauta completa: " + totalVacunados.get(0));
 				break;
 			case 2:
 				for (String i : regiones) {

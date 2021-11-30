@@ -1,5 +1,6 @@
 package dominio.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dominio.entitymodel.*;
@@ -7,12 +8,13 @@ import persistencia.EntregaDAO;
 import persistencia.VacunacionDAO;
 
 public class GestorEstadisticas {
-	public void consultarTotalVacunados() throws Exception {
+	public List<Integer> consultarTotalVacunados() throws Exception {
 		VacunacionDAO total = new VacunacionDAO();
 		List<Vacunacion> vacunaciones = total.seleccionarVacunaciones();
 		int contador = calcularvacunadostotal();
-		System.out.println("Una dosis: " + (vacunaciones.size() - contador));
-		System.out.println("Pauta completa: " + contador);
+		List<Integer> totalVacunados = new ArrayList<Integer>();
+		totalVacunados.add(vacunaciones.size(), contador);
+		return totalVacunados;
 	}
 
 	/**
