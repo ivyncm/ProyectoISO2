@@ -92,8 +92,7 @@ public class AgenteBD {
 	 * @param sql
 	 */
 	public static int insert(String sql) throws DAOException{
-		int res = auxiliarIUD(sql);
-		return res;
+		return auxiliarIUD(sql);
 	}
 
 	/**
@@ -101,8 +100,7 @@ public class AgenteBD {
 	 * @param sql
 	 */
 	public static int update(String sql) throws DAOException {
-		int res = auxiliarIUD(sql);
-		return res;
+		return auxiliarIUD(sql);
 	}
 
 	/**
@@ -110,8 +108,7 @@ public class AgenteBD {
 	 * @param sql
 	 */
 	public static int delete(String sql) throws DAOException {
-		int res = auxiliarIUD(sql);
-		return res;
+		return auxiliarIUD(sql);
 	}
 	
 	public static int auxiliarIUD(String sql) throws DAOException {
