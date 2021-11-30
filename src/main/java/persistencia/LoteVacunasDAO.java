@@ -11,12 +11,12 @@ import java.time.LocalDate;
 
 public class LoteVacunasDAO implements DAO<LoteVacunas> {
 
-	final String INSERT = "INSERT INTO lote(id, fecha, cantidad, nombre_tipoVacuna) VALUES(";
-	final String UPDATE = "UPDATE lote SET ";
-	final String DELETE = "DELETE FROM lote WHERE id=";
-	final String GETALL = "SELECT * FROM lote";
-	final String GETONE = "SELECT * FROM lote WHERE id=";
-	final String WHEREID = "WHERE id=";
+	final String insert = "INSERT INTO lote(id, fecha, cantidad, nombreTipoVacuna) VALUES(";
+	final String update = "UPDATE lote SET ";
+	final String delete = "DELETE FROM lote WHERE id=";
+	final String getall = "SELECT * FROM lote";
+	final String getone = "SELECT * FROM lote WHERE id=";
+	final String whereid = "WHERE id=";
 
 	private AgenteBD agente = new AgenteBD();
 
@@ -35,7 +35,7 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 		ResultSet rs = null;
 		List<LoteVacunas> LoteVacunas = new ArrayList<LoteVacunas>();
 		try {
-			rs = AgenteBD.select(GETALL);
+			rs = AgenteBD.select(getall);
 			while (rs.next()) {
 				LoteVacunas.add(convertir(rs));
 			}
@@ -62,7 +62,7 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	public int insert(LoteVacunas l) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = agente.insert(INSERT + "'" + l.getId() + "','" + l.getFecha() + "'," + l.getCantidad() + ",'"
+		i = agente.insert(insert + "'" + l.getId() + "','" + l.getFecha() + "'," + l.getCantidad() + ",'"
 				+ l.getFarmaceutica() + "'" + ")");
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya insertado.");
@@ -76,8 +76,8 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	public LoteVacunas update(LoteVacunas l) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = agente.update(UPDATE + "fecha=" + l.getFecha() + ",cantidad=" + l.getCantidad() + ",nombre_tipoVacuna="
-				+ l.getFarmaceutica() + WHEREID + l.getId());
+		i = agente.update(update + "fecha=" + l.getFecha() + ",cantidad=" + l.getCantidad() + ",nombreTipoVacuna="
+				+ l.getFarmaceutica() + whereid + l.getId());
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya actualizado.");
 		}
@@ -89,7 +89,7 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	public int delete(LoteVacunas l) throws Exception {
 		AgenteBD.conectarBD();
 		int i = 0;
-		i = agente.delete(DELETE + l.getId());
+		i = agente.delete(delete + l.getId());
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya borrado.");
 		}
