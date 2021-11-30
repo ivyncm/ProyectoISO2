@@ -26,7 +26,7 @@ public class GestorRepartoVacunas {
 				"Castilla-La Mancha", "Cataluña", "Ceuta", "Comunidad Valenciana", "Comunidad de Madrid", "Extremadura",
 				"Galicia", "Islas Baleares", "La Rioja", "Melilla", "Navarra", "País Vasco", "Principado de Asturias",
 				"Región de Murcia" };
-		List<EntregaVacunas> entregas = new ArrayList<EntregaVacunas>();
+		List<EntregaVacunas> entregas = new ArrayList<>();
 		int cantidad = 0;
 		if(lote.getCantidad() < 200) {
 			cantidad = lote.getCantidad();
@@ -47,28 +47,25 @@ public class GestorRepartoVacunas {
 	}
 	
 	public List<LoteVacunas> imprimirLotes() throws Exception {
-		// TODO - implement GestorRepartoVacunas.calcularEntregasRegion
 		
 		LoteVacunasDAO total = new LoteVacunasDAO();
-		List<LoteVacunas> lotes = total.seleccionarLote();
+		return total.seleccionarLote();
 		
-		
-		return lotes;
 	}
 
 	public static String cadenaAleatoria() {
 		int length = 5;
-		String char_lower = "abcdefghijklmnopqrstuvwxyz";
-		String char_upper = char_lower.toUpperCase();
+		String charLower = "abcdefghijklmnopqrstuvwxyz";
+		String charUpper = charLower.toUpperCase();
 		String number = "0123456789";
-		String data_for_random_string = char_lower + char_upper + number;
+		String dataForRandomString = charLower + charUpper + number;
 		SecureRandom random = new SecureRandom();
 		if (length < 1)
 			throw new IllegalArgumentException();
 		StringBuilder sb = new StringBuilder(length);
 		for (int i = 0; i < length; i++) {
-			int rndCharAt = random.nextInt(data_for_random_string.length());
-			char rndChar = data_for_random_string.charAt(rndCharAt);
+			int rndCharAt = random.nextInt(dataForRandomString.length());
+			char rndChar = dataForRandomString.charAt(rndCharAt);
 
 			sb.append(rndChar);
 		}
