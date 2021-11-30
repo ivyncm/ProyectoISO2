@@ -4,18 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dominio.entitymodel.*;
+import persistencia.DAOException;
 import persistencia.EntregaDAO;
 import persistencia.VacunacionDAO;
 
 public class GestorEstadisticas {
-	public List<Integer> consultarTotalVacunados() throws Exception {
-		VacunacionDAO total = new VacunacionDAO();
-		List<Vacunacion> vacunaciones = total.seleccionarVacunaciones();
-		int contador = calcularvacunadostotal();
-		List<Integer> totalVacunados = new ArrayList<>();
-		totalVacunados.add(vacunaciones.size());
-		totalVacunados.add(contador);
-		return totalVacunados;
+	public List<Integer> consultarTotalVacunados() throws controllerException {
+		VacunacionDAO total;
+		try {
+			total = new VacunacionDAO();
+			List<Vacunacion> vacunaciones = total.seleccionarVacunaciones();
+			int contador = calcularvacunadostotal();
+			List<Integer> totalVacunados = new ArrayList<>();
+			totalVacunados.add(vacunaciones.size());
+			totalVacunados.add(contador);
+			return totalVacunados;
+		} catch (Exception e) {
+			throw new controllerException("Error al consultar vacunados", e);
+		}
 	}
 
 	/**
@@ -24,7 +30,8 @@ public class GestorEstadisticas {
 	 * @return 
 	 * @throws Exception
 	 */
-	public List<Integer> consultarTotalVacunadosPorRegion(String region) throws Exception {
+	public List<Integer> consultarTotalVacunadosPorRegion(String region) throws controllerException {
+		try {
 		VacunacionDAO total = new VacunacionDAO();
 		List<Vacunacion> vacunaciones = total.seleccionarVacunaciones(region);
 		int contador = calcularvacunadostotalregion(region);
@@ -32,9 +39,12 @@ public class GestorEstadisticas {
 		totalVacunados.add(vacunaciones.size());
 		totalVacunados.add(contador);
 		return totalVacunados;
+		} catch (Exception e) {
+			throw new controllerException("Error al consultar vacunados por región", e);
+		}
 	}
 
-	public double consultarPorcentajeVacunadosSobreRecibidas() throws Exception {
+	public double consultarPorcentajeVacunadosSobreRecibidas() throws controllerException {
 		double vacunados = calcularvacunadostotal();
 		double recibidas = consultartotalrecibidas();
 		return (vacunados / recibidas);
@@ -47,7 +57,7 @@ public class GestorEstadisticas {
 	 * @return 
 	 * @throws Exception
 	 */
-	public List<Double> consultarPorcentajeVacunadosSobreRecibidasEnRegion(String region) throws Exception {
+	public List<Double> consultarPorcentajeVacunadosSobreRecibidasEnRegion(String region) throws controllerException {
 		double vacunados = calcularvacunadostotalregion(region);
 		double recibidas = consultartotalrecibidasregion(region);
 		
@@ -58,48 +68,69 @@ public class GestorEstadisticas {
 	}
 
 	// Metodos auxiliares total
-	public int calcularvacunadostotal() throws Exception {
-		VacunacionDAO total = new VacunacionDAO();
-		List<Vacunacion> vacunaciones = total.seleccionarVacunaciones();
-		int contador = 0;
-		for (int i = 0; i < vacunaciones.size(); i++) {
-			if (vacunaciones.get(i).isSegundaDosis()) {
-				contador++;
+	public int calcularvacunadostotal() throws controllerException {
+		VacunacionDAO total;
+		try {
+			total = new VacunacionDAO();
+			List<Vacunacion> vacunaciones = total.seleccionarVacunaciones();
+			int contador = 0;
+			for (int i = 0; i < vacunaciones.size(); i++) {
+				if (vacunaciones.get(i).isSegundaDosis()) {
+					contador++;
+				}
 			}
+			return contador;
+		} catch (Exception e) {
+			throw new controllerException("Error al calcular total de vacunados", e);
 		}
-		return contador;
+		
 	}
 
-	public int consultartotalrecibidas() throws Exception {
+	public int consultartotalrecibidas() throws controllerException {
 		int total = 0;
-		EntregaDAO totales = new EntregaDAO();
-		List<EntregaVacunas> entrega = totales.seleccionarcantidadTotal();
-		for (int i = 0; i < entrega.size(); i++) {
-			total = total + entrega.get(i).getCantidad();
+		EntregaDAO totales;
+		try {
+			totales = new EntregaDAO();
+			List<EntregaVacunas> entrega = totales.seleccionarcantidadTotal();
+			for (int i = 0; i < entrega.size(); i++) {
+				total = total + entrega.get(i).getCantidad();
+			}
+			return total;
+		} catch (Exception e) {
+			throw new controllerException("Error al consultar total de vacunas recibidas", e);
 		}
-		return total;
 	}
 
 	// Metodos auxiliares region
-	public int calcularvacunadostotalregion(String region) throws Exception {
-		VacunacionDAO total = new VacunacionDAO();
-		List<Vacunacion> vacunaciones = total.seleccionarVacunaciones(region);
-		int contador = 0;
-		for (int i = 0; i < vacunaciones.size(); i++) {
-			if (vacunaciones.get(i).isSegundaDosis()) {
-				contador++;
+	public int calcularvacunadostotalregion(String region) throws controllerException {
+		VacunacionDAO total;
+		try {
+			total = new VacunacionDAO();
+			List<Vacunacion> vacunaciones = total.seleccionarVacunaciones(region);
+			int contador = 0;
+			for (int i = 0; i < vacunaciones.size(); i++) {
+				if (vacunaciones.get(i).isSegundaDosis()) {
+					contador++;
+				}
 			}
+			return contador;
+		} catch (Exception e) {
+			throw new controllerException("Error al consultar total de vacunados por región", e);
 		}
-		return contador;
 	}
 
-	public int consultartotalrecibidasregion(String region) throws Exception {
+	public int consultartotalrecibidasregion(String region) throws controllerException {
 		int total = 0;
-		EntregaDAO totales = new EntregaDAO();
-		List<EntregaVacunas> entrega = totales.seleccionarEntregas(region);
-		for (int i = 0; i < entrega.size(); i++) {
-			total = total + entrega.get(i).getCantidad();
+		EntregaDAO totales;
+		try {
+			totales = new EntregaDAO();
+			List<EntregaVacunas> entrega = totales.seleccionarEntregas(region);
+			for (int i = 0; i < entrega.size(); i++) {
+				total = total + entrega.get(i).getCantidad();
+			}
+			return total;
+		} catch (Exception e) {
+			throw new controllerException("Error al consultar total de vacunas por región", e);
 		}
-		return total;
 	}
 }
