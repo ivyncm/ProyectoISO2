@@ -41,17 +41,23 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			case 2:
 				vacunacion = new GestorVacunacion();
-				String dni;
+				String dni, nombre, apellido1, apellido2;
 				do {
 					System.out.println("Introduce el DNI del paciente:");
 					dni = teclado.next();
 				}while(dniValido(dni));
-				System.out.println("Introduce el nombre del paciente:");
-				String nombre = teclado.next();
-				System.out.println("Introduce el primer apellido del paciente:");
-				String apellido1 = teclado.next();
-				System.out.println("Introduce el segundo apellido del paciente:");
-				String apellido2 = teclado.next();
+				do {
+					System.out.println("Introduce el nombre del paciente:");
+					nombre = teclado.next();
+				}while(soloLetras(nombre));
+				do {
+					System.out.println("Introduce el primer apellido del paciente:");
+					apellido1 = teclado.next();
+				}while(soloLetras(apellido1));
+				do {
+					System.out.println("Introduce el segundo apellido del paciente:");
+					apellido2 = teclado.next();
+				}while(soloLetras(apellido2));
 				String apellidos = apellido1 + " " + apellido2;
 				fecha = LocalDate.now();
 				tipo = tipo();
@@ -207,5 +213,16 @@ public class PantallaGestionSistemaRegionalSalud {
             return true;
         }
 		return false;
+	}
+	public static boolean soloLetras(String cadena) {
+	    for (int x = 0; x < cadena.length(); x++) {
+	        char c = cadena.charAt(x);
+	        // Si no está entre a y z, ni entre A y Z, ni es un espacio
+	        if (!((c >= 'a' && c <= 'z')||(c >= 'A' && c <= 'Z') || c == ' ')) {
+	        	System.out.println("No introducir números.");
+	            return true;
+	        }
+	    }
+	    return false;
 	}
 }
