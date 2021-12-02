@@ -82,15 +82,20 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		insert(entrega);
 	}
 
-	private EntregaVacunas convertir(ResultSet rs) throws Exception {
-		String region = rs.getString(4);
-		String grupoPrior = rs.getString(5);
-		String lote = rs.getString(3);
-		Date fecha = rs.getDate(1);
-		LocalDate fecha1 = fecha.toLocalDate();
-		int cantidad = rs.getInt(2);
-		EntregaVacunas entrega = new EntregaVacunas(grupoPrior, lote, fecha1, cantidad, region);
-		return entrega;
+	private EntregaVacunas convertir(ResultSet rs) throws DAOException {
+		String region;
+		try {
+			region = rs.getString(4);
+			String grupoPrior = rs.getString(5);
+			String lote = rs.getString(3);
+			Date fecha = rs.getDate(1);
+			LocalDate fecha1 = fecha.toLocalDate();
+			int cantidad = rs.getInt(2);
+			EntregaVacunas entrega = new EntregaVacunas(grupoPrior, lote, fecha1, cantidad, region);
+			return entrega;
+		} catch (SQLException ex) {
+			throw new DAOException("Error en ResultSet", ex);
+		}
 	}
 
 	public List<EntregaVacunas> seleccionarcantidadTotal() throws DAOException {
