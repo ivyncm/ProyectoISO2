@@ -176,7 +176,6 @@ public class PantallaGestionSistemaRegionalSalud {
 			segDosis = true;
 			break;
 		case "n":
-			segDosis = false;
 			break;
 		default:
 			System.out.println(noValida);
