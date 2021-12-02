@@ -20,7 +20,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 
 
 	@Override
-	public EntregaVacunas get(String id) throws Exception {
+	public EntregaVacunas get(String id) throws DAOException{
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		try {
@@ -41,7 +41,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	}
 
 	@Override
-	public int insert(EntregaVacunas e) throws Exception {
+	public int insert(EntregaVacunas e) throws DAOException {
 		AgenteBD.conectarBD();
 		int i = 0;
 		i = AgenteBD.iud(INSERT + "'" + e.getFecha() + "'" + "," + e.getCantidad() + "," + "'" + e.getLote() + "'"
@@ -54,7 +54,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	}
 
 	@Override
-	public EntregaVacunas update(EntregaVacunas e) throws Exception {
+	public EntregaVacunas update(EntregaVacunas e) throws DAOException {
 		AgenteBD.conectarBD();
 		int i = 0;
 		i = AgenteBD.iud(UPDATE + "region=" + e.getRegion() + ",grupoPrioridad=" + e.getGrupoPrioridad() + ",lote="
@@ -67,7 +67,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	}
 
 	@Override
-	public int delete(EntregaVacunas e) throws Exception {
+	public int delete(EntregaVacunas e) throws DAOException {
 		AgenteBD.conectarBD();
 		int i = 0;
 		i = AgenteBD.iud(DELETE);
@@ -78,9 +78,8 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		return i;
 	}
 
-	public void insertarEntrega(EntregaVacunas entrega) throws Exception {
+	public void insertarEntrega(EntregaVacunas entrega) throws DAOException {
 		insert(entrega);
-		System.out.println("Se ha insertado una nueva entrega con id: "+entrega.getLote());
 	}
 
 	private EntregaVacunas convertir(ResultSet rs) throws Exception {
@@ -94,7 +93,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 		return entrega;
 	}
 
-	public List<EntregaVacunas> seleccionarcantidadTotal() throws Exception {
+	public List<EntregaVacunas> seleccionarcantidadTotal() throws DAOException {
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		List<EntregaVacunas> entrega = new ArrayList<EntregaVacunas>();
@@ -103,13 +102,13 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 			while (rs.next()) {
 				entrega.add(convertir(rs));
 			}
-		} catch (SQLException ex) {
+		} catch (Exception ex) {
 			throw new DAOException("Error en SQL", ex);
 		}
 		return entrega;
 	}
 
-	public List<EntregaVacunas> seleccionarEntregas(String region) throws Exception {
+	public List<EntregaVacunas> seleccionarEntregas(String region) throws DAOException {
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		List<EntregaVacunas> entrega = new ArrayList<EntregaVacunas>();
@@ -118,7 +117,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 			while (rs.next()) {
 				entrega.add(convertir(rs));
 			}
-		} catch (SQLException ex) {
+		} catch (Exception ex) {
 			throw new DAOException("Error en SQL", ex);
 		}
 		return entrega;

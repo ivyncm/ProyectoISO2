@@ -12,7 +12,7 @@ public class Vacunacion {
 	private LocalDate fecha;
 	private boolean isSegundaDosis;
 	
-	public Vacunacion(String tipoVacuna, LocalDate fecha, boolean segDosis, Paciente paciente) throws Exception {
+	public Vacunacion(String tipoVacuna, LocalDate fecha, boolean segDosis, Paciente paciente) {
 		setdni(paciente.getDni());
 		setVacuna(tipoVacuna);
 		setFecha(fecha);
@@ -20,7 +20,7 @@ public class Vacunacion {
 		setPaciente(paciente);
 		vacunacionDao = new VacunacionDAO();
 	}
-	public Vacunacion(String dni) throws Exception {
+	public Vacunacion(String dni){
 		setdni(dni);
 		vacunacionDao = new VacunacionDAO();
 	}

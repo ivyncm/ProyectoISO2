@@ -17,7 +17,7 @@ public class AgenteBD {
 		}
 	}
 
-	public static void main(String[] args) throws DAOException, SQLException{
+	public static void main(String[] args) throws DAOException{
 		try {
 			crearBD();
 		} catch (DAOException ex) {
@@ -25,7 +25,7 @@ public class AgenteBD {
 		}
 	}
 
-	public static void crearBD() throws DAOException, SQLException{
+	public static void crearBD() throws DAOException{
 		String urlCreate = "jdbc:derby:directory:myDB;create=true";
 		try (Connection conn = DriverManager.getConnection(urlCreate)){
 			Class.forName(driver);
@@ -74,7 +74,7 @@ public class AgenteBD {
 	 * @throws DAOException 
 	 * @throws SQLException 
 	 */
-	public static ResultSet select(String sql) throws DAOException, SQLException{
+	public static ResultSet select(String sql) throws DAOException{
 		ResultSet res;
 		try {
 			Statement stat = conn.createStatement();

@@ -66,7 +66,6 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 			throw new DAOException("Puede que no se haya insertado.");
 		}
 		AgenteBD.desconectarBD();
-		System.out.println("Se ha insertado un nuevo lote con id: "+l.getId());
 		return i;
 	}
 
@@ -97,6 +96,5 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 
 	public void insertarLoteVacunas(LoteVacunas lote) throws DAOException {
 		insert(lote);
-		System.out.println("Lote insertado con éxito");
 	}
 }

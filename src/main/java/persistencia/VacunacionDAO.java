@@ -19,7 +19,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 
 
 	@Override
-	public Vacunacion get(String dni) throws Exception {
+	public Vacunacion get(String dni) throws DAOException {
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		try {
@@ -42,7 +42,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	}
 
 	@Override
-	public int insert(Vacunacion v) throws Exception {
+	public int insert(Vacunacion v) throws DAOException {
 		AgenteBD.conectarBD();
 		int i = 0;
 		i = AgenteBD.iud(INSERT + "'" + v.getFecha() + "'" + "," + v.isSegundaDosis() + "," + "'" + v.getVacuna()
@@ -53,12 +53,11 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 			throw new DAOException("Puede que no se haya insertado.");
 		}
 		AgenteBD.desconectarBD();
-		System.out.println("Se ha insertado una nueva vacunación con dni: "+v.paciente.getDni());
 		return i;
 	}
 
 	@Override
-	public Vacunacion update(Vacunacion v) throws Exception {
+	public Vacunacion update(Vacunacion v) throws DAOException {
 		AgenteBD.conectarBD();
 		int i = 0;
 		i = AgenteBD.iud(UPDATE + "segDosis=" + true + WHEREID + "'" + v.getdni() + "'");
@@ -70,7 +69,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	}
 
 	@Override
-	public int delete(Vacunacion v) throws Exception {
+	public int delete(Vacunacion v) throws DAOException {
 		AgenteBD.conectarBD();
 		int i = 0;
 		i = AgenteBD.iud(DELETE + v.getdni());
@@ -81,30 +80,31 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		return i;
 	}
 
-	public void insertarVacunacion(Vacunacion v) throws Exception {
-		if (insert(v) != 0) {
-			System.out.println("Registro completado con éxito");
-		} else
-			System.out.println("Registro no completado con éxito");
+	public void insertarVacunacion(Vacunacion v) throws DAOException {
+		insert(v);
 	}
 
-	private Vacunacion convertir(ResultSet rs) throws Exception {
-		String dni = rs.getString(4);
-		String tipoVacuna = rs.getString(3);
-		Date fecha = rs.getDate(1);
-		Boolean segDosis = rs.getBoolean(2);
-		LocalDate fecha1 = fecha.toLocalDate();
-		String nombre = rs.getString(5);
-		String apellidos = rs.getString(6);
-		String region = rs.getString(7);
-		String grupo = rs.getString(8);
-		Paciente paciente = new Paciente(dni, nombre, apellidos, grupo, region);
-		Vacunacion vacunacion = new Vacunacion(tipoVacuna, fecha1, segDosis, paciente);
-
-		return vacunacion;
+	private Vacunacion convertir(ResultSet rs) throws DAOException {
+		try {
+			String dni = rs.getString(4);
+			String tipoVacuna = rs.getString(3);
+			Date fecha = rs.getDate(1);
+			Boolean segDosis = rs.getBoolean(2);
+			LocalDate fecha1 = fecha.toLocalDate();
+			String nombre = rs.getString(5);
+			String apellidos = rs.getString(6);
+			String region = rs.getString(7);
+			String grupo = rs.getString(8);
+			Paciente paciente = new Paciente(dni, nombre, apellidos, grupo, region);
+			Vacunacion vacunacion = new Vacunacion(tipoVacuna, fecha1, segDosis, paciente);
+	
+			return vacunacion;
+		} catch (SQLException e) {
+			throw new DAOException("Error al convertir ResultSet");
+		}
 	}
 
-	public List<Vacunacion> seleccionarVacunaciones() throws Exception {
+	public List<Vacunacion> seleccionarVacunaciones() throws DAOException {
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		List<Vacunacion> vacunaciones = new ArrayList<Vacunacion>();
@@ -116,12 +116,11 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 		} catch (SQLException ex) {
 			throw new DAOException("Error en SQL", ex);
 		}
-		// AgenteBD.desconectarBD();
 		return vacunaciones;
 	}
 	
 
-	public List<Vacunacion> seleccionarVacunaciones(String region) throws Exception {
+	public List<Vacunacion> seleccionarVacunaciones(String region) throws DAOException {
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
 		List<Vacunacion> vacunaciones = new ArrayList<Vacunacion>();
