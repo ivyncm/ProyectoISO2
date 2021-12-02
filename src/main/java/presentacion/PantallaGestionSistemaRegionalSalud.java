@@ -102,6 +102,7 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			}
 		} while (op < 1 || op > 19);
+		teclado.close();
 		return region;
 	}
 
@@ -130,6 +131,7 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			}
 		} while (op < 1 || op > 3);
+		teclado.close();
 		return grupo;
 	}
 
@@ -158,6 +160,7 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			}
 		} while (op2 < 1 || op2 > 3);
+		teclado.close();
 		return tipo;
 	}
 
@@ -165,20 +168,21 @@ public class PantallaGestionSistemaRegionalSalud {
 		boolean segDosis = false;
 		Scanner teclado = new Scanner(System.in);
 		String op3;
-			System.out.println("Es segunda dosis? s/n\n");
-			op3 = teclado.next().toLowerCase();
-			switch (op3) {
-			case "s":
-				segDosis = true;
-				break;
-			case "n":
-				segDosis = false;
-				break;
-			default:
-				System.out.println(noValida);
-				segDosis();
-				break;
-			}
+		System.out.println("Es segunda dosis? s/n\n");
+		op3 = teclado.next().toLowerCase();
+		switch (op3) {
+		case "s":
+			segDosis = true;
+			break;
+		case "n":
+			segDosis = false;
+			break;
+		default:
+			System.out.println(noValida);
+			segDosis();
+			break;
+		}
+		teclado.close();
 		return segDosis;
 	}
 	public static String controlCadena(String cad) {
