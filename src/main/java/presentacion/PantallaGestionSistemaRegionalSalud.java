@@ -10,7 +10,6 @@ import dominio.entitymodel.Paciente;
 public class PantallaGestionSistemaRegionalSalud {
 	final static String noValida = "Opcion no valida\n";
 	public static void main(String[] args) throws Exception {
-		
 		System.out.println("Bienvenido al Sistema de Salud Regional\n");
 		String region = Region();
 		menu(region);
@@ -79,7 +78,6 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			}
 		} while (op1 < 1 || op1 > 4);
-		teclado.close();
 	}
 
 	public static String Region() {
@@ -108,7 +106,6 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			}
 		} while (op < 1 || op > 19);
-		teclado.close();
 		return region;
 	}
 
@@ -137,7 +134,6 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			}
 		} while (op < 1 || op > 3);
-		teclado.close();
 		return grupo;
 	}
 
@@ -166,7 +162,6 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			}
 		} while (op2 < 1 || op2 > 3);
-		teclado.close();
 		return tipo;
 	}
 
@@ -188,7 +183,6 @@ public class PantallaGestionSistemaRegionalSalud {
 			segDosis();
 			break;
 		}
-		teclado.close();
 		return segDosis;
 	}
 	public static String controlCadena(String cad) {
