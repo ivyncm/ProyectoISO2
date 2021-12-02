@@ -41,9 +41,11 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			case 2:
 				vacunacion = new GestorVacunacion();
-
-				System.out.println("Introduce el DNI del paciente:");
-				String dni = teclado.next();
+				String dni;
+				do {
+					System.out.println("Introduce el DNI del paciente:");
+					dni = teclado.next();
+				}while(dniValido(dni));
 				System.out.println("Introduce el nombre del paciente:");
 				String nombre = teclado.next();
 				System.out.println("Introduce el primer apellido del paciente:");
@@ -185,5 +187,20 @@ public class PantallaGestionSistemaRegionalSalud {
 		}
 		return cad;
 		
+	}
+	public static boolean dniValido(String dni) {
+        if(!(dni.length()==9)) {
+            System.out.println("Dni no valido");
+            return true;
+        }
+        if(!(dni.substring(0,8).chars().allMatch(Character::isDigit))) {
+            System.out.println("Dni no valido");
+            return true;
+        }
+        if(dni.substring(8,9).chars().allMatch(Character::isDigit)) {
+            System.out.println("Dni no valido");
+            return true;
+        }
+		return false;
 	}
 }
