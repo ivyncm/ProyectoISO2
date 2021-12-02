@@ -189,16 +189,17 @@ public class PantallaGestionSistemaRegionalSalud {
 		
 	}
 	public static boolean dniValido(String dni) {
-        if(!(dni.length()==9)) {
-            System.out.println("Dni no valido");
+		String noValid = "DNI no valido";
+        if(dni.length()!=9) {
+            System.out.println(noValid);
             return true;
         }
         if(!(dni.substring(0,8).chars().allMatch(Character::isDigit))) {
-            System.out.println("Dni no valido");
+            System.out.println(noValid);
             return true;
         }
         if(dni.substring(8,9).chars().allMatch(Character::isDigit)) {
-            System.out.println("Dni no valido");
+            System.out.println(noValid);
             return true;
         }
 		return false;
