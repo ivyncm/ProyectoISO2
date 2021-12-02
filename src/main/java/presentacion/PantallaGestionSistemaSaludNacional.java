@@ -16,6 +16,7 @@ public class PantallaGestionSistemaSaludNacional {
 	}
 
 	public static void menu() throws Exception {
+		String noValido = "Opción no válida\n";
 		Scanner teclado = new Scanner(System.in);
 		int op1 = 0;
 		int op2 = 0;
@@ -50,7 +51,7 @@ public class PantallaGestionSistemaSaludNacional {
 						tipo = "Astrazeneca";
 						break;
 					default:
-						System.out.println("Opción no válida\n");
+						System.out.println(noValido);
 						break;
 					}
 				} while (op2 < 1 || op2 > 3);
@@ -95,7 +96,7 @@ public class PantallaGestionSistemaSaludNacional {
 						prioridad = "Anciano";
 						break;
 					default:
-						System.out.println("Opción no válida\n");
+						System.out.println(noValido);
 						break;
 					}
 				} while (op2 < 1 || op2 > 3);
@@ -111,7 +112,7 @@ public class PantallaGestionSistemaSaludNacional {
 				System.out.println("Sesión cerrada\n");
 				break;
 			default:
-				System.out.println("Opción no válida\n");
+				System.out.println(noValido);
 				break;
 			}
 		} while (op1 < 1 || op1 > 4);

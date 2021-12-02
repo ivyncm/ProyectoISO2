@@ -7,6 +7,7 @@ import dominio.controller.GestorEstadisticas;
 
 public class PantallaConsultaEstadisticas {
 	public static void estadNacional() throws Exception {
+		String porcentajeVacunados = "Porcentaje vacunados: %.3f%n";
 		List<Integer> totalVacunados;
 		Boolean seguir = true;
 		String[] regiones = new String[] { "Andalucia", "Aragon", "Canarias", "Cantabria", "Castilla y Leon", "Castilla la Mancha",
@@ -40,7 +41,7 @@ public class PantallaConsultaEstadisticas {
 				break;
 			case 3:
 				double porcentaje = gestor.consultarPorcentajeVacunadosSobreRecibidas();
-				System.out.printf("Porcentaje vacunados: %.3f%n", porcentaje * 100);
+				System.out.printf(porcentajeVacunados, porcentaje * 100);
 				break;
 			case 4:
 				List<Double> porcentajeRegion;
@@ -50,7 +51,7 @@ public class PantallaConsultaEstadisticas {
 					if (porcentajeRegion.get(1) == 0) {
 						System.out.println("Porcentaje vacunados: 0,000%");
 					} else {
-						System.out.printf("Porcentaje vacunados: %.3f%n", (porcentajeRegion.get(0) / porcentajeRegion.get(1)) * 100);
+						System.out.printf(porcentajeVacunados, (porcentajeRegion.get(0) / porcentajeRegion.get(1)) * 100);
 					}
 				}
 				break;
@@ -73,6 +74,7 @@ public class PantallaConsultaEstadisticas {
 	}
 	
 	public static void estadRegion(String region) throws Exception {
+		String porcentajeVacunados = "Porcentaje vacunados: %.3f%n";
 		Boolean seguir = true;
 		Scanner teclado = new Scanner(System.in);
 		GestorEstadisticas gestor = new GestorEstadisticas();
@@ -101,7 +103,7 @@ public class PantallaConsultaEstadisticas {
 				if (porcentajeRegion.get(1) == 0) {
 					System.out.println("Porcentaje vacunados: 0,000%");
 				} else {
-					System.out.printf("Porcentaje vacunados: %.3f%n", (porcentajeRegion.get(0) / porcentajeRegion.get(1)) * 100);
+					System.out.printf(porcentajeVacunados, (porcentajeRegion.get(0) / porcentajeRegion.get(1)) * 100);
 				}
 				break;
 			case 3:
