@@ -179,4 +179,11 @@ public class PantallaGestionSistemaRegionalSalud {
 			}
 		return segDosis;
 	}
+	public static String controlCadena(String cad) {
+		for (int i=0; i<cad.length(); i++) {
+			
+		}
+		return cad;
+		
+	}
 }

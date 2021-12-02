@@ -29,15 +29,13 @@ public class PantallaConsultaEstadisticas {
 			switch (op1) {
 			case 1:
 				totalVacunados = gestor.consultarTotalVacunados();
-				System.out.println("Una dosis: " + (totalVacunados.get(0) - totalVacunados.get(1)) 
-						+"\nPauta completa: " + totalVacunados.get(0));
+				imprimirTotalVacunados(totalVacunados);
 				break;
 			case 2:
 				for (String i : regiones) {
 					System.out.println("\n- " + i);
 					totalVacunados = gestor.consultarTotalVacunadosPorRegion(i);
-					System.out.println("Una dosis: " + (totalVacunados.get(0) - totalVacunados.get(1)) 
-							+"\nPauta completa: " + totalVacunados.get(0));
+					imprimirTotalVacunados(totalVacunados);
 				}
 				break;
 			case 3:
@@ -68,7 +66,12 @@ public class PantallaConsultaEstadisticas {
 		} while (seguir);
 		teclado.close();
 	}
-
+	
+	public static void imprimirTotalVacunados (List<Integer> totalVacunados) {
+		System.out.println("Una dosis: " + (totalVacunados.get(0) - totalVacunados.get(1)) 
+				+"\nPauta completa: " + totalVacunados.get(0));
+	}
+	
 	public static void estadRegion(String region) throws Exception {
 		Boolean seguir = true;
 		Scanner teclado = new Scanner(System.in);
