@@ -13,7 +13,7 @@ import dominio.controller.ControllerException;
 import dominio.controller.GestorRepartoVacunas;
 
 public class PantallaGestionSistemaSaludNacional {
-	private static final String noValido = "Opción no válida\n";
+	private static final String NOVALIDO = "Opción no válida\n";
 	public static void main(String[] args) throws Exception {
 		menu();
 	}
@@ -46,7 +46,7 @@ public class PantallaGestionSistemaSaludNacional {
 				System.out.println("Sesión cerrada\n");
 				break;
 			default:
-				System.out.println(noValido);
+				System.out.println(NOVALIDO);
 				break;
 			}
 		} while (op1 < 1 || op1 > 4);
@@ -74,7 +74,7 @@ public class PantallaGestionSistemaSaludNacional {
 				tipo = "Astrazeneca";
 				break;
 			default:
-				System.out.println(noValido);
+				System.out.println(NOVALIDO);
 				break;
 			}
 		} while (op2 < 1 || op2 > 3);
@@ -122,7 +122,7 @@ public class PantallaGestionSistemaSaludNacional {
 				prioridad = "Anciano";
 				break;
 			default:
-				System.out.println(noValido);
+				System.out.println(NOVALIDO);
 				break;
 			}
 		} while (op2 < 1 || op2 > 3);
