@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class auxiliares {
 	static String[] cadenaGrupo = {"grupo de prioridad", "Anciano", "Adulto", "Joven"};
 	static String[] cadenaTipo = {"tipo de vacuna", "Pfizer", "Moderna", "Astrazeneca"};
-	final static String noValida = "Opcion no valida\n";
+	static String noValida = "Opcion no valida\n";
 	
 	
 	public static boolean segDosis() {
