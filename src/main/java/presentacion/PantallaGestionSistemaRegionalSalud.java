@@ -40,29 +40,12 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			case 2:
 				vacunacion = new GestorVacunacion();
-				String dni, nombre, apellido1, apellido2;
-				do {
-					System.out.println("Introduce el DNI del paciente:");
-					dni = teclado.next();
-				}while(dniValido(dni));
-				do {
-					System.out.println("Introduce el nombre del paciente:");
-					nombre = teclado.next();
-				}while(soloLetras(nombre));
-				do {
-					System.out.println("Introduce el primer apellido del paciente:");
-					apellido1 = teclado.next();
-				}while(soloLetras(apellido1));
-				do {
-					System.out.println("Introduce el segundo apellido del paciente:");
-					apellido2 = teclado.next();
-				}while(soloLetras(apellido2));
-				String apellidos = apellido1 + " " + apellido2;
+				
 				fecha = LocalDate.now();
 				tipo = tipo();
 				boolean segDosis = segDosis();
-				grupo = grupo();
-				Paciente paciente = new Paciente(dni, nombre, apellidos, grupo, region);
+				
+				Paciente paciente = DatosPaciente(region);
 
 				vacunacion.registrarVacunacion(fecha, tipo, segDosis, paciente);
 
@@ -78,6 +61,32 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			}
 		} while (op1 < 1 || op1 > 4);
+	}
+	
+	public static Paciente DatosPaciente(String region) {
+		Scanner teclado = new Scanner(System.in);
+		String dni, nombre, apellido1, apellido2, grupo;
+		do {
+			System.out.println("Introduce el DNI del paciente:");
+			dni = teclado.next();
+		}while(dniValido(dni));
+		do {
+			System.out.println("Introduce el nombre del paciente:");
+			nombre = teclado.next();
+		}while(soloLetras(nombre));
+		do {
+			System.out.println("Introduce el primer apellido del paciente:");
+			apellido1 = teclado.next();
+		}while(soloLetras(apellido1));
+		do {
+			System.out.println("Introduce el segundo apellido del paciente:");
+			apellido2 = teclado.next();
+		}while(soloLetras(apellido2));
+		String apellidos = apellido1 + " " + apellido2;
+		grupo = grupo();
+		
+		Paciente paciente = new Paciente(dni, nombre, apellidos, grupo, region);
+		return paciente;
 	}
 
 	public static String Region() {
