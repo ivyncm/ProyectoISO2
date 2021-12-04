@@ -8,8 +8,7 @@ import dominio.entitymodel.Paciente;
 
 
 public class PantallaGestionSistemaRegionalSalud {
-	final static String[] cadenaGrupo = {"grupo de prioridad", "Anciano", "Adulto", "Joven"};
-	final static String[] cadenaTipo = {"tipo de vacuna", "Pfizer", "Moderna", "Astrazeneca"};
+	
 	public static void main(String[] args) throws Exception {
 		System.out.println("Bienvenido al Sistema de Salud Regional\n");
 		String region = auxiliares.Region();
@@ -35,7 +34,7 @@ public class PantallaGestionSistemaRegionalSalud {
 				fecha = LocalDate.now();
 				System.out.println("Introduce la cantidad:");
 				int cantidad = teclado.nextInt();
-				grupo = auxiliares.menu3Cadenas(cadenaGrupo);
+				grupo = auxiliares.menu3Cadenas(auxiliares.cadenaGrupo);
 				vacunacion = new GestorVacunacion();
 				vacunacion.altaEntregaVacunas(fecha, cantidad, grupo, region);
 				break;
@@ -43,7 +42,7 @@ public class PantallaGestionSistemaRegionalSalud {
 				vacunacion = new GestorVacunacion();
 				
 				fecha = LocalDate.now();
-				tipo = auxiliares.menu3Cadenas(cadenaTipo);
+				tipo = auxiliares.menu3Cadenas(auxiliares.cadenaGrupo);
 				boolean segDosis = auxiliares.segDosis();
 				
 				Paciente paciente = DatosPaciente(region);
@@ -84,7 +83,7 @@ public class PantallaGestionSistemaRegionalSalud {
 			apellido2 = teclado.next();
 		}while(auxiliares.soloLetras(apellido2));
 		String apellidos = apellido1 + " " + apellido2;
-		grupo = auxiliares.menu3Cadenas(cadenaGrupo);
+		grupo = auxiliares.menu3Cadenas(auxiliares.cadenaGrupo);
 		
 		Paciente paciente = new Paciente(dni, nombre, apellidos, grupo, region);
 		return paciente;

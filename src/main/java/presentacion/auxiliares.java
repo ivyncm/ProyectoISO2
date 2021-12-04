@@ -3,6 +3,8 @@ package presentacion;
 import java.util.Scanner;
 
 public class auxiliares {
+	public static String[] cadenaGrupo = {"grupo de prioridad", "Anciano", "Adulto", "Joven"};
+	public static String[] cadenaTipo = {"tipo de vacuna", "Pfizer", "Moderna", "Astrazeneca"};
 	final static String noValida = "Opcion no valida\n";
 	
 	

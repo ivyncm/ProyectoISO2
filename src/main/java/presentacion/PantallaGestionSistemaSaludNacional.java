@@ -13,8 +13,6 @@ import dominio.controller.ControllerException;
 import dominio.controller.GestorRepartoVacunas;
 
 public class PantallaGestionSistemaSaludNacional {
-	final static String[] cadenaGrupo = {"grupo de prioridad", "Anciano", "Adulto", "Joven"};
-	final static String[] cadenaTipo = {"tipo de vacuna", "Pfizer", "Moderna", "Astrazeneca"};
 	public static void main(String[] args) throws Exception {
 		menu();
 	}
@@ -56,7 +54,7 @@ public class PantallaGestionSistemaSaludNacional {
 	
 	public static void altaNuevoLote(GestorRepartoVacunas gestor) throws ControllerException {
 		Scanner teclado = new Scanner(System.in);
-		String tipo = auxiliares.menu3Cadenas(cadenaTipo);
+		String tipo = auxiliares.menu3Cadenas(auxiliares.cadenaTipo);
 		System.out.println("Introduce la cantidad:");
 		int cantidad = teclado.nextInt();
 		
@@ -82,7 +80,7 @@ public class PantallaGestionSistemaSaludNacional {
 				System.out.println("Lote seleccionado" + lote.toString());
 			}
 		} while (op2<1 || op2>lotes.size());
-		String prioridad = auxiliares.menu3Cadenas(cadenaGrupo);
+		String prioridad = auxiliares.menu3Cadenas(auxiliares.cadenaGrupo);
 		List<EntregaVacunas> entregas = gestor.calcularEntregasRegion(lote, prioridad);
 		for(int i = 0; i<entregas.size(); i++){
 			System.out.println("Entrega " + (i+1) + entregas.get(i).toString());
