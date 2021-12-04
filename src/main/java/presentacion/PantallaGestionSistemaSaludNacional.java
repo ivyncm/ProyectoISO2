@@ -13,12 +13,12 @@ import dominio.controller.ControllerException;
 import dominio.controller.GestorRepartoVacunas;
 
 public class PantallaGestionSistemaSaludNacional {
+	private static final String noValido = "Opción no válida\n";
 	public static void main(String[] args) throws Exception {
 		menu();
 	}
 
 	public static void menu() throws Exception {
-		String noValido = "Opción no válida\n";
 		Scanner teclado = new Scanner(System.in);
 		int op1 = 0;
 		System.out.println("Bienvenido al Sistema de Salud Nacional\n"
@@ -55,7 +55,6 @@ public class PantallaGestionSistemaSaludNacional {
 	
 	public static void altaNuevoLote(GestorRepartoVacunas gestor) throws ControllerException {
 		Scanner teclado = new Scanner(System.in);
-		String noValido = "Opción no válida\n";
 		String tipo = null;
 		int op2;
 		do {
@@ -91,7 +90,6 @@ public class PantallaGestionSistemaSaludNacional {
 	
 	public static void calcularReparto(GestorRepartoVacunas gestor) throws DAOException, ControllerException {
 		Scanner teclado = new Scanner(System.in);
-		String noValido = "Opción no válida\n";
 		LoteVacunas lote = null;
 		int op2;
 		List<LoteVacunas> lotes = gestor.imprimirLotes();
