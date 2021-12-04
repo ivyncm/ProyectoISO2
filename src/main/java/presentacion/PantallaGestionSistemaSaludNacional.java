@@ -13,7 +13,8 @@ import dominio.controller.ControllerException;
 import dominio.controller.GestorRepartoVacunas;
 
 public class PantallaGestionSistemaSaludNacional {
-	private static final String NOVALIDO = "Opción no válida\n";
+	final static String[] cadenaGrupo = {"grupo de prioridad", "Anciano", "Adulto", "Joven"};
+	final static String[] cadenaTipo = {"tipo de vacuna", "Pfizer", "Moderna", "Astrazeneca"};
 	public static void main(String[] args) throws Exception {
 		menu();
 	}
@@ -46,7 +47,7 @@ public class PantallaGestionSistemaSaludNacional {
 				System.out.println("Sesión cerrada\n");
 				break;
 			default:
-				System.out.println(NOVALIDO);
+				System.out.println(auxiliares.noValida);
 				break;
 			}
 		} while (op1 < 1 || op1 > 4);
@@ -55,30 +56,7 @@ public class PantallaGestionSistemaSaludNacional {
 	
 	public static void altaNuevoLote(GestorRepartoVacunas gestor) throws ControllerException {
 		Scanner teclado = new Scanner(System.in);
-		String tipo = null;
-		int op2;
-		do {
-			System.out.println("Introduce el tipo de vacuna:\n"
-					+ "1 - Pfizer\n"
-					+ "2 - Moderna\n"
-					+ "3 - Astrazeneca");
-			op2 = teclado.nextInt();
-			switch (op2) {
-			case 1:
-				tipo = "Pfizer";
-				break;
-			case 2:
-				tipo = "Moderna";
-				break;
-			case 3:
-				tipo = "Astrazeneca";
-				break;
-			default:
-				System.out.println(NOVALIDO);
-				break;
-			}
-		} while (op2 < 1 || op2 > 3);
-
+		String tipo = auxiliares.menu3Cadenas(cadenaTipo);
 		System.out.println("Introduce la cantidad:");
 		int cantidad = teclado.nextInt();
 		
@@ -104,28 +82,7 @@ public class PantallaGestionSistemaSaludNacional {
 				System.out.println("Lote seleccionado" + lote.toString());
 			}
 		} while (op2<1 || op2>lotes.size());
-		String prioridad = null;
-		do {
-			System.out.println("Introduce el grupo de prioridad:\n"
-					+ "1 - Joven\n"
-					+ "2 - Adulto\n"
-					+ "3 - Anciano");
-			op2 = teclado.nextInt();
-			switch (op2) {
-			case 1:
-				prioridad = "Joven";
-				break;
-			case 2:
-				prioridad = "Adulto";
-				break;
-			case 3:
-				prioridad = "Anciano";
-				break;
-			default:
-				System.out.println(NOVALIDO);
-				break;
-			}
-		} while (op2 < 1 || op2 > 3);
+		String prioridad = auxiliares.menu3Cadenas(cadenaGrupo);
 		List<EntregaVacunas> entregas = gestor.calcularEntregasRegion(lote, prioridad);
 		for(int i = 0; i<entregas.size(); i++){
 			System.out.println("Entrega " + (i+1) + entregas.get(i).toString());
