@@ -60,7 +60,7 @@ public class PantallaConsultaEstadisticas {
 				seguir = false;
 				break;
 			default:
-				System.out.println("Opción no válida\n");
+				System.out.println(auxiliares.noValida);
 				break;
 			}
 
@@ -111,7 +111,7 @@ public class PantallaConsultaEstadisticas {
 				seguir = false;
 				break;
 			default:
-				System.out.println("Opción no válida\n");
+				System.out.println(auxiliares.noValida);
 				break;
 			}
 
