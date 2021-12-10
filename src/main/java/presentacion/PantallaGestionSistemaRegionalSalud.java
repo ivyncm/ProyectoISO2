@@ -11,7 +11,7 @@ public class PantallaGestionSistemaRegionalSalud {
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("Bienvenido al Sistema de Salud Regional\n");
-		String region = auxiliares.Region();
+		String region = Auxiliares.Region();
 		menu(region);
 	}
 
@@ -34,7 +34,7 @@ public class PantallaGestionSistemaRegionalSalud {
 				fecha = LocalDate.now();
 				System.out.println("Introduce la cantidad:");
 				int cantidad = teclado.nextInt();
-				grupo = auxiliares.menu3Cadenas(auxiliares.cadenaGrupo);
+				grupo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
 				vacunacion = new GestorVacunacion();
 				vacunacion.altaEntregaVacunas(fecha, cantidad, grupo, region);
 				break;
@@ -42,8 +42,8 @@ public class PantallaGestionSistemaRegionalSalud {
 				vacunacion = new GestorVacunacion();
 				
 				fecha = LocalDate.now();
-				tipo = auxiliares.menu3Cadenas(auxiliares.cadenaGrupo);
-				boolean segDosis = auxiliares.segDosis();
+				tipo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
+				boolean segDosis = Auxiliares.segDosis();
 				
 				Paciente paciente = DatosPaciente(region);
 
@@ -57,7 +57,7 @@ public class PantallaGestionSistemaRegionalSalud {
 				System.out.println("Sesión cerrada\n");
 				break;
 			default:
-				System.out.println(auxiliares.noValida);
+				System.out.println(Auxiliares.noValida);
 				break;
 			}
 		} while (op1 < 1 || op1 > 4);
@@ -69,21 +69,21 @@ public class PantallaGestionSistemaRegionalSalud {
 		do {
 			System.out.println("Introduce el DNI del paciente:");
 			dni = teclado.next();
-		}while(auxiliares.dniValido(dni));
+		}while(Auxiliares.dniValido(dni));
 		do {
 			System.out.println("Introduce el nombre del paciente:");
 			nombre = teclado.next();
-		}while(auxiliares.soloLetras(nombre));
+		}while(Auxiliares.soloLetras(nombre));
 		do {
 			System.out.println("Introduce el primer apellido del paciente:");
 			apellido1 = teclado.next();
-		}while(auxiliares.soloLetras(apellido1));
+		}while(Auxiliares.soloLetras(apellido1));
 		do {
 			System.out.println("Introduce el segundo apellido del paciente:");
 			apellido2 = teclado.next();
-		}while(auxiliares.soloLetras(apellido2));
+		}while(Auxiliares.soloLetras(apellido2));
 		String apellidos = apellido1 + " " + apellido2;
-		grupo = auxiliares.menu3Cadenas(auxiliares.cadenaGrupo);
+		grupo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
 		
 		Paciente paciente = new Paciente(dni, nombre, apellidos, grupo, region);
 		return paciente;

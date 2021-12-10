@@ -45,7 +45,7 @@ public class PantallaGestionSistemaSaludNacional {
 				System.out.println("Sesión cerrada\n");
 				break;
 			default:
-				System.out.println(auxiliares.noValida);
+				System.out.println(Auxiliares.noValida);
 				break;
 			}
 		} while (op1 < 1 || op1 > 4);
@@ -54,7 +54,7 @@ public class PantallaGestionSistemaSaludNacional {
 	
 	public static void altaNuevoLote(GestorRepartoVacunas gestor) throws ControllerException {
 		Scanner teclado = new Scanner(System.in);
-		String tipo = auxiliares.menu3Cadenas(auxiliares.cadenaTipo);
+		String tipo = Auxiliares.menu3Cadenas(Auxiliares.cadenaTipo);
 		System.out.println("Introduce la cantidad:");
 		int cantidad = teclado.nextInt();
 		
@@ -80,7 +80,7 @@ public class PantallaGestionSistemaSaludNacional {
 				System.out.println("Lote seleccionado" + lote.toString());
 			}
 		} while (op2<1 || op2>lotes.size());
-		String prioridad = auxiliares.menu3Cadenas(auxiliares.cadenaGrupo);
+		String prioridad = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
 		List<EntregaVacunas> entregas = gestor.calcularEntregasRegion(lote, prioridad);
 		for(int i = 0; i<entregas.size(); i++){
 			System.out.println("Entrega " + (i+1) + entregas.get(i).toString());
