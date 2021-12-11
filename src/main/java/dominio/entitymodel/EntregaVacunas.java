@@ -19,7 +19,7 @@ public class EntregaVacunas {
 		setCantidad(cantidad);
 		setRegion(region);
 		try {
-			entregaDao = new EntregaDAO();
+			setEntregaDao(new EntregaDAO());
 		} catch (Exception ex) {
 			throw new DAOException("Error creando objeto EntregaDAO...", ex);
 		}
