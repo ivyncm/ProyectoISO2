@@ -6,7 +6,6 @@ import java.util.*;
 import persistencia.*;
 
 public class LoteVacunas {
-	Collection<EntregaVacunas> entregas;
 	TipoVacuna tipo;
 	private LoteVacunasDAO loteVacunasDao;
 	private String id;
@@ -19,21 +18,21 @@ public class LoteVacunas {
 		setFecha(fecha);
 		setCantidad(cantidad);
 		setFarmaceutica(farmaceutica);
-		tipo = new TipoVacuna(farmaceutica);
-		loteVacunasDao = new LoteVacunasDAO();
+		setTipo(new TipoVacuna(farmaceutica));
+		setLoteVacunasDao(new LoteVacunasDAO());
 	}
 	
 	@Override
 	public String toString() {
 		return ": cantidad = " + cantidad + " -- Tipo de vacuna = " + farmaceutica;
 	}
+	public TipoVacuna getTipo() {
+		return this.tipo;	
+	}
+	public void setTipo(TipoVacuna tipoVacuna) {
+		this.tipo = tipoVacuna;	
+	}
 
-	public Collection<EntregaVacunas> getEntregas() {
-		return entregas;
-	}
-	public void setEntregas(Collection<EntregaVacunas> entregas) {
-		this.entregas = entregas;
-	}
 	public LoteVacunasDAO getLoteVacunasDao() {
 		return loteVacunasDao;
 	}
