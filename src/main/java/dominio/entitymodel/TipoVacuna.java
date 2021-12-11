@@ -1,10 +1,11 @@
 package dominio.entitymodel;
 
+import java.time.LocalDate;
 
 public class TipoVacuna{
 	private String nombre;
 	private String farmaceutica;
-	private String fechaAprobacion;
+	private LocalDate fechaAprobacion;
 	
 	public TipoVacuna(String farmaceutica) {
 		this.farmaceutica = farmaceutica;
@@ -18,10 +19,10 @@ public class TipoVacuna{
 	public void setFarmaceutica(String farmaceutica) {
 		this.farmaceutica = farmaceutica;
 	}
-	public String getFechaAprobacion() {
+	public LocalDate getFechaAprobacion() {
 		return fechaAprobacion;
 	}
-	public void setFechaAprobacion(String fechaAprobacion) {
+	public void setFechaAprobacion(LocalDate fechaAprobacion) {
 		this.fechaAprobacion = fechaAprobacion;
 	}
 	public void setNombre(String nombre) {
