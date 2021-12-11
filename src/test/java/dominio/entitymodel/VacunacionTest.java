@@ -30,7 +30,19 @@ public class VacunacionTest {
 		
 		Vacunacion vacuna = new Vacunacion(tipoVacuna,fecha,isSegundaDosis,paciente);
         Paciente expected = paciente;
-        Assert.assertEquals(expected, vacuna.getPaciente());	}
+        Assert.assertEquals(expected, vacuna.getPaciente());	
+	}
+	@Test
+	public void testGetVacunacionDao() {
+		String dni = "04863879Q";
+		String tipoVacuna = "Pfizer";
+		LocalDate fecha = LocalDate.now();
+		boolean isSegundaDosis = true;
+		Paciente paciente = new Paciente(dni, "Jesus", "Gacia", "Joven", "Murcia");
+		
+		Vacunacion vacuna = new Vacunacion(tipoVacuna,fecha,isSegundaDosis,paciente);
+        Assert.assertNotNull(vacuna.getVacunacionDao());	
+	}
 
 	@Test
 	public void testGetVacuna() {

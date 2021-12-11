@@ -31,11 +31,17 @@ public class LoteVacunasTest {
         Assert.assertEquals(expected, lote.getTipo().getFarmaceutica());
 	}
 
-
-	/*@Test
-	public void testGetLoteVacunasDao() {
-		throw new RuntimeException("not yet implemented");
-	}*/
+	
+	@Test
+	public void testGetLoteVacunasDao() throws DAOException {
+		String id = "asdcass";
+		LocalDate fecha = LocalDate.now(); 
+		int cantidad = 20;
+		String farmaceutica = "Pfizer";
+		LoteVacunas lote = new LoteVacunas(id,fecha,cantidad,farmaceutica);
+		String expected = farmaceutica;
+        Assert.assertNotNull(lote.getLoteVacunasDao());
+	}
 
 
 	@Test

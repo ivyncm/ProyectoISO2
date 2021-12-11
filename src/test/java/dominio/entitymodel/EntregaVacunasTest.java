@@ -53,7 +53,7 @@ public class EntregaVacunasTest {
         String expected = lote; 
         Assert.assertEquals(expected, entrega.getLote());
 	}
-	/*@Test
+	@Test
 	public void testGetEntregaDao() throws DAOException {
 		String grupoprioridad = "Joven";
 		String lote = "ascd21";
@@ -61,9 +61,8 @@ public class EntregaVacunasTest {
 		int cantidad = 50;
 		String region = "Murcia";
 		EntregaVacunas entrega = new EntregaVacunas(grupoprioridad,lote,fecha,cantidad,region);
-        String expected = region; 
-        Assert.assertEquals(expected, entrega.getEntregaDao());
-	}*/
+        Assert.assertNotNull(entrega.getEntregaDao());
+	}
 	@Test
 	public void testGetFecha() throws DAOException {
 		String grupoprioridad = "Joven";

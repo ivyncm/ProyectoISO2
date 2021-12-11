@@ -18,7 +18,7 @@ public class Vacunacion {
 		setFecha(fecha);
 		setSegundaDosis(segDosis);
 		setPaciente(paciente);
-		vacunacionDao = new VacunacionDAO();
+		setVacunacionDao(new VacunacionDAO());
 	}
 	public Vacunacion(String dni){
 		setdni(dni);

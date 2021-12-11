@@ -1,7 +1,6 @@
 package dominio.entitymodel;
 
 import java.time.LocalDate;
-import java.util.*;
 
 import persistencia.*;
 
