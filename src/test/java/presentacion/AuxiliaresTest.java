@@ -59,7 +59,7 @@ public class AuxiliaresTest {
         String expected="Opcion no valida\n";
 		Assert.assertEquals(expected, segDosis);
 	}
-
+ 
 	@Test
 	public void testDniValido() {
 		String dni="09086774F";
