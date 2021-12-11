@@ -87,7 +87,7 @@ public class Auxiliares {
 	}
 	
 	public static String menu3Cadenas(String[] cadenas) {
-        String grupo = null;
+        String palabra = null;
         int op;
         Scanner teclado = new Scanner(System.in);
         do {
@@ -96,20 +96,20 @@ public class Auxiliares {
             op = teclado.nextInt();
             switch (op) {
             case 1:
-                grupo = cadenas[1];
+                palabra = cadenas[1];
                 break;
             case 2:
-                grupo = cadenas[2];
+                palabra = cadenas[2];
                 break;
             case 3:
-                grupo = cadenas[3];
+                palabra = cadenas[3];
                 break;
             default:
                 System.out.println(noValida);
                 break;
             }
         } while (op < 1 || op > 3);
-        return grupo;
+        return palabra;
     }
 
 	
