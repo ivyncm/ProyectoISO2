@@ -14,6 +14,7 @@ public class TipoVacunaTest {
 		LocalDate fechaAprobacion = LocalDate.now();
 
 		TipoVacuna vacuna = new TipoVacuna(farmaceutica);
+		vacuna.setNombre(nombre);
         String expected = nombre;
         Assert.assertEquals(expected, vacuna.getNombre());
 	}
@@ -36,6 +37,7 @@ public class TipoVacunaTest {
 		LocalDate fechaAprobacion = LocalDate.now();
 
 		TipoVacuna vacuna = new TipoVacuna(farmaceutica);
+		vacuna.setFechaAprobacion(fechaAprobacion);
         LocalDate expected = fechaAprobacion;
         Assert.assertEquals(expected, vacuna.getFechaAprobacion());
 	}
