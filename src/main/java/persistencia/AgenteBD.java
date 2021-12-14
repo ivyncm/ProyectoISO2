@@ -89,14 +89,14 @@ public class AgenteBD {
 	 * 
 	 * @param sql
 	 */
+	//INSERT,UPDATE,DELETE
 	public static int iud(String sql) throws DAOException {
 		conectarBD();
 		try (PreparedStatement stat = conn.prepareStatement(sql)){
 			int res = stat.executeUpdate();
-			desconectarBD();
 			return res;
 		}catch (SQLException ex) {
-			throw new DAOException("Error en delete SQL", ex);
+			throw new DAOException("Error en sentencia SQL", ex);
 		}finally {
 			desconectarBD();
 		}
