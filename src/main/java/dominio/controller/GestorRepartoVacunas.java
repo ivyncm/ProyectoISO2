@@ -21,7 +21,7 @@ public class GestorRepartoVacunas {
 		LoteVacunas lote;
 		try {
 			lote = new LoteVacunas(id, fecha, cantidad, tipo);
-		lote.getLoteVacunasDao().insertarLoteVacunas(lote);
+			lote.getLoteVacunasDao().insertarLoteVacunas(lote);
 		} catch (Exception e) {
 			throw new ControllerException("Error al dar de alta nuevo lote", e);
 		}
