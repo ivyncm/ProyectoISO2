@@ -36,9 +36,5 @@ public class GestorVacunacion {
 		vacunacion.getVacunacionDao().insertarVacunacion(vacunacion);
 	}
 
-	public void actualizarVacunacion(String dni) throws DAOException{
-		Vacunacion vacunacion = new Vacunacion(dni);
-		vacunacion.getVacunacionDao().update(vacunacion);
-	}
 
 }
