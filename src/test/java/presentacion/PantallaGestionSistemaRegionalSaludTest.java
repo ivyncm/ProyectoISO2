@@ -33,7 +33,8 @@ public class PantallaGestionSistemaRegionalSaludTest {
 
 	    String[] lines = baos.toString().split(System.lineSeparator());
 	    String exit = "Sesión cerrada\n";
-	    Assert.assertEquals(exit, exit);	}
+	    Assert.assertEquals(exit, exit);	
+	    }
 	
 	@Test
 	public void testNuevaEntrega() throws Exception {
@@ -51,7 +52,8 @@ public class PantallaGestionSistemaRegionalSaludTest {
 
 	    String[] lines = baos.toString().split(System.lineSeparator());
 	    String exit = "Sesión cerrada\n";
-	    Assert.assertEquals(exit, );	}
+	    Assert.assertEquals(exit, expected);	
+	    }
 	
 	@Test
 	public void testRegVacunacion() throws Exception {
@@ -69,7 +71,8 @@ public class PantallaGestionSistemaRegionalSaludTest {
 
 	    String[] lines = baos.toString().split(System.lineSeparator());
 	    String exit = "Sesión cerrada\n";
-	    Assert.assertEquals(exit, );	}
+	    Assert.assertEquals(exit, expected);	
+	    }
 	
 	@Test
 	public void testEstadisticas() throws Exception {
@@ -87,7 +90,7 @@ public class PantallaGestionSistemaRegionalSaludTest {
 
 	    String[] lines = baos.toString().split(System.lineSeparator());
 	    String exit = "Sesión cerrada\n";
-	    Assert.assertEquals(exit, );	}
+	    Assert.assertEquals(exit, expected);	}
 
 	@Test
 	public void testDatosPaciente() {

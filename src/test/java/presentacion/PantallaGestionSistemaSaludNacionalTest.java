@@ -52,7 +52,8 @@ public class PantallaGestionSistemaSaludNacionalTest {
 		System.setIn(in);
 	    PantallaGestionSistemaSaludNacional.calcularReparto(new GestorRepartoVacunas());//Llamada a método
 	    System.setIn(sysInBackup);
-	    Assert.assertTrue(true);
+	    Assert.assertTrue(true); 
+	    
 	}
 
 }
