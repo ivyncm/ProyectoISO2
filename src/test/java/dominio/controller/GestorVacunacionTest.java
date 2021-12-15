@@ -1,13 +1,13 @@
 package dominio.controller;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.time.LocalDate;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import dominio.entitymodel.EntregaVacunas;
 import dominio.entitymodel.Paciente;
+import dominio.entitymodel.Vacunacion;
 import persistencia.DAOException;
 
 public class GestorVacunacionTest {
@@ -18,16 +18,13 @@ public class GestorVacunacionTest {
 		int cantidad = 100;
 		String prioridad = "Ancianos";
 		String region = "Cantabria";
+		EntregaVacunas expected = new EntregaVacunas(prioridad, fecha, cantidad, region);
 		GestorVacunacion vacunacion = new GestorVacunacion();
-		vacunacion.altaEntregaVacunas(fecha, cantidad, prioridad, region);
+		vacunacion.altaEntregaVacunas(expected);
 		
-		String expected = "";
-	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	    PrintStream printStream = new PrintStream(baos);
-	    System.setOut(printStream);
-	    String[] lines = baos.toString().split(System.lineSeparator());
-	    String actual = lines[lines.length-1];
-		Assert.assertEquals(expected, actual);
+		EntregaVacunas actual = expected.getEntregaDao().get(expected.getLote());
+
+		Assert.assertTrue(expected.equals(actual));
 	}
 
 	@Test
@@ -36,17 +33,12 @@ public class GestorVacunacionTest {
 		String tipo = "Pfizer";
 		boolean segDosis = false;
 		Paciente paciente = new Paciente("02440456Q", "Federico", "Moreno Martinez", "Anciano", "Extremadura");
-		GestorVacunacion vacunacion = new GestorVacunacion();
-		vacunacion.registrarVacunacion(fecha, tipo, segDosis, paciente);
-		
-		String expected = "";
-	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	    PrintStream printStream = new PrintStream(baos);
-	    System.setOut(printStream);
-	    String[] lines = baos.toString().split(System.lineSeparator());
-	    String actual = lines[lines.length-1];
-		Assert.assertEquals(expected, actual);
+		GestorVacunacion GestorVacunacion = new GestorVacunacion();
+		Vacunacion expected = new Vacunacion(tipo, fecha, segDosis, paciente);
+		GestorVacunacion.registrarVacunacion(expected);
+
+		Vacunacion actual = expected.getVacunacionDao().get(expected.getPaciente().getDni());
+
+		Assert.assertTrue(expected.equals(actual));
 	}
-
-
 }
