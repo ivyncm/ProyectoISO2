@@ -52,7 +52,7 @@ public class PantallaGestionSistemaSaludNacional {
 		teclado.close();
 	}
 	
-	public static void altaNuevoLote(GestorRepartoVacunas gestor) throws ControllerException {
+	public static void altaNuevoLote(GestorRepartoVacunas gestor) throws ControllerException, DAOException {
 		Scanner teclado = new Scanner(System.in);
 		String tipo = Auxiliares.menu3Cadenas(Auxiliares.cadenaTipo);
 		System.out.println("Introduce la cantidad:");
@@ -60,8 +60,9 @@ public class PantallaGestionSistemaSaludNacional {
 		
 
 		LocalDate fecha = LocalDate.now();
+		LoteVacunas lote = new LoteVacunas(fecha, cantidad, tipo);
 
-		gestor.altaNuevoLoteVacunas(fecha, tipo, cantidad);
+		gestor.altaNuevoLoteVacunas(lote);
 	}
 	
 	public static void calcularReparto(GestorRepartoVacunas gestor) throws DAOException, ControllerException {

@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 import dominio.controller.GestorVacunacion;
+import dominio.entitymodel.EntregaVacunas;
 import dominio.entitymodel.Paciente;
+import dominio.entitymodel.Vacunacion;
 
 
 public class PantallaGestionSistemaRegionalSalud {
@@ -18,7 +20,7 @@ public class PantallaGestionSistemaRegionalSalud {
 	public static void menu(String region) throws Exception {
 		Scanner teclado = new Scanner(System.in);
 		LocalDate fecha;
-		GestorVacunacion vacunacion;
+		GestorVacunacion GestorVacunacion = new GestorVacunacion();;
 		int op1 = 0;
 		String tipo = null;
 		String grupo = null;
@@ -35,11 +37,10 @@ public class PantallaGestionSistemaRegionalSalud {
 				System.out.println("Introduce la cantidad:");
 				int cantidad = teclado.nextInt();
 				grupo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
-				vacunacion = new GestorVacunacion();
-				vacunacion.altaEntregaVacunas(fecha, cantidad, grupo, region);
+				EntregaVacunas entrega = new EntregaVacunas(grupo, fecha, cantidad, region);
+				GestorVacunacion.altaEntregaVacunas(entrega);
 				break;
 			case 2:
-				vacunacion = new GestorVacunacion();
 				
 				fecha = LocalDate.now();
 				tipo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
@@ -47,7 +48,8 @@ public class PantallaGestionSistemaRegionalSalud {
 				
 				Paciente paciente = DatosPaciente(region);
 
-				vacunacion.registrarVacunacion(fecha, tipo, segDosis, paciente);
+				Vacunacion vacunacion = new Vacunacion(tipo, fecha, segDosis, paciente);
+				GestorVacunacion.registrarVacunacion(vacunacion);
 
 				break;
 			case 3:
