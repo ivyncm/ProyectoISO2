@@ -22,8 +22,19 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 
 	@Override
 	public LoteVacunas get(String id) throws DAOException  {
-		
-		return null;
+		AgenteBD.conectarBD();
+		ResultSet rs = null;
+		LoteVacunas LoteVacunas = null;
+		try {
+			rs = AgenteBD.select(GETONE + "'" + id + "'");
+			while (rs.next()) {
+				LoteVacunas = (convertir(rs));
+			}
+		} catch (Exception ex) {
+			throw new DAOException("Error en SQL", ex);
+		}
+		AgenteBD.desconectarBD();
+		return LoteVacunas;
 	}
 
 	public List<LoteVacunas> seleccionarLote() throws DAOException  {

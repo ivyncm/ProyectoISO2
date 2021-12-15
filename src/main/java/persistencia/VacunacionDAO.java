@@ -5,40 +5,35 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import dominio.entitymodel.LoteVacunas;
 import dominio.entitymodel.Paciente;
 import dominio.entitymodel.Vacunacion;
 
 public class VacunacionDAO implements DAO<Vacunacion> {
 	static final String INSERT = "INSERT INTO vacunacion(fecha, isSegundaDosis, nombre_tipovacuna, dni_Paciente, nombre, apellidos, region, grupoPrioridad) VALUES(";
 	static final String UPDATE = "UPDATE vacunacion SET ";
-	static final String DELETE = "DELETE FROM vacunacion WHERE dniPaciente=";
+	static final String DELETE = "DELETE FROM vacunacion WHERE dni_Paciente=";
 	static final String GETALL = "SELECT * FROM vacunacion";
 	static final String GETREGION = "SELECT * FROM vacunacion WHERE region=";
-	static final String GETONE = "SELECT * FROM vacunacion WHERE dniPaciente=";
-	static final String WHEREID = "WHERE dniPaciente=";
+	static final String GETONE = "SELECT * FROM vacunacion WHERE dni_Paciente=";
+	static final String WHEREID = "WHERE dni_Paciente=";
 
 
 	@Override
 	public Vacunacion get(String dni) throws DAOException {
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
+		Vacunacion vacunacion = null;
 		try {
 			rs = AgenteBD.select(GETONE + "'" + dni + "'");
-			String tipoVacuna = rs.getString(3);
-			Date fecha = rs.getDate(1);
-			LocalDate fecha1 = fecha.toLocalDate();
-			Boolean segDosis = rs.getBoolean(2);
-			String nombre = rs.getString(5);
-			String apellidos = rs.getString(6);
-			String region = rs.getString(7);
-			String grupo = rs.getString(8);
-			Paciente paciente = new Paciente(dni, nombre, apellidos, grupo, region);
-			Vacunacion vacunacion = new Vacunacion(tipoVacuna, fecha1, segDosis, paciente);
-
-			return vacunacion;
-		} catch (SQLException ex) {
-			throw new DAOException("Error SQL", ex);
+			while (rs.next()) {
+				vacunacion = convertir(rs);
+			}
+		} catch (Exception ex) {
+			throw new DAOException("Error en SQL", ex);
 		}
+		AgenteBD.desconectarBD();
+		return vacunacion;
 	}
 
 	@Override

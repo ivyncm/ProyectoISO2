@@ -23,21 +23,17 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	public EntregaVacunas get(String id) throws DAOException{
 		AgenteBD.conectarBD();
 		ResultSet rs = null;
+		EntregaVacunas entrega = null;
 		try {
 			rs = AgenteBD.select(GETONE + "'" + id + "'");
-			String region = rs.getString(4);
-			String grupoPrior = rs.getString(5);
-			String lote = rs.getString(3);
-			Date fecha = rs.getDate(1);
-			LocalDate fecha1 = fecha.toLocalDate();
-			int cantidad = rs.getInt(2);
-
-			EntregaVacunas entrega = new EntregaVacunas(grupoPrior, lote, fecha1, cantidad, region);
-
-			return entrega;
-		} catch (SQLException ex) {
-			throw new DAOException("Error SQL", ex);
+			while (rs.next()) {
+				entrega = (convertir(rs));
+			}
+		} catch (Exception ex) {
+			throw new DAOException("Error en SQL", ex);
 		}
+		AgenteBD.desconectarBD();
+		return entrega;
 	}
 
 	@Override
