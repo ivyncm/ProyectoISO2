@@ -1,6 +1,7 @@
 package dominio.entitymodel;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import persistencia.*;
 
@@ -60,4 +61,19 @@ public class Vacunacion {
 	public void setSegundaDosis(boolean isSegundaDosis) {
 		this.isSegundaDosis = isSegundaDosis;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vacunacion other = (Vacunacion) obj;
+		return Objects.equals(dni, other.dni) && Objects.equals(fecha, other.fecha)
+				&& isSegundaDosis == other.isSegundaDosis && Objects.equals(paciente, other.paciente)
+				&& Objects.equals(tipoVacuna, other.tipoVacuna);
+	}
+	
 }

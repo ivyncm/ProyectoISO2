@@ -1,6 +1,8 @@
 package dominio.entitymodel;
 
+import java.security.SecureRandom;
 import java.time.LocalDate;
+import java.util.Objects;
 
 import persistencia.*;
 
@@ -14,6 +16,14 @@ public class LoteVacunas {
 	
 	public LoteVacunas(String id, LocalDate fecha, int cantidad, String farmaceutica) throws DAOException {
 		setId(id);
+		setFecha(fecha);
+		setCantidad(cantidad);
+		setFarmaceutica(farmaceutica);
+		setTipo(new TipoVacuna(farmaceutica));
+		setLoteVacunasDao(new LoteVacunasDAO());
+	}
+	public LoteVacunas(LocalDate fecha, int cantidad, String farmaceutica) throws DAOException {
+		setId(cadenaAleatoria());
 		setFecha(fecha);
 		setCantidad(cantidad);
 		setFarmaceutica(farmaceutica);
@@ -61,5 +71,37 @@ public class LoteVacunas {
 	}
 	public void setFarmaceutica(String farmaceutica) {
 		this.farmaceutica = farmaceutica;
+	}
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LoteVacunas other = (LoteVacunas) obj;
+		return cantidad == other.cantidad && Objects.equals(farmaceutica, other.farmaceutica)
+				&& Objects.equals(fecha, other.fecha) && Objects.equals(id, other.id);
+	}
+	public static String cadenaAleatoria() {
+		int length = 5;
+		String charLower = "abcdefghijklmnopqrstuvwxyz";
+		String charUpper = charLower.toUpperCase();
+		String number = "0123456789";
+		String dataForRandomString = charLower + charUpper + number;
+		SecureRandom random = new SecureRandom();
+		if (length < 1)
+			throw new IllegalArgumentException();
+		StringBuilder sb = new StringBuilder(length);
+		for (int i = 0; i < length; i++) {
+			int rndCharAt = random.nextInt(dataForRandomString.length());
+			char rndChar = dataForRandomString.charAt(rndCharAt);
+
+			sb.append(rndChar);
+		}
+		return sb.toString();
 	}
 }

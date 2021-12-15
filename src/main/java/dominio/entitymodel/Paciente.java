@@ -1,5 +1,7 @@
 package dominio.entitymodel;
 
+import java.util.Objects;
+
 public class Paciente {
 	String region;
 	String grupo;
@@ -44,4 +46,19 @@ public class Paciente {
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Paciente other = (Paciente) obj;
+		return Objects.equals(apellidos, other.apellidos) && Objects.equals(dni, other.dni)
+				&& Objects.equals(grupo, other.grupo) && Objects.equals(nombre, other.nombre)
+				&& Objects.equals(region, other.region);
+	}
+	
 }
