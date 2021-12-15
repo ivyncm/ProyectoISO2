@@ -15,11 +15,11 @@ public class GestorVacunacion {
 	 * @param prioridad
 	 * @throws DAOException 
 	 */
-	public void altaEntregaVacunas(LocalDate fecha, int cantidad, String prioridad, String region) throws DAOException{
-		String lote = GestorRepartoVacunas.cadenaAleatoria();
-		EntregaVacunas vacunas = new EntregaVacunas(prioridad, lote, fecha, cantidad, region);
-		vacunas.getEntregaDao().insertarEntrega(vacunas);
+	public void altaEntregaVacunas(EntregaVacunas entrega) throws DAOException{
+		entrega.getEntregaDao().insertarEntrega(entrega);
 	}
+	
+	
 
 	/**
 	 * 
@@ -31,8 +31,7 @@ public class GestorVacunacion {
 	 * @throws DAOException 
 	 * @throws Exception
 	 */
-	public void registrarVacunacion(LocalDate fecha, String tipo, boolean segDosis, Paciente paciente) throws DAOException{
-		Vacunacion vacunacion = new Vacunacion(tipo, fecha, segDosis, paciente);
+	public void registrarVacunacion(Vacunacion vacunacion) throws DAOException{
 		vacunacion.getVacunacionDao().insertarVacunacion(vacunacion);
 	}
 

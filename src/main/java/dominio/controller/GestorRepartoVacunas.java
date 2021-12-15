@@ -9,6 +9,7 @@ import persistencia.DAOException;
 import persistencia.LoteVacunasDAO;
 public class GestorRepartoVacunas {
 
+
 	/**
 	 * 
 	 * @param fecha
@@ -16,11 +17,8 @@ public class GestorRepartoVacunas {
 	 * @param cantidad
 	 * @throws Exception
 	 */
-	public void altaNuevoLoteVacunas(LocalDate fecha, String tipo, int cantidad) throws ControllerException {
-		String id = cadenaAleatoria();
-		LoteVacunas lote;
+	public void altaNuevoLoteVacunas(LoteVacunas lote) throws ControllerException {
 		try {
-			lote = new LoteVacunas(id, fecha, cantidad, tipo);
 			lote.getLoteVacunasDao().insertarLoteVacunas(lote);
 		} catch (Exception e) {
 			throw new ControllerException("Error al dar de alta nuevo lote", e);
@@ -63,23 +61,6 @@ public class GestorRepartoVacunas {
 		
 	}
 
-	public static String cadenaAleatoria() {
-		int length = 5;
-		String charLower = "abcdefghijklmnopqrstuvwxyz";
-		String charUpper = charLower.toUpperCase();
-		String number = "0123456789";
-		String dataForRandomString = charLower + charUpper + number;
-		SecureRandom random = new SecureRandom();
-		if (length < 1)
-			throw new IllegalArgumentException();
-		StringBuilder sb = new StringBuilder(length);
-		for (int i = 0; i < length; i++) {
-			int rndCharAt = random.nextInt(dataForRandomString.length());
-			char rndChar = dataForRandomString.charAt(rndCharAt);
-
-			sb.append(rndChar);
-		}
-		return sb.toString();
-	}
+	
 	
 }
