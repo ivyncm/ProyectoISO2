@@ -16,7 +16,7 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	static final String DELETE = "DELETE FROM lote WHERE id=";
 	static final String GETALL = "SELECT * FROM lote";
 	static final String GETONE = "SELECT * FROM lote WHERE id=";
-	static final String WHEREID = "WHERE id=";
+	static final String WHEREID = " WHERE id=";
 
 	private AgenteBD agente;
 	
@@ -87,8 +87,8 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	public LoteVacunas update(LoteVacunas l) throws DAOException {
 		agente.conectarBD();
 		int i = 0;
-		i = agente.iud(UPDATE + "fecha=" + l.getFecha() + ",cantidad=" + l.getCantidad() + ",nombreTipoVacuna="
-				+ l.getFarmaceutica() + WHEREID + l.getId());
+		i = agente.iud(UPDATE + "fecha='" + l.getFecha() + "',cantidad=" + l.getCantidad() + ",nombre_TipoVacuna='"
+				+ l.getFarmaceutica() + "'" + WHEREID + "'" + l.getId() + "'");
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya actualizado.");
 		}
@@ -100,7 +100,7 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	public int delete(LoteVacunas l) throws DAOException {
 		agente.conectarBD();
 		int i = 0;
-		i = agente.iud(DELETE + l.getId());
+		i = agente.iud(DELETE + "'" + l.getId() + "'");
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya borrado.");
 		}
