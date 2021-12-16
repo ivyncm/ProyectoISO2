@@ -1,6 +1,7 @@
 package persistencia;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,75 +9,84 @@ import org.junit.Test;
 import dominio.entitymodel.EntregaVacunas;
 
 public class EntregaDAOTest {
-	EntregaDAO edao=new EntregaDAO();
 	
 	@Test
 	public void testGet() throws DAOException {
-		EntregaVacunas expected1 = null;
-		expected1.setGrupoPrioridad("Anciano");
-		expected1.setLote("23444FD");
-		expected1.setFecha(LocalDate.now());
-		expected1.setCantidad(100);
-		EntregaVacunas expected2;
+		EntregaVacunas expected = new EntregaVacunas("Anciano", "23444FD", LocalDate.now(), 100, "Murcia");
 		
-		expected2=edao.get("23444FD");
+		expected.getEntregaDao().insert(expected);
+		EntregaVacunas actual = expected.getEntregaDao().get(expected.getLote());
 		
-		Assert.assertEquals(expected1, expected2);
+		Assert.assertTrue(expected.equals(actual));
 	}
 
 	@Test
 	public void testInsert() throws DAOException {
 		EntregaVacunas entrega = new EntregaVacunas("Anciano", "124556AA", LocalDate.now(), 250, "Andalucia");
-		int expected;
-		try {
-			expected =edao.insert(entrega);
-		} catch (DAOException e) {
-			throw new DAOException("Error SQL");
-		}
-		Assert.assertNotEquals(0, expected);
+		int actual = entrega.getEntregaDao().insert(entrega);
+		int expected = 0;
+		Assert.assertNotEquals(expected, actual);
 	}
 
 	@Test
-	public void testUpdate() {
-		int i;
+	public void testUpdate() throws DAOException {
+		EntregaVacunas before = new EntregaVacunas("Joven", "23444FD", LocalDate.now(), 100, "Murcia");
+		before.getEntregaDao().insert(before);
+		
+		EntregaVacunas after = new EntregaVacunas("Anciano", "23444FD", LocalDate.now(), 120, "Murcia");
+		
+		after.getEntregaDao().update(after);
+		
+		EntregaVacunas actual = before.getEntregaDao().get(before.getLote());
+		
+		Assert.assertTrue(after.equals(actual));
 		
 	}
 	
-	/*Person person = new Person();
-	 
-	person.setUsername("zhangsan");
-	person.setPassword("123456");
-	person.setAge(40);
-
-	personDB.insert(person);
-
-	int maxId = this.getMaxId();
-
-	Person person2 = personDB.getById(maxId);
-
-	this.comparePersons(person, person2);
-	
-	personDB.removeById(maxId);
-*/
-
 	@Test
-	public void testDelete() {
-		throw new RuntimeException("not yet implemented");
+	public void testDelete() throws DAOException {
+		EntregaVacunas entrega = new EntregaVacunas("Joven", "22444AD", LocalDate.now(), 200, "Cantabria");
+		entrega.getEntregaDao().insert(entrega);
+		
+		int actual = entrega.getEntregaDao().delete(entrega);
+		int expected = 0;
+		Assert.assertNotEquals(expected, actual);
 	}
 
 	@Test
-	public void testInsertarEntrega() {
-		throw new RuntimeException("not yet implemented");
+	public void testInsertarEntrega() throws DAOException {
+		EntregaVacunas expected = new EntregaVacunas("Anciano", "124556AA", LocalDate.now(), 250, "Andalucia");
+		expected.getEntregaDao().insertarEntrega(expected);
+		
+		EntregaVacunas actual = expected.getEntregaDao().get(expected.getLote());
+		
+		Assert.assertTrue(expected.equals(actual));
 	}
 
 	@Test
-	public void testSeleccionarcantidadTotal() {
-		throw new RuntimeException("not yet implemented");
+	public void testSeleccionarcantidadTotal() throws DAOException {
+		EntregaVacunas expected = new EntregaVacunas("Anciano", "23444FD", LocalDate.now(), 100, "Murcia");
+		
+		expected.getEntregaDao().insert(expected);
+		
+		List<EntregaVacunas> actual = expected.getEntregaDao().seleccionarcantidadTotal();
+		
+		int cantidad = actual.get(actual.size()-1).getCantidad();
+		
+		Assert.assertEquals(cantidad, expected.getCantidad());
 	}
 
 	@Test
-	public void testSeleccionarEntregas() {
-		throw new RuntimeException("not yet implemented");
+	public void testSeleccionarEntregas() throws DAOException {
+		EntregaVacunas expected = new EntregaVacunas("Anciano", "23445XD", LocalDate.now(), 100, "Galicia");
+		
+		expected.getEntregaDao().insert(expected);
+		
+		List<EntregaVacunas> actual = expected.getEntregaDao().seleccionarEntregas("Galicia");
+		
+		String id = actual.get(actual.size()-1).getLote();
+		
+		Assert.assertEquals(id, expected.getLote());
 	}
 
 }
