@@ -17,60 +17,65 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	static final String GETONE = "SELECT * FROM entrega WHERE idLote=";
 	static final String GETALL = "SELECT * FROM entrega";
 	static final String WHEREID = "WHERE id=";
+	private AgenteBD agente;
 
+	public EntregaDAO() {
+		agente = new AgenteBD();
+	}
 
 	@Override
 	public EntregaVacunas get(String id) throws DAOException{
-		AgenteBD.conectarBD();
+		
+		agente.conectarBD();
 		ResultSet rs = null;
 		EntregaVacunas entrega = null;
 		try {
-			rs = AgenteBD.select(GETONE + "'" + id + "'");
+			rs = agente.select(GETONE + "'" + id + "'");
 			while (rs.next()) {
 				entrega = (convertir(rs));
 			}
 		} catch (Exception ex) {
 			throw new DAOException("Error en SQL", ex);
 		}
-		AgenteBD.desconectarBD();
+		agente.desconectarBD();
 		return entrega;
 	}
 
 	@Override
 	public int insert(EntregaVacunas e) throws DAOException {
-		AgenteBD.conectarBD();
+		agente.conectarBD();
 		int i = 0;
-		i = AgenteBD.iud(INSERT + "'" + e.getFecha() + "'" + "," + e.getCantidad() + "," + "'" + e.getLote() + "'"
+		i = agente.iud(INSERT + "'" + e.getFecha() + "'" + "," + e.getCantidad() + "," + "'" + e.getLote() + "'"
 				+ "," + "'" + e.getRegion() + "'" + "," + "'" + e.getGrupoPrioridad() + "'" + ")");
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya insertado.");
 		}
-		AgenteBD.desconectarBD();
+		agente.desconectarBD();
 		return i;
 	}
 
 	@Override
 	public EntregaVacunas update(EntregaVacunas e) throws DAOException {
-		AgenteBD.conectarBD();
+		agente.conectarBD();
 		int i = 0;
-		i = AgenteBD.iud(UPDATE + "region=" + e.getRegion() + ",grupoPrioridad=" + e.getGrupoPrioridad() + ",lote="
+		i = agente.iud(UPDATE + "region=" + e.getRegion() + ",grupoPrioridad=" + e.getGrupoPrioridad() + ",lote="
 				+ e.getLote() + ",fecha=" + e.getFecha() + ",cantidad=" + e.getCantidad() + WHEREID);
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya actualizado.");
 		}
-		AgenteBD.desconectarBD();
+		agente.desconectarBD();
 		return e;
 	}
 
 	@Override
 	public int delete(EntregaVacunas e) throws DAOException {
-		AgenteBD.conectarBD();
+		agente.conectarBD();
 		int i = 0;
-		i = AgenteBD.iud(DELETE);
+		i = agente.iud(DELETE);
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya borrado.");
 		}
-		AgenteBD.desconectarBD();
+		agente.desconectarBD();
 		return i;
 	}
 
@@ -95,11 +100,11 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	}
 
 	public List<EntregaVacunas> seleccionarcantidadTotal() throws DAOException {
-		AgenteBD.conectarBD();
+		agente.conectarBD();
 		ResultSet rs = null;
 		List<EntregaVacunas> entrega = new ArrayList<EntregaVacunas>();
 		try {
-			rs = AgenteBD.select(GETALL);
+			rs = agente.select(GETALL);
 			while (rs.next()) {
 				entrega.add(convertir(rs));
 			}
@@ -110,11 +115,11 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	}
 
 	public List<EntregaVacunas> seleccionarEntregas(String region) throws DAOException {
-		AgenteBD.conectarBD();
+		agente.conectarBD();
 		ResultSet rs = null;
 		List<EntregaVacunas> entrega = new ArrayList<EntregaVacunas>();
 		try {
-			rs = AgenteBD.select(GETREGION + "'" + region + "'");
+			rs = agente.select(GETREGION + "'" + region + "'");
 			while (rs.next()) {
 				entrega.add(convertir(rs));
 			}

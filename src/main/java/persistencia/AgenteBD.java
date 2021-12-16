@@ -3,21 +3,29 @@ package persistencia;
 import java.sql.*;
 
 public class AgenteBD {
-	protected static AgenteBD mInstancia = null;
-	protected static Connection conn;
+	private Connection conn = null;
 	private static String url = "jdbc:derby:directory:myDB";
 	private static String driver = "com.mysql.cj.jdbc.Driver";
 
-	public static void conectarBD() throws DAOException{
+	
+	public Connection getConn() {
+		return conn;
+	}
+
+	public void setConn(Connection conn) {
+		this.conn = conn;
+	}
+
+	public void conectarBD() throws DAOException{
 		try {
 			Class.forName(driver);
-			conn = DriverManager.getConnection(url);
+			setConn(DriverManager.getConnection(url));
 		} catch (ClassNotFoundException | SQLException ex) {
 			throw new DAOException("Error conectando...", ex);
 		}
 	}
 
-	public static void main(String[] args) throws DAOException{
+	public void main(String[] args) throws DAOException{
 		try {
 			crearBD();
 		} catch (DAOException ex) {
@@ -25,7 +33,7 @@ public class AgenteBD {
 		}
 	}
 
-	public static void crearBD() throws DAOException{
+	public void crearBD() throws DAOException{
 		String urlCreate = "jdbc:derby:directory:myDB;create=true";
 		try (Connection conn = DriverManager.getConnection(urlCreate)){
 			Class.forName(driver);
@@ -34,7 +42,7 @@ public class AgenteBD {
 			throw new DAOException("Error creando la base de datos...", ex);
 		}
 	}
-	public static void crearTablas() throws DAOException {
+	public void crearTablas() throws DAOException {
 		try (Statement stat = conn.createStatement()){
 			stat.execute(
 					"create table lote(id varchar(30), fecha date, cantidad int, nombre_tipoVacuna varchar(30), primary key(id))");
@@ -60,7 +68,7 @@ public class AgenteBD {
 		}
 	}
 
-	public static void desconectarBD() throws DAOException{
+	public void desconectarBD() throws DAOException{
 		try {
 			conn.close();
 		} catch (SQLException ex) {
@@ -74,7 +82,7 @@ public class AgenteBD {
 	 * @throws DAOException 
 	 * @throws SQLException 
 	 */
-	public static ResultSet select(String sql) throws DAOException{
+	public ResultSet select(String sql) throws DAOException{
 		ResultSet res;
 		try {
 			Statement stat = conn.createStatement();
@@ -90,7 +98,7 @@ public class AgenteBD {
 	 * @param sql
 	 */
 	//INSERT,UPDATE,DELETE
-	public static int iud(String sql) throws DAOException {
+	public int iud(String sql) throws DAOException {
 		conectarBD();
 		try (PreparedStatement stat = conn.prepareStatement(sql)){
 			int res = stat.executeUpdate();
