@@ -22,7 +22,7 @@ public class GestorEstadisticas {
 			throw new ControllerException("Error al consultar vacunados", e);
 		}
 	}
-
+	
 	/**
 	 * 
 	 * @param region

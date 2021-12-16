@@ -26,7 +26,7 @@ public class PantallaConsultaEstadisticas {
 					+ "4 - Consultar porcentajes vacunados sobre recibidas en region\n"
 					+ "5 - Volver");
 
-			op1 = teclado.nextInt();
+			op1 = teclado.nextInt(); 
 			switch (op1) {
 			case 1:
 				totalVacunados = gestor.consultarTotalVacunados();
@@ -67,7 +67,7 @@ public class PantallaConsultaEstadisticas {
 		} while (seguir);
 		teclado.close();
 	}
-	
+		
 	public static void imprimirTotalVacunados (List<Integer> totalVacunados) {
 		System.out.println("Una dosis: " + (totalVacunados.get(0) - totalVacunados.get(1)) 
 				+"\nPauta completa: " + totalVacunados.get(0));
