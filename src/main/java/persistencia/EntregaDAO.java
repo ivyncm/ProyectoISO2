@@ -16,7 +16,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	static final String GETREGION = "SELECT * FROM entrega WHERE region=";
 	static final String GETONE = "SELECT * FROM entrega WHERE idLote=";
 	static final String GETALL = "SELECT * FROM entrega";
-	static final String WHEREID = "WHERE id=";
+	static final String WHEREID = " WHERE idLote=";
 	private AgenteBD agente;
 
 	public EntregaDAO() {
@@ -56,14 +56,11 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 
 	@Override
 	public EntregaVacunas update(EntregaVacunas e) throws DAOException {
-		agente.conectarBD();
 		int i = 0;
-		i = agente.iud(UPDATE + "region=" + e.getRegion() + ",grupoPrioridad=" + e.getGrupoPrioridad() + ",lote="
-				+ e.getLote() + ",fecha=" + e.getFecha() + ",cantidad=" + e.getCantidad() + WHEREID);
+		i = agente.iud(UPDATE + "region='" + e.getRegion() + "',grupoPrioridad='" + e.getGrupoPrioridad() + "',fecha='" + e.getFecha() + "',cantidad=" + e.getCantidad() + WHEREID + "'" + e.getLote() + "'");
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya actualizado.");
 		}
-		agente.desconectarBD();
 		return e;
 	}
 
@@ -71,7 +68,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 	public int delete(EntregaVacunas e) throws DAOException {
 		agente.conectarBD();
 		int i = 0;
-		i = agente.iud(DELETE);
+		i = agente.iud(DELETE + "'" + e.getLote() + "'");
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya borrado.");
 		}
