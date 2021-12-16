@@ -15,7 +15,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	static final String GETALL = "SELECT * FROM vacunacion";
 	static final String GETREGION = "SELECT * FROM vacunacion WHERE region=";
 	static final String GETONE = "SELECT * FROM vacunacion WHERE dni_Paciente=";
-	static final String WHEREID = "WHERE dni_Paciente=";
+	static final String WHEREID = " WHERE dni_Paciente=";
 
 	private AgenteBD agente;
 	
@@ -58,7 +58,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	public Vacunacion update(Vacunacion v) throws DAOException {
 		agente.conectarBD();
 		int i = 0;
-		i = agente.iud(UPDATE + "segDosis=" + true + WHEREID + "'" + v.getdni() + "'");
+		i = agente.iud(UPDATE + "isSegundaDosis=" + true + WHEREID + "'" + v.getdni() + "'");
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya actualizado.");
 		}
@@ -70,7 +70,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 	public int delete(Vacunacion v) throws DAOException {
 		agente.conectarBD();
 		int i = 0;
-		i = agente.iud(DELETE + v.getdni());
+		i = agente.iud(DELETE + "'" + v.getdni() + "'");
 		if (i == 0) {
 			throw new DAOException("Puede que no se haya borrado.");
 		}
