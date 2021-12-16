@@ -1,8 +1,8 @@
 package persistencia;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import org.junit.Assert;
@@ -11,16 +11,12 @@ import org.junit.Test;
 public class AgenteBDTest {
 
 	@Test
-	public void testConectarBD() throws DAOException {
-		AgenteBD.conectarBD();
-		
-		String expected = "";
-	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	    PrintStream printStream = new PrintStream(baos);
-	    System.setOut(printStream);
-	    String[] lines = baos.toString().split(System.lineSeparator());
-	    String actual = lines[lines.length-1];
-		Assert.assertEquals(expected, actual);
+	public void testConectarBD() throws DAOException, SQLException {
+		AgenteBD agente = new AgenteBD();
+		agente.conectarBD();
+
+		Connection actual = agente.getConn();
+		Assert.assertFalse(actual.isClosed());
 	}
 
 	@Test
@@ -39,38 +35,40 @@ public class AgenteBDTest {
 	}
 
 	@Test
-	public void testDesconectarBD() throws DAOException {
-		AgenteBD.desconectarBD();
-		
-		String expected = "";
-	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	    PrintStream printStream = new PrintStream(baos);
-	    System.setOut(printStream);
-	    String[] lines = baos.toString().split(System.lineSeparator());
-	    String actual = lines[lines.length-1];
-		Assert.assertEquals(expected, actual);
+	public void testDesconectarBD() throws DAOException, SQLException {	
+		AgenteBD agente = new AgenteBD();
+		agente.conectarBD();
+		agente.desconectarBD();
+
+		Connection actual = agente.getConn();
+		Assert.assertTrue(actual.isClosed());
 	}
 
 	@Test
 	public void testSelect() throws DAOException {
-		ResultSet res = AgenteBD.select("SELECT * FROM entrega");
+		AgenteBD agente = new AgenteBD();
+		agente.conectarBD();
+		ResultSet res = agente.select("SELECT * FROM entrega");
 		Assert.assertNotEquals(res, null);
 	}
 
 	@Test
 	public void testIudInsert() throws DAOException {
-		int res = AgenteBD.iud("INSERT INTO lote(id, fecha, cantidad, nombre_TipoVacuna) VALUES('sdsd515','" + LocalDate.now() + "', 50,'Pfizer')");
+		AgenteBD agente = new AgenteBD();
+		int res = agente.iud("INSERT INTO lote(id, fecha, cantidad, nombre_TipoVacuna) VALUES('sdsd515','" + LocalDate.now() + "', 50,'Pfizer')");
 		Assert.assertNotEquals(res, 0);
 	}
 	@Test
 	public void testIudUpdate() throws DAOException {
-		int res = AgenteBD.iud("UPDATE lote SET cantidad=50 WHERE id='sdsd515'");
+		AgenteBD agente = new AgenteBD();
+		int res = agente.iud("UPDATE lote SET cantidad=50 WHERE id='sdsd515'");
 		Assert.assertNotEquals(res, 0);
 	}
 	@Test
 	public void testIudDelete() throws DAOException {
-		int res = AgenteBD.iud("DELETE FROM lote WHERE id='sdsd515'");
-		Assert.assertEquals(res, 1);
+		AgenteBD agente = new AgenteBD();
+		int res = agente.iud("DELETE FROM lote WHERE id='sdsd515'");
+		Assert.assertNotEquals(res, 0);
 	}
 
 }
