@@ -8,7 +8,8 @@ public class Auxiliares {
 	static String noValida = "Opcion no valida\n";
 	
 	
-	public static boolean segDosis(Scanner teclado) {
+	public static boolean segDosis() {
+		Scanner teclado=new Scanner(System.in);
 		boolean segDosis = false;
 		String op3;
 		System.out.println("Es segunda dosis? s/n\n");
@@ -21,7 +22,7 @@ public class Auxiliares {
 			break;
 		default:
 			System.out.println(noValida);
-			segDosis(teclado);
+			segDosis();
 			break;
 		}
 		return segDosis;
@@ -85,7 +86,8 @@ public class Auxiliares {
 		return region;
 	}
 	
-	public static String menu3Cadenas(String[] cadenas, Scanner teclado) {
+	public static String menu3Cadenas(String[] cadenas) {
+		Scanner teclado=new Scanner(System.in);
         String palabra = null;
         int op;
         do {

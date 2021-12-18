@@ -11,12 +11,11 @@ public class AuxiliaresTest {
 
 	@Test
 	public void testSegDosisS() {
-		Scanner teclado = new Scanner(System.in);
 		String userInput = String.format("s\n");// Entrada Usuario
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
-        boolean segDosis=Auxiliares.segDosis(teclado);//Llamada a método
+        boolean segDosis=Auxiliares.segDosis();//Llamada a método
 
         System.setIn(bais);		 
 		boolean expected=true;
@@ -24,12 +23,12 @@ public class AuxiliaresTest {
 	}
 	@Test
 	public void testSegDosisN() {
-		Scanner teclado = new Scanner(System.in);
+		//Scanner teclado = new Scanner(System.in);
 		String userInput = String.format("n\n");// Entrada Usuario
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
-        boolean segDosis=Auxiliares.segDosis(teclado);//Llamada a método
+        boolean segDosis=Auxiliares.segDosis();//Llamada a método
 
         System.setIn(bais);		 
 		boolean expected=false;
@@ -116,11 +115,11 @@ public class AuxiliaresTest {
 	*/
 	@Test
 	public void testMenu3CadenasGrupoAnciano() {
-        Scanner teclado = new Scanner(System.in);
+        //Scanner teclado = new Scanner(System.in);
 		String userInput = String.format("1");// Entrada Usuario
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
-        String palabra=Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo, teclado);//Llamada a método
+        String palabra=Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);//Llamada a método
 
         System.setIn(bais);		 
 		String expected="Anciano";
@@ -128,12 +127,12 @@ public class AuxiliaresTest {
 	}
 	@Test
 	public void testMenu3CadenasGrupoAdulto() {
-        Scanner teclado = new Scanner(System.in);
+        //Scanner teclado = new Scanner(System.in);
 		String userInput = String.format("2");// Entrada Usuario
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
-        String palabra=Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo, teclado);//Llamada a método
+        String palabra=Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);//Llamada a método
 
         System.setIn(bais);		 
 		String expected="Adulto";
@@ -141,12 +140,12 @@ public class AuxiliaresTest {
 	}
 	@Test
 	public void testMenu3CadenasGrupoJoven() {
-        Scanner teclado = new Scanner(System.in);
+       // Scanner teclado = new Scanner(System.in);
 		String userInput = String.format("3");// Entrada Usuario
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
-        String palabra=Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo, teclado);//Llamada a método
+        String palabra=Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);//Llamada a método
 
         System.setIn(bais);		 
 		String expected="Joven";
@@ -171,39 +170,39 @@ public class AuxiliaresTest {
 	}
 	*/
 	@Test
-	public void testMenu3CadenasTipoAnciano() {
-        Scanner teclado = new Scanner(System.in);
+	public void testMenu3CadenasTipoVacunaPfi() {
+        //Scanner teclado = new Scanner(System.in);
 		String userInput = String.format("1");// Entrada Usuario
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
-        String palabra = Auxiliares.menu3Cadenas(Auxiliares.cadenaTipo, teclado);//Llamada a método
+        String palabra = Auxiliares.menu3Cadenas(Auxiliares.cadenaTipo);//Llamada a método
 
         System.setIn(bais);		 
 		String expected="Pfizer";
 		Assert.assertEquals(expected, palabra);
 	}
 	@Test
-	public void testMenu3CadenasTipoAdulto() {
-        Scanner teclado = new Scanner(System.in);
+	public void testMenu3CadenasTipoVacunaMod() {
+        //Scanner teclado = new Scanner(System.in);
 		String userInput = String.format("2");// Entrada Usuario
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
-        String palabra=Auxiliares.menu3Cadenas(Auxiliares.cadenaTipo, teclado);//Llamada a método
+        String palabra=Auxiliares.menu3Cadenas(Auxiliares.cadenaTipo);//Llamada a método
 
         System.setIn(bais);		 
 		String expected="Moderna";
 		Assert.assertEquals(expected, palabra);
 	}
 	@Test
-	public void testMenu3CadenasTipoJoven() {
-        Scanner teclado = new Scanner(System.in);
+	public void testMenu3CadenasTipoVacunaAstra() {
+        //Scanner teclado = new Scanner(System.in);
 		String userInput = String.format("3");// Entrada Usuario
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
-        String palabra=Auxiliares.menu3Cadenas(Auxiliares.cadenaTipo, teclado);//Llamada a método
+        String palabra=Auxiliares.menu3Cadenas(Auxiliares.cadenaTipo);//Llamada a método
 
         System.setIn(bais);		 
 		String expected="Astrazeneca";

@@ -20,21 +20,6 @@ public class AgenteBDTest {
 	}
 
 	@Test
-	public void testMain() {
-		throw new RuntimeException("not yet implemented");
-	}
-
-	@Test
-	public void testCrearBD() {
-		throw new RuntimeException("not yet implemented");
-	}
-
-	@Test
-	public void testCrearTablas() {
-		throw new RuntimeException("not yet implemented");
-	}
-
-	@Test
 	public void testDesconectarBD() throws DAOException, SQLException {	
 		AgenteBD agente = new AgenteBD();
 		agente.conectarBD();
