@@ -10,7 +10,7 @@ import dominio.entitymodel.Vacunacion;
 
 
 public class PantallaGestionSistemaRegionalSalud {
-	
+	static Scanner teclado = new Scanner(System.in);
 	public static void main(String[] args) throws Exception {
 		System.out.println("Bienvenido al Sistema de Salud Regional\n");
 		String region = Auxiliares.Region();
@@ -18,7 +18,6 @@ public class PantallaGestionSistemaRegionalSalud {
 	}
 
 	public static void menu(String region) throws Exception {
-		Scanner teclado = new Scanner(System.in);
 		LocalDate fecha;
 		GestorVacunacion GestorVacunacion = new GestorVacunacion();;
 		int op1 = 0;
@@ -36,15 +35,15 @@ public class PantallaGestionSistemaRegionalSalud {
 				fecha = LocalDate.now();
 				System.out.println("Introduce la cantidad:");
 				int cantidad = teclado.nextInt();
-				grupo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
+				grupo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo, teclado);
 				EntregaVacunas entrega = new EntregaVacunas(grupo, fecha, cantidad, region);
 				GestorVacunacion.altaEntregaVacunas(entrega);
 				break;
 			case 2:
 				
 				fecha = LocalDate.now();
-				tipo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
-				boolean segDosis = Auxiliares.segDosis();
+				tipo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo, teclado);
+				boolean segDosis = Auxiliares.segDosis(teclado);
 				
 				Paciente paciente = DatosPaciente(region);
 
@@ -66,7 +65,6 @@ public class PantallaGestionSistemaRegionalSalud {
 	}
 	
 	public static Paciente DatosPaciente(String region) {
-		Scanner teclado = new Scanner(System.in);
 		String dni, nombre, apellido1, apellido2, grupo;
 		do {
 			System.out.println("Introduce el DNI del paciente:");
@@ -85,7 +83,7 @@ public class PantallaGestionSistemaRegionalSalud {
 			apellido2 = teclado.next();
 		}while(Auxiliares.soloLetras(apellido2));
 		String apellidos = apellido1 + " " + apellido2;
-		grupo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
+		grupo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo, teclado);
 		
 		Paciente paciente = new Paciente(dni, nombre, apellidos, grupo, region);
 		return paciente;

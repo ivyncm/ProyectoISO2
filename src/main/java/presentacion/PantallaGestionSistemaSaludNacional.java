@@ -54,7 +54,7 @@ public class PantallaGestionSistemaSaludNacional {
 	
 	public static void altaNuevoLote(GestorRepartoVacunas gestor) throws ControllerException, DAOException {
 		Scanner teclado = new Scanner(System.in);
-		String tipo = Auxiliares.menu3Cadenas(Auxiliares.cadenaTipo);
+		String tipo = Auxiliares.menu3Cadenas(Auxiliares.cadenaTipo, teclado);
 		System.out.println("Introduce la cantidad:");
 		int cantidad = teclado.nextInt();
 		
@@ -81,7 +81,7 @@ public class PantallaGestionSistemaSaludNacional {
 				System.out.println("Lote seleccionado" + lote.toString());
 			}
 		} while (op2<1 || op2>lotes.size());
-		String prioridad = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
+		String prioridad = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo, teclado);
 		List<EntregaVacunas> entregas = gestor.calcularEntregasRegion(lote, prioridad);
 		for(int i = 0; i<entregas.size(); i++){
 			System.out.println("Entrega " + (i+1) + entregas.get(i).toString());
