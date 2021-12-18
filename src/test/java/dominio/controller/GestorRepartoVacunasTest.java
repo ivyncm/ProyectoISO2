@@ -39,7 +39,7 @@ public class GestorRepartoVacunasTest {
 		List<EntregaVacunas> entregas = reparto.calcularEntregasRegion(lote, "Joven");
 		
 		
-		Assert.assertTrue(entregas.size() == 19);
+		Assert.assertEquals(entregas.size(), 19);
 	}
 	@Test
 	public void testCalcularEntregasRegionMenor200() throws DAOException, ControllerException {
@@ -51,7 +51,7 @@ public class GestorRepartoVacunasTest {
 		GestorRepartoVacunas reparto = new GestorRepartoVacunas();
 		List<EntregaVacunas> entregas = reparto.calcularEntregasRegion(lote, "Joven");
 		
-		Assert.assertTrue(entregas.size() == 1);
+		Assert.assertEquals(entregas.size(), 1);
 	}
 
 	@Test
