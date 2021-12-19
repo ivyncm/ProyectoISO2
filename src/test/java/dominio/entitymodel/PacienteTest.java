@@ -1,6 +1,5 @@
 package dominio.entitymodel;
 
-import java.time.LocalDate;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -67,5 +66,17 @@ public class PacienteTest {
 		Paciente paciente = new Paciente(dni, nombre, apellidos, grupo, region);
         String expected = apellidos;
         Assert.assertEquals(expected, paciente.getApellidos());	}
+	
+	@Test
+	public void testEquals() {
+		String dni = "04863879Q";
+		String region = "Murcia";
+		String grupo = "Joven";
+		String nombre = "Raul";
+		String apellidos = "Garcia Martinez";
+
+		Paciente paciente1 = new Paciente(dni, nombre, apellidos, grupo, region);
+		Paciente paciente2 = new Paciente(dni, nombre, apellidos, grupo, region);
+        Assert.assertTrue(paciente1.equals(paciente2));	}
 
 }
