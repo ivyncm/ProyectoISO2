@@ -17,7 +17,7 @@ public class PantallaGestionSistemaSaludNacional {
 		menu();
 	}
 
-	public static void menu() throws Exception {
+	public static int menu() throws Exception {
 		Scanner teclado = new Scanner(System.in);
 		int op1 = 0;
 		System.out.println("Bienvenido al Sistema de Salud Nacional\n"
@@ -33,28 +33,29 @@ public class PantallaGestionSistemaSaludNacional {
 			GestorRepartoVacunas gestor = new GestorRepartoVacunas();
 			switch (op1) {
 			case 1:
-				altaNuevoLote(gestor);
+				altaNuevoLote(gestor, teclado);
 				break;
 			case 2:
-				calcularReparto(gestor);
+				calcularReparto(gestor, teclado);
 				break;
 			case 3:
 				PantallaConsultaEstadisticas.estadNacional();
 				break;
 			case 4:
 				System.out.println("Sesión cerrada\n");
-				break;
+				return 0;
 			default:
 				System.out.println(Auxiliares.noValida);
 				break;
 			}
 		} while (op1 < 1 || op1 > 4);
 		teclado.close();
+		return 0;
 	}
 	
-	public static void altaNuevoLote(GestorRepartoVacunas gestor) throws ControllerException, DAOException {
-		Scanner teclado = new Scanner(System.in);
-		String tipo = Auxiliares.menu3Cadenas(Auxiliares.cadenaTipo);
+	public static void altaNuevoLote(GestorRepartoVacunas gestor, Scanner teclado) throws ControllerException, DAOException {
+
+		String tipo = Auxiliares.menu3Cadenas(Auxiliares.cadenaTipo, teclado);
 		System.out.println("Introduce la cantidad:");
 		int cantidad = teclado.nextInt();
 		
@@ -65,8 +66,7 @@ public class PantallaGestionSistemaSaludNacional {
 		gestor.altaNuevoLoteVacunas(lote);
 	}
 	
-	public static void calcularReparto(GestorRepartoVacunas gestor) throws DAOException, ControllerException {
-		Scanner teclado = new Scanner(System.in);
+	public static void calcularReparto(GestorRepartoVacunas gestor, Scanner teclado) throws DAOException, ControllerException {
 		LoteVacunas lote = null;
 		int op2;
 		List<LoteVacunas> lotes = gestor.imprimirLotes();
@@ -81,7 +81,7 @@ public class PantallaGestionSistemaSaludNacional {
 				System.out.println("Lote seleccionado" + lote.toString());
 			}
 		} while (op2<1 || op2>lotes.size());
-		String prioridad = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
+		String prioridad = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo, teclado);
 		List<EntregaVacunas> entregas = gestor.calcularEntregasRegion(lote, prioridad);
 		for(int i = 0; i<entregas.size(); i++){
 			System.out.println("Entrega " + (i+1) + entregas.get(i).toString());
