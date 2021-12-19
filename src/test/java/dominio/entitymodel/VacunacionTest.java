@@ -6,6 +6,13 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class VacunacionTest {
+	
+	@Test
+	public void testVacunacionDni() {
+		String dni = "04168254K";
+		Vacunacion vacunacion = new Vacunacion(dni);
+		Assert.assertEquals(dni, vacunacion.getdni());
+	}
 
 	@Test
 	public void testGetdni() {
