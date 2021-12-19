@@ -17,7 +17,7 @@ public class PantallaGestionSistemaRegionalSalud {
 		menu(region);
 	}
 
-	public static void menu(String region) throws Exception {
+	public static int menu(String region) throws Exception {
 		Scanner teclado = new Scanner(System.in);
 		LocalDate fecha;
 		GestorVacunacion GestorVacunacion = new GestorVacunacion();;
@@ -36,14 +36,14 @@ public class PantallaGestionSistemaRegionalSalud {
 				fecha = LocalDate.now();
 				System.out.println("Introduce la cantidad:");
 				int cantidad = teclado.nextInt();
-				grupo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
+				grupo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo, teclado);
 				EntregaVacunas entrega = new EntregaVacunas(grupo, fecha, cantidad, region);
 				GestorVacunacion.altaEntregaVacunas(entrega);
 				break;
 			case 2:
 				
 				fecha = LocalDate.now();
-				tipo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
+				tipo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo, teclado);
 				boolean segDosis = Auxiliares.segDosis();
 				
 				Paciente paciente = DatosPaciente(region);
@@ -57,12 +57,13 @@ public class PantallaGestionSistemaRegionalSalud {
 				break;
 			case 4:
 				System.out.println("Sesión cerrada\n");
-				break;
+				return 0;
 			default:
 				System.out.println(Auxiliares.noValida);
 				break;
 			}
 		} while (op1 < 1 || op1 > 4);
+		return 0;
 	}
 	
 	public static Paciente DatosPaciente(String region) {
@@ -85,7 +86,7 @@ public class PantallaGestionSistemaRegionalSalud {
 			apellido2 = teclado.next();
 		}while(Auxiliares.soloLetras(apellido2));
 		String apellidos = apellido1 + " " + apellido2;
-		grupo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo);
+		grupo = Auxiliares.menu3Cadenas(Auxiliares.cadenaGrupo, teclado);
 		
 		Paciente paciente = new Paciente(dni, nombre, apellidos, grupo, region);
 		return paciente;
