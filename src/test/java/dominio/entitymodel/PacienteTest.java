@@ -78,5 +78,18 @@ public class PacienteTest {
 		Paciente paciente1 = new Paciente(dni, nombre, apellidos, grupo, region);
 		Paciente paciente2 = new Paciente(dni, nombre, apellidos, grupo, region);
         Assert.assertTrue(paciente1.equals(paciente2));	}
+	
+	@Test
+	public void testNotEquals() {
+		String dni1 = "04863879Q";
+		String dni2 = "02853974F";
+		String region = "Murcia";
+		String grupo = "Joven";
+		String nombre = "Raul";
+		String apellidos = "Garcia Martinez";
+
+		Paciente paciente1 = new Paciente(dni1, nombre, apellidos, grupo, region);
+		Paciente paciente2 = new Paciente(dni2, nombre, apellidos, grupo, region);
+        Assert.assertFalse(paciente1.equals(paciente2));	}
 
 }

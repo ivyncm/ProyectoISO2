@@ -6,7 +6,7 @@ import java.util.Objects;
 import persistencia.*;
 
 public class Vacunacion {
-	public static Paciente paciente;
+	public Paciente paciente;
 	private String dni;
 	String tipoVacuna;
 	VacunacionDAO vacunacionDao;

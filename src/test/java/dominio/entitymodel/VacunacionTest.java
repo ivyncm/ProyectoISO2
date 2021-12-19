@@ -81,4 +81,32 @@ public class VacunacionTest {
         boolean expected = isSegundaDosis;
         Assert.assertEquals(expected, vacuna.isSegundaDosis());	}
 
+	
+	@Test
+	public void testEquals() {
+		String dni = "04863879Q";
+		String tipoVacuna = "Pfizer";
+		LocalDate fecha = LocalDate.now();
+		boolean isSegundaDosis = true;
+		Paciente paciente = new Paciente(dni, "Jesus", "Gacia", "Joven", "Murcia");
+		
+		Vacunacion vacuna1 = new Vacunacion(tipoVacuna,fecha,isSegundaDosis,paciente);
+		Vacunacion vacuna2 = new Vacunacion(tipoVacuna,fecha,isSegundaDosis,paciente);
+		
+        Assert.assertTrue(vacuna1.equals(vacuna2));	}
+	
+	@Test
+	public void testNotEquals() {
+		String dni1 = "04863879Q";
+		String dni2 = "02853974F";
+		String tipoVacuna = "Pfizer";
+		LocalDate fecha = LocalDate.now();
+		boolean isSegundaDosis = true;
+		Paciente paciente1 = new Paciente(dni1, "Jesus", "Gacia", "Joven", "Murcia");
+		Paciente paciente2 = new Paciente(dni2, "David", "Moreno", "Joven", "Murcia");
+		
+		Vacunacion vacuna1 = new Vacunacion(tipoVacuna,fecha,isSegundaDosis,paciente1);
+		Vacunacion vacuna2 = new Vacunacion(tipoVacuna,fecha,isSegundaDosis,paciente2);
+		
+        Assert.assertFalse(vacuna1.equals(vacuna2));	}
 }
