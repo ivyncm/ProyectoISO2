@@ -9,7 +9,8 @@ import java.util.*;
 import dominio.entitymodel.*;
 
 public class EntregaDAO implements DAO<EntregaVacunas> {
-
+	static String error="Error en SQL";
+	
 	static final String INSERT = "INSERT INTO entrega(fecha, cantidad, idLote, region, grupoPrioridad) VALUES(";
 	static final String UPDATE = "UPDATE entrega SET ";
 	static final String DELETE = "DELETE FROM entrega WHERE idLote=";
@@ -35,7 +36,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 				entrega = (convertir(rs));
 			}
 		} catch (Exception ex) {
-			throw new DAOException("Error en SQL", ex);
+			throw new DAOException(error, ex);
 		}
 		agente.desconectarBD();
 		return entrega;
@@ -106,7 +107,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 				entrega.add(convertir(rs));
 			}
 		} catch (Exception ex) {
-			throw new DAOException("Error en SQL", ex);
+			throw new DAOException(error, ex);
 		}
 		return entrega;
 	}
@@ -121,7 +122,7 @@ public class EntregaDAO implements DAO<EntregaVacunas> {
 				entrega.add(convertir(rs));
 			}
 		} catch (Exception ex) {
-			throw new DAOException("Error en SQL", ex);
+			throw new DAOException(error, ex);
 		}
 		return entrega;
 	}

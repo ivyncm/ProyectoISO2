@@ -33,7 +33,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 				vacunacion = convertir(rs);
 			}
 		} catch (Exception ex) {
-			throw new DAOException("Error en SQL", ex);
+			throw new DAOException(EntregaDAO.error, ex);
 		}
 		agente.desconectarBD();
 		return vacunacion;
@@ -112,7 +112,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 				vacunaciones.add(convertir(rs));
 			}
 		} catch (SQLException ex) {
-			throw new DAOException("Error en SQL", ex);
+			throw new DAOException(EntregaDAO.error, ex);
 		}
 		return vacunaciones;
 	}
@@ -128,7 +128,7 @@ public class VacunacionDAO implements DAO<Vacunacion> {
 				vacunaciones.add(convertir(rs));
 			}
 		} catch (SQLException ex) {
-			throw new DAOException("Error en SQL", ex);
+			throw new DAOException(EntregaDAO.error, ex);
 		}
 		agente.desconectarBD();
 		return vacunaciones;

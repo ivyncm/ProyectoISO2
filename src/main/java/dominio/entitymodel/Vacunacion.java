@@ -6,7 +6,7 @@ import java.util.Objects;
 import persistencia.*;
 
 public class Vacunacion {
-	public Paciente paciente;
+	public static Paciente paciente;
 	private String dni;
 	String tipoVacuna;
 	VacunacionDAO vacunacionDao;
@@ -63,6 +63,10 @@ public class Vacunacion {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(dni, fecha, isSegundaDosis, tipoVacuna);
+	}
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -72,8 +76,7 @@ public class Vacunacion {
 			return false;
 		Vacunacion other = (Vacunacion) obj;
 		return Objects.equals(dni, other.dni) && Objects.equals(fecha, other.fecha)
-				&& isSegundaDosis == other.isSegundaDosis && Objects.equals(paciente, other.paciente)
-				&& Objects.equals(tipoVacuna, other.tipoVacuna);
+				&& isSegundaDosis == other.isSegundaDosis && Objects.equals(tipoVacuna, other.tipoVacuna);
 	}
 	
 }

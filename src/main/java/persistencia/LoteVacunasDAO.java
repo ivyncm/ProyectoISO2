@@ -27,17 +27,17 @@ public class LoteVacunasDAO implements DAO<LoteVacunas> {
 	public LoteVacunas get(String id) throws DAOException  {
 		agente.conectarBD();
 		ResultSet rs = null;
-		LoteVacunas LoteVacunas = null;
+		LoteVacunas loteVacunas = null;
 		try {
 			rs = agente.select(GETONE + "'" + id + "'");
 			while (rs.next()) {
-				LoteVacunas = (convertir(rs));
+				loteVacunas = (convertir(rs));
 			}
 		} catch (Exception ex) {
 			throw new DAOException("Error en SQL", ex);
 		}
 		agente.desconectarBD();
-		return LoteVacunas;
+		return loteVacunas;
 	}
 
 	public List<LoteVacunas> seleccionarLote() throws DAOException  {

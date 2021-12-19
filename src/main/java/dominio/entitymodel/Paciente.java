@@ -48,6 +48,10 @@ public class Paciente {
 	}
 
 	@Override
+	public int hashCode() {
+		return Objects.hash(apellidos, dni, grupo, nombre, region);
+	}
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

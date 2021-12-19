@@ -1,6 +1,5 @@
 package dominio.entitymodel;
 
-import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -14,7 +13,7 @@ public class LoteVacunas {
 	private int cantidad;
 	private String farmaceutica;
 	
-	public LoteVacunas(String id, LocalDate fecha, int cantidad, String farmaceutica) throws DAOException {
+	public LoteVacunas(String id, LocalDate fecha, int cantidad, String farmaceutica){
 		setId(id);
 		setFecha(fecha);
 		setCantidad(cantidad);
@@ -22,8 +21,8 @@ public class LoteVacunas {
 		setTipo(new TipoVacuna(farmaceutica));
 		setLoteVacunasDao(new LoteVacunasDAO());
 	}
-	public LoteVacunas(LocalDate fecha, int cantidad, String farmaceutica) throws DAOException {
-		setId(cadenaAleatoria());
+	public LoteVacunas(LocalDate fecha, int cantidad, String farmaceutica){
+		setId(EntregaVacunas.cadenaAleatoria());
 		setFecha(fecha);
 		setCantidad(cantidad);
 		setFarmaceutica(farmaceutica);
@@ -75,6 +74,10 @@ public class LoteVacunas {
 	
 	
 	@Override
+	public int hashCode() {
+		return Objects.hash(cantidad, farmaceutica, fecha, id);
+	}
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -86,22 +89,5 @@ public class LoteVacunas {
 		return cantidad == other.cantidad && Objects.equals(farmaceutica, other.farmaceutica)
 				&& Objects.equals(fecha, other.fecha) && Objects.equals(id, other.id);
 	}
-	public static String cadenaAleatoria() {
-		int length = 5;
-		String charLower = "abcdefghijklmnopqrstuvwxyz";
-		String charUpper = charLower.toUpperCase();
-		String number = "0123456789";
-		String dataForRandomString = charLower + charUpper + number;
-		SecureRandom random = new SecureRandom();
-		if (length < 1)
-			throw new IllegalArgumentException();
-		StringBuilder sb = new StringBuilder(length);
-		for (int i = 0; i < length; i++) {
-			int rndCharAt = random.nextInt(dataForRandomString.length());
-			char rndChar = dataForRandomString.charAt(rndCharAt);
-
-			sb.append(rndChar);
-		}
-		return sb.toString();
-	}
+	
 }

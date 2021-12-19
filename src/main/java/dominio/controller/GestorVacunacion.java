@@ -1,7 +1,5 @@
 package dominio.controller;
 
-import java.time.LocalDate;
-
 import dominio.entitymodel.*;
 import persistencia.DAOException;
 

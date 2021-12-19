@@ -82,6 +82,10 @@ public class EntregaVacunas {
 	}
 	
 	@Override
+	public int hashCode() {
+		return Objects.hash(cantidad, fecha, grupoprioridad, lote, region);
+	}
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -94,6 +98,7 @@ public class EntregaVacunas {
 				&& Objects.equals(grupoprioridad, other.grupoprioridad) && Objects.equals(lote, other.lote)
 				&& Objects.equals(region, other.region);
 	}
+
 	
 	public static String cadenaAleatoria() {
 		int length = 5;
