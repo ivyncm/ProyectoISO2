@@ -85,6 +85,14 @@ public class EntregaVacunasTest {
         int expected = cantidad; 
         Assert.assertEquals(expected, entrega.getCantidad());
 	}
+	@Test
+	public void testcadenaAleatoria() throws DAOException {
+		String cadena = EntregaVacunas.cadenaAleatoria();
+		String cadenaActual=EntregaVacunas.cadenaAleatoria();
+		
+        Assert.assertNotEquals(cadena, cadenaActual);
+	}
+	
 	
 	
 }

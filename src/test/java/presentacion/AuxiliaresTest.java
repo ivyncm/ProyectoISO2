@@ -3,6 +3,8 @@ package presentacion;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import org.junit.Assert;
@@ -167,8 +169,8 @@ public class AuxiliaresTest {
         System.setIn(bais);		 
 		String expected="Opcion no valida\n";
 		Assert.assertEquals(expected, palabra);
-	}
-	*/
+	}*/
+	
 	@Test
 	public void testMenu3CadenasTipoVacunaPfi() {
         //Scanner teclado = new Scanner(System.in);
@@ -208,6 +210,7 @@ public class AuxiliaresTest {
 		String expected="Astrazeneca";
 		Assert.assertEquals(expected, palabra);
 	}
+	
 	/*
 	@Test
 	public void testMenu3CadenasTipoNoValido() {
@@ -224,6 +227,6 @@ public class AuxiliaresTest {
         System.setIn(bais);		 
 		String expected="Opcion no valida\n";
 		Assert.assertEquals(expected, palabra);
-	}
-	*/
+	}*/
+	
 }

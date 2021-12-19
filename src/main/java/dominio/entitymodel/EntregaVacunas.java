@@ -107,8 +107,7 @@ public class EntregaVacunas {
 		String number = "0123456789";
 		String dataForRandomString = charLower + charUpper + number;
 		SecureRandom random = new SecureRandom();
-		if (length < 1)
-			throw new IllegalArgumentException();
+		
 		StringBuilder sb = new StringBuilder(length);
 		for (int i = 0; i < length; i++) {
 			int rndCharAt = random.nextInt(dataForRandomString.length());
