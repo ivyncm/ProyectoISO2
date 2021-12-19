@@ -6,7 +6,7 @@ import java.util.Scanner;
 import dominio.controller.GestorEstadisticas;
 
 public class PantallaConsultaEstadisticas {
-	public static void estadNacional() throws Exception {
+	public static int estadNacional() throws Exception {
 		String porcentajeVacunados = "Porcentaje vacunados: %.3f%n";
 		List<Integer> totalVacunados;
 		Boolean seguir = true;
@@ -56,9 +56,7 @@ public class PantallaConsultaEstadisticas {
 				}
 				break;
 			case 5:
-				PantallaGestionSistemaSaludNacional.menu();
-				seguir = false;
-				break;
+				return 0;
 			default:
 				System.out.println(Auxiliares.noValida);
 				break;
@@ -66,6 +64,7 @@ public class PantallaConsultaEstadisticas {
 
 		} while (seguir);
 		teclado.close();
+		return 0;
 	}
 		
 	public static void imprimirTotalVacunados (List<Integer> totalVacunados) {
@@ -73,7 +72,7 @@ public class PantallaConsultaEstadisticas {
 				+"\nPauta completa: " + totalVacunados.get(0));
 	}
 	
-	public static void estadRegion(String region) throws Exception {
+	public static int estadRegion(String region) throws Exception {
 		String porcentajeVacunados = "Porcentaje vacunados: %.3f%n";
 		Boolean seguir = true;
 		Scanner teclado = new Scanner(System.in);
@@ -107,9 +106,7 @@ public class PantallaConsultaEstadisticas {
 				}
 				break;
 			case 3:
-				PantallaGestionSistemaRegionalSalud.menu(region);
-				seguir = false;
-				break;
+				return 0;
 			default:
 				System.out.println(Auxiliares.noValida);
 				break;
@@ -117,5 +114,6 @@ public class PantallaConsultaEstadisticas {
 
 		} while (seguir);
 		teclado.close();
+		return 0;
 	}
 }
