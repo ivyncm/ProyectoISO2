@@ -86,8 +86,7 @@ public class Auxiliares {
 		return region;
 	}
 	
-	public static String menu3Cadenas(String[] cadenas) {
-		Scanner teclado=new Scanner(System.in);
+	public static String menu3Cadenas(String[] cadenas, Scanner teclado) {
         String palabra = null;
         int op;
         do {
